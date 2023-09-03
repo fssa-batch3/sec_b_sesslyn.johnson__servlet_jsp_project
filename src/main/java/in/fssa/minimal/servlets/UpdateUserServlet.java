@@ -46,7 +46,7 @@ public class UpdateUserServlet extends HttpServlet {
 			if (stringId != null && !stringId.isEmpty()) {
 				int id = Integer.parseInt(stringId);
 				userService.updateUser(id, user);
-				response.sendRedirect(request.getContextPath()+"/user_list");
+				response.sendRedirect(request.getContextPath()+"/user/details?id=" + id);
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();

@@ -27,32 +27,34 @@ public class LoginServlet extends HttpServlet {
 		rd.forward(request, response);	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-		    String email = request.getParameter("email");
-		    String password = request.getParameter("password");
-		    UserService userService = new UserService();
-		    User user = userService.findByEmail(email);
 
-		    if (user == null) {
-		        System.out.println("User not found");
-		    } else if (!password.equals(user.getPassword())) {
-		        System.out.println("Incorrect password");
-		    } else {
-		        System.out.println("You have been logged in successfully");
-	            int id = user.getId();
-	            request.getSession().setAttribute("userId", id); 
-	            response.sendRedirect(request.getContextPath()+"/index.jsp");
-		    }
-           
-		} catch (ServiceException e) {
-		    e.printStackTrace();
-		} catch (ValidationException e) {
-		    e.printStackTrace();
-		}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    try {
+	        String email = request.getParameter("email");
+	        String password = request.getParameter("password");
+	        UserService userService = new UserService();
+	        User user = userService.findByEmail(email);
+
+	        if (user == null) {
+	            System.out.println("User not found");
+	        } else if (!password.equals(user.getPassword())) {
+	            System.out.println("Incorrect password");
+	        } else {
+	            System.out.println("You have been logged in successfully");
+	            Integer id = user.getId();
+	            if (id != null) {
+	                request.getSession().setAttribute("userId", id);
+	                
+	                response.sendRedirect(request.getContextPath() + "/user/details?id=" + id);
+	            }
+	        }    
+
+	    } catch (ServiceException e) {
+	        e.printStackTrace();
+	    } catch (ValidationException e) {
+	        e.printStackTrace();
+	    }
 	}
+
 
 }

@@ -182,7 +182,6 @@ hr.new1 {
 	transform: scaleX(1);
 	transform-origin: bottom left;
 }
-
 /* login */
 #right_corner {
 	display: block;
@@ -383,7 +382,8 @@ input[type=email] {
 		<div id="main_page">
 			<div class="main_left" id="left-div">
 				<div class="main_header">
-					<span class="header"> <a href="index.jsp"> <img
+					<span class="header"> <a
+						href="<%=request.getContextPath()%>/index"> <img
 							class="main_logo" src="https://iili.io/Hy0p6kx.jpg"
 							alt="logo of minimalistic m"></span></a> <span class="header">
 						<a href="./pages/shop.html">
@@ -395,7 +395,8 @@ input[type=email] {
 							<p class="header_para">ORDERS</p>
 					</a></span> <span class="header"> <a href="#">
 							<p class="header_para">SCHEDULE</p>
-					</a></span> <span class="header"> <a href="#">
+					</a></span> <span class="header"> <a
+						href="<%=request.getContextPath()%>/designer">
 							<p class="header_para">DESIGNERS</p>
 					</a></span>
 				</div>
@@ -441,12 +442,9 @@ input[type=email] {
 							greenish plants.
 						</p>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
-
 		<div id="right_corner">
 			<div class="menu">
 				<a href="index.jsp"> <img src="https://iili.io/Hy19PWB.png"
@@ -464,8 +462,8 @@ input[type=email] {
 				</p>
 			</div>
 			<div class="data_form">
-			
-		 <!-- Form -->
+
+				<!-- Form -->
 				<form action="create" method="post">
 					<div class="form_input">
 						<label for="name">Name</label> <input type="text" name="name"
@@ -473,7 +471,6 @@ input[type=email] {
 							title="Only contain Alphabets" required placeholder="Sesslyn">
 					</div>
 					<hr class="new3">
-
 					<div class="form_input">
 						<label for="email">Email Id</label> <input type="email"
 							name="email" class="no_outline" id="user_email"
@@ -482,17 +479,14 @@ input[type=email] {
 							placeholder="sess@...">
 					</div>
 					<hr class="new3">
-
 					<div class="form_input">
 						<label for="phone">Phone Number</label> <input
 							pattern="[6-9][0-9]{9}" type="tel" name="phone_number"
 							title="It should be a 10-digit number starting with a digit between 6 and 9."
 							class="no_outline" id="user_no" required maxlength="10"
 							placeholder="995239...">
-
 					</div>
 					<hr class="new3">
-
 					<div class="form_input">
 						<label for="password">Password</label> <input class="no_outline"
 							required type="password" name="password"
@@ -501,7 +495,6 @@ input[type=email] {
 							placeholder="Password" id="user_password">
 					</div>
 					<hr class="new3">
-
 					<div class="form_input">
 						<label for="repeat_password">Confirm password</label> <input
 							class="no_outline" required type="password"
@@ -510,29 +503,25 @@ input[type=email] {
 							title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
 							placeholder="Password" id="confirm_password">
 					</div>
-
 					<div class="input-container">
 						<input type="checkbox" id="inbox" name="is_designer" value="true">
 						<p for="is_designer" id="designer_toggle">Are you a designer ?</p>
 					</div>
-
 					<small>* Password must have 8 characters, uppercase,</small> <small
 						id="small"> lowercase, and special case.</small>
 					<div class="form_btn">
-						<button class="btn_register" type="submit">Sign Up</button>
-						<a href="login.jsp"><button class="btn_register"
-								id="btn_login" type="button">Login</button></a>
+						<a href="<%=request.getContextPath()%>/login"><button
+								class="btn_register"  type="button">Login</button></a>
+						<button class="btn_register" id="btn_login" type="submit">Sign Up</button>
 					</div>
 				</form>
 			</div>
-
 		</div>
 	</div>
 	<script>
 		function checkPassword() {
 			let user_password = document.getElementById("user_password").value;
 			let confirm_password = document.getElementById("confirm_password").value;
-
 			if (user_password !== confirm_password) {
 				alert("Password doesn't match. Please re-enter the password");
 				document.getElementById("confirm_password").value = "";

@@ -23,12 +23,16 @@ public class NewAppointmentServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int id = (Integer) request.getSession().getAttribute("userId");
+		int userId = (Integer) request.getSession().getAttribute("userId");
+	    String designerIdParam = request.getParameter("id");
+        int designerId = Integer.parseInt(designerIdParam);
 		UserService userService = new UserService();
 		try {
-			User user = userService.findByUserId(id);
+			User user = userService.findByUserId(userId);
+			User designer = userService.findByDesignerId(designerId);
 			request.setAttribute("userDetails", user);
-			RequestDispatcher rd = request.getRequestDispatcher(request.getContextPath() + "/book_appointment.jsp");
+			request.setAttribute("designerDetails", designer);
+			RequestDispatcher rd = request.getRequestDispatcher("/book_appointment.jsp");
 			rd.forward(request, response);
 		} catch (ValidationException e) {
 			e.printStackTrace();

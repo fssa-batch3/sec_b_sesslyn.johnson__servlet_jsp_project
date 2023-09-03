@@ -323,7 +323,8 @@ input {
 		<div id="main_page">
 			<div class="main_left" id="left-div">
 				<div class="main_header">
-					<span class="header"> <a href="index.jsp"> <img
+					<span class="header"> <a
+						href="<%=request.getContextPath()%>/index"> <img
 							class="main_logo" src="https://iili.io/Hy0p6kx.jpg"
 							alt="logo of minimalistic m">
 					</a>
@@ -337,10 +338,11 @@ input {
 							<p class="header_para">ORDERS</p>
 					</a>
 					</span> <span class="header"> <a
-						href="../appointment/appointment_history.html">
+						href="<%=request.getContextPath()%>/appointment_list">
 							<p class="header_para">SCHEDULE</p>
 					</a>
-					</span> <span class="header"> <a href="../admin/designers.html">
+					</span> <span class="header"> <a
+						href="<%=request.getContextPath()%>/designer">
 							<p class="header_para">DESIGNERS</p>
 					</a></span>
 				</div>
@@ -408,29 +410,30 @@ input {
 			</div>
 			<div class="data_form" onload="document.form1.text1.focus()">
 				<form action="login" method="post">
-					
+
 
 					<div class="form_input">
-						<label for="email">Email Id</label> <input type="email" class="no_outline"
-							id="user_email" name="email" required
+						<label for="email">Email Id</label> <input type="email"
+							class="no_outline" id="user_email" name="email" required
 							pattern="^[a-zA-Z0-9]+([a-zA-Z0-9_+\-\. ]*[a-zA-Z0-9]+)?@[a-zA-Z0-9]+([a-zA-Z0-9\-\.]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}$"
-							title="Must contain @ and only lower case is allowed." 
+							title="Must contain @ and only lower case is allowed."
 							placeholder="sess@...">
 					</div>
 					<hr class="new1">
 
 					<div class="form_input">
-						<label for="password">Password</label> <input type="password" class="no_outline"
-							required name="password"
+						<label for="password">Password</label> <input type="password"
+							class="no_outline" required name="password"
 							title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
 							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 							placeholder="Password" id="user_password">
 					</div>
 
 					<div class="form_btn">
-						<button class="btn_register" type="submit">Login</button>
-						<a href="index.jsp"><button class="btn_register"
-								id="btn_password" type="button">Sign in</button></a>
+						<a href="<%=request.getContextPath()%>/user/new"><button
+								class="btn_register"  type="button">Sign
+								in</button></a>
+						<button class="btn_register" id="btn_password" type="submit">Login</button>
 					</div>
 				</form>
 				<div>

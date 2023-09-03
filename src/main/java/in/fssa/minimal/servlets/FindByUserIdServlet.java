@@ -14,7 +14,7 @@ import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.model.User;
 import in.fssa.minimal.service.UserService;
 
-@WebServlet("/user_list/details")
+@WebServlet("/user/details")
 public class FindByUserIdServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

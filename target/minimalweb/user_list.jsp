@@ -48,7 +48,7 @@
             <td><%= designer.getName() %></td>
             <td><%= designer.getEmail() %></td>
             <td><%= designer.getPhoneNumber() %></td>
-            <td><a href="user_list/details?id=<%= designer.getId() %>">
+            <td><a href="user/details?id=<%= designer.getId() %>">
                     <button type="button">View Details</button>
                 </a></td>
             <td><a href="user/edit?id=<%= designer.getId() %>">
