@@ -20,8 +20,7 @@ public class FindByUserIdServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idParam = request.getParameter("id");
-        int userId = Integer.parseInt(idParam);
+    	 int userId = (Integer) request.getSession().getAttribute("userId");
         try {
             User user = UserService.findByUserId(userId);
             if (user != null) {

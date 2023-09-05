@@ -414,7 +414,7 @@ img {
 			<img src="https://source.unsplash.com/Co8AlcOhIgE/640x640"
 				width="640" height="640" alt="" />
 			<span class="tooltip"> <a
-				href="<%=request.getContextPath()%>/user/edit?id=<%=user.getId()%>">
+				href="<%=request.getContextPath()%>/user/edit">
 					<img src="https://iili.io/J9HJ8fs.png" id="edit_icon"
 					alt="edit icon">
 			</a>

@@ -169,7 +169,7 @@ hr.new1 {
 		<div id="main_page">
 			<div class="main_left" id="left-div">
 				<div class="main_header">
-					<span class="header"> <a href="#"> <img
+					<span class="header"> <a href="<%=request.getContextPath()%>/index"> <img
 							class="main_logo" src="https://iili.io/Hy0p6kx.jpg"
 							alt="logo of minimalistic m"></span></a> <span class="header">
 						<a href="#">
@@ -179,7 +179,7 @@ hr.new1 {
 							<p class="header_para">ABOUT</p>
 					</a></span> <span class="header"> <a href="#">
 							<p class="header_para">ORDERS</p>
-					</a></span> <span class="header"> <a href="<%=request.getContextPath()%>/appointment_list">
+					</a></span> <span class="header"> <a href="<%=request.getContextPath()%>/user/appointment_list">
 							<p class="header_para">SCHEDULE</p>
 					</a></span> <span class="header"> <a
 						href="<%=request.getContextPath()%>/designer">

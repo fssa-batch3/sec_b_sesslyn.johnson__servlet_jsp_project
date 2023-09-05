@@ -13,6 +13,7 @@ import in.fssa.minimal.exception.ServiceException;
 import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.model.User;
 import in.fssa.minimal.service.UserService;
+import in.fssa.minimal.validator.UserValidator;
 
 @WebServlet("/header")
 public class HeaderServlet extends HttpServlet {
@@ -21,12 +22,7 @@ public class HeaderServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {
 	    try {
-	        String idParam = request.getParameter("id");
-	        int userId = -1; 
-
-	        if (idParam != null && !idParam.isEmpty()) {
-	            userId = Integer.parseInt(idParam);
-	        }
+	    	 int userId = (Integer) request.getSession().getAttribute("userId");
 
 	        if (userId > 0) {
 	            User user = UserService.findByUserId(userId);

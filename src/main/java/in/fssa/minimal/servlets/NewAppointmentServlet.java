@@ -25,11 +25,14 @@ public class NewAppointmentServlet extends HttpServlet {
 			throws ServletException, IOException {
 		int userId = (Integer) request.getSession().getAttribute("userId");
 	    String designerIdParam = request.getParameter("id");
+	    
         int designerId = Integer.parseInt(designerIdParam);
+        
 		UserService userService = new UserService();
 		try {
 			User user = userService.findByUserId(userId);
 			User designer = userService.findByDesignerId(designerId);
+			
 			request.setAttribute("userDetails", user);
 			request.setAttribute("designerDetails", designer);
 			RequestDispatcher rd = request.getRequestDispatcher("/book_appointment.jsp");

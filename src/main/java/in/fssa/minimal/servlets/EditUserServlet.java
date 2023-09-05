@@ -20,28 +20,28 @@ import in.fssa.minimal.service.UserService;
 @WebServlet("/user/edit")
 public class EditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 
-	 protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	            throws ServletException, IOException {
-	        String idParam = request.getParameter("id");
-	        int userId = Integer.parseInt(idParam);
-	        try {
-	            User user = UserService.findByUserId(userId);
-	            if (user != null) {
-	                request.setAttribute("userDetails", user);
-	                RequestDispatcher rd = request.getRequestDispatcher("/edit_user.jsp");
-	                rd.forward(request, response);
-	            } else {
-	                response.sendError(HttpServletResponse.SC_NOT_FOUND, "User not found");
-	            }
-	        } catch (ServiceException e) {
-	            e.printStackTrace();
-	        } catch (ValidationException e) {
-	            e.printStackTrace();
-	        }
-	    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int userId = (Integer) request.getSession().getAttribute("userId");
+		try {
+			User user = UserService.findByUserId(userId);
+			if (user != null) {
+				request.setAttribute("userDetails", user);
+				RequestDispatcher rd = request.getRequestDispatcher("/edit_user.jsp");
+				rd.forward(request, response);
+			} else {
+				response.sendError(HttpServletResponse.SC_NOT_FOUND, "User not found");
+			}
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		} catch (ValidationException e) {
+			e.printStackTrace();
+		}
+	}
 }

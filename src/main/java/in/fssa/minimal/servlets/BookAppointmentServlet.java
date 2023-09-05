@@ -25,11 +25,15 @@ public class BookAppointmentServlet extends HttpServlet {
 	        throws ServletException, IOException {
 	    try {
 	        Appointment appointment = new Appointment();
+	        
 	        int userId = (Integer) request.getSession().getAttribute("userId");
+	        
 	        appointment.setFromUser(userId);
 	        String idParam = request.getParameter("id");
+	        
 	        int designerId = Integer.parseInt(idParam);
 	        appointment.setToUser(designerId);
+	        
 	        appointment.setStatus("waiting_list");
 	        appointment.setEmail(request.getParameter("email"));
 	        String phoneNumber = request.getParameter("phone_number");
@@ -72,7 +76,7 @@ public class BookAppointmentServlet extends HttpServlet {
 	        System.out.println(appointment);
 	        AppointmentService appointmentService = new AppointmentService();
 	        appointmentService.createAppointment(appointment);
-	        response.sendRedirect(request.getContextPath() + "/appointment_list?id=" + userId);
+	        response.sendRedirect(request.getContextPath() + "/user/appointment_list");
 	    } catch (ServiceException e) {
 	        e.printStackTrace();
 	    } catch (ValidationException e) {

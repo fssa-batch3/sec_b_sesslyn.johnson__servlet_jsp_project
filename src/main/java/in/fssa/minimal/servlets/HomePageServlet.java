@@ -34,7 +34,7 @@ public class HomePageServlet extends HttpServlet {
 			}
 		} else {
 
-			response.sendRedirect("/login");
+			response.sendRedirect("/user/login");
 		}
 	}
 }

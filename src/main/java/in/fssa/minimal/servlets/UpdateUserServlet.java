@@ -41,12 +41,11 @@ public class UpdateUserServlet extends HttpServlet {
 			user.setDesigner(isDesigner);
 			System.out.println(user);
 			UserService userService = new UserService();
-			String stringId = request.getParameter("id");
+			 int userId = (Integer) request.getSession().getAttribute("userId");
 
-			if (stringId != null && !stringId.isEmpty()) {
-				int id = Integer.parseInt(stringId);
-				userService.updateUser(id, user);
-				response.sendRedirect(request.getContextPath()+"/user/details?id=" + id);
+			if (userId > 0) {
+				userService.updateUser(userId, user);
+				response.sendRedirect(request.getContextPath()+"/user/details");
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();

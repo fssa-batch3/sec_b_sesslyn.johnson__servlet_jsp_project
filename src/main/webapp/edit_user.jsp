@@ -144,6 +144,17 @@ hr.new3 {
 .designerCheckBox {
 	margin-left: 0.8rem;
 }
+
+.delete {
+	position: absolute;
+    top: 25%;
+    right: 30%;
+}
+
+.deleteIcon {
+	width: 45px;
+	height: 40px;
+}
 </style>
 </head>
 <body>
@@ -172,7 +183,8 @@ hr.new3 {
 				</a>
 			</nav>
 		</div>
-		<form action="update?id=<%=user.getId()%>" method="post">
+
+		<form action="update" method="post">
 			<div class="rightbox">
 				<div class="profileId">
 					<h1>Personal Info</h1>
@@ -217,5 +229,11 @@ hr.new3 {
 	<%
 	}
 	%>
+	<div class="delete">
+		<a href="<%=request.getContextPath()%>/user/delete"
+				onclick="return confirm('Are you sure to delete your account from the website ?');">
+			<img src="https://iili.io/J9qwmGI.png" class="deleteIcon" /></a>
+	</div>
+	
 </body>
 </html>

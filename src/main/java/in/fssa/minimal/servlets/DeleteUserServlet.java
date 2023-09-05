@@ -20,29 +20,20 @@ import in.fssa.minimal.service.UserService;
 public class DeleteUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		User user = new User();
-    	try {
+		int userId = (Integer) request.getSession().getAttribute("userId");
+		System.out.println(userId);
+		try {
 			UserService userService = new UserService();
-			String stringId = request.getParameter("id");
 			HttpSession session = request.getSession(false);
 			if (session != null) {
-			    session.setAttribute("userId", 0);
-			    Object userIdAttribute = session.getAttribute("userId");
-			    System.out.println("userIdAttribute: " + userIdAttribute);
-			    session.invalidate();
+				session.invalidate();
 			}
+			userService.deleteUser(userId);
+			response.sendRedirect(request.getContextPath() + "/index");
 
-			if (stringId != null && !stringId.isEmpty()) {
-				int id = Integer.parseInt(stringId);
-				userService.deleteUser(id);
-				response.sendRedirect(request.getContextPath() + "/index");
-			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (ValidationException e) {

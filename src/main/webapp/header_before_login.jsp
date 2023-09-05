@@ -298,7 +298,7 @@ body {
 				</span> <span class="header"> <a href="#">
 						<p class="header_para">ORDERS</p>
 				</a>
-				</span> <span class="header"> <a href="<%=request.getContextPath()%>/appointment_list">
+				</span> <span class="header"> <a href="<%=request.getContextPath()%>/user/appointment_list">
 						<p class="header_para">SCHEDULE</p>
 				</a>
 				</span> <span class="header"> <a
@@ -310,7 +310,7 @@ body {
 			<div class="btn">
 				<a href="<%=request.getContextPath()%>/user/new"><button id="sign_in" class="sign_in">Sign
 						In</button></a> 
-			   <a href="<%=request.getContextPath()%>/login"><button id="userLogin" class="log_in">Log
+			   <a href="<%=request.getContextPath()%>/user/login"><button id="userLogin" class="log_in">Log
 						In</button> </a>
 
 			</div>

@@ -17,7 +17,7 @@ import in.fssa.minimal.service.UserService;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/login")
+@WebServlet("/user/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,9 +43,8 @@ public class LoginServlet extends HttpServlet {
 	            System.out.println("You have been logged in successfully");
 	            Integer id = user.getId();
 	            if (id != null) {
-	                request.getSession().setAttribute("userId", id);
-	                
-	                response.sendRedirect(request.getContextPath() + "/user/details?id=" + id);
+	                request.getSession().setAttribute("userId", id); 
+	                response.sendRedirect(request.getContextPath() + "/user/details");
 	            }
 	        }    
 

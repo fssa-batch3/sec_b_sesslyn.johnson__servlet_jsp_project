@@ -35,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
 			System.out.println(user);
 			UserService userService = new UserService();
 			userService.createUser(user);
-			response.sendRedirect(request.getContextPath()+"/login");
+			response.sendRedirect(request.getContextPath()+"/user/login");
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (ValidationException e) {

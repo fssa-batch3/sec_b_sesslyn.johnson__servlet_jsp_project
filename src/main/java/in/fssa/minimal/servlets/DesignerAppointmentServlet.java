@@ -18,26 +18,38 @@ import in.fssa.minimal.service.AppointmentService;
 import in.fssa.minimal.service.UserService;
 
 /**
- * Servlet implementation class CreateUserServlet
+ * Servlet implementation class DesignerAppointmentServlet
  */
-@WebServlet("/user/appointment_list")
-public class UserAppointmentListServlet extends HttpServlet {
+@WebServlet("/designer/appointment_list")
+public class DesignerAppointmentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Integer userIdObject = (Integer) request.getSession().getAttribute("userId");
+
 		if (userIdObject != null) {
 			try {
 				int userId = userIdObject.intValue();
 				AppointmentService appointmentService = new AppointmentService();
-				Set<AppointmentRespondDTO> appointment = appointmentService.getAllAppointmentByFromUserId(userId);
+				Set<AppointmentRespondDTO> totalApp = appointmentService.getAllAppointment();
+				int numberOfAppointments = totalApp.size();
+				System.out.println(numberOfAppointments);
+				Set<AppointmentRespondDTO> appointment = appointmentService.getAllAppointmentByToUserId(userId);
 				UserService userService = new UserService();
 				User user = userService.findByUserId(userId);
+				boolean isDesigner = user.isDesigner();
 				request.setAttribute("userDetails", user);
+				request.setAttribute("totalAppointments", numberOfAppointments); // Set the totalAppointment attribute here
 				request.setAttribute("appointmentDetails", appointment);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/appointment_list.jsp");
-				dispatcher.forward(request, response);
+				if (isDesigner) {
+				    RequestDispatcher dispatcher = request.getRequestDispatcher("/designer_appointment_list.jsp");
+				    dispatcher.forward(request, response);
+				} else {
+				    RequestDispatcher dispatcher = request.getRequestDispatcher("/appointment_list.jsp");
+				    dispatcher.forward(request, response);
+				}
+
 			} catch (ServiceException e) {
 				e.printStackTrace();
 			} catch (ValidationException e) {

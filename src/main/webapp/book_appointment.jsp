@@ -227,16 +227,21 @@ select {
 				<img class="appointmentImg" src="https://iili.io/HgJQo1s.jpg"
 					alt="Appointment image">
 			</div>
+			
 			<div class="formbold-main-wrapper">
+			
 				<%
 				User designer = (User) request.getAttribute("designerDetails");
 				System.out.println(designer);
 				if (designer != null) {
 				%>
+				
 				<div class="formbold-form-wrapper">
+				
 					<form id="formDiv"
 						action="<%=request.getContextPath()%>/designer/appointment/create?id=<%=designer.getId()%>"
 						method="post">
+						
 						<label class="formbold-form-label formbold-form-label-2">Personal
 							Details</label>
 						<div class="flex flex-wrap formbold--mx-3" id="divform">

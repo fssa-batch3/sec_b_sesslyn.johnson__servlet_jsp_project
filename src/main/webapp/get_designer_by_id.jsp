@@ -380,7 +380,7 @@ h3.edutext {
 	
 	function confirmBooking() {
 	    if (confirm("Please login to book an appointment.")) {
-	        window.location.href = '<%=request.getContextPath()%>/login';
+	        window.location.href = '<%=request.getContextPath()%>/user/login';
 			} else {
 				return false;
 			}

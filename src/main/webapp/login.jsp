@@ -334,11 +334,11 @@ input {
 					</span> <span class="header"> <a href="../about.html">
 							<p class="header_para">ABOUT</p>
 					</a>
-					</span> <span class="header"> <a href="./pages/order/order.html">
+					</span> <span class="header"> <a href="#">
 							<p class="header_para">ORDERS</p>
 					</a>
 					</span> <span class="header"> <a
-						href="<%=request.getContextPath()%>/appointment_list">
+						href="<%=request.getContextPath()%>/user/appointment_list">
 							<p class="header_para">SCHEDULE</p>
 					</a>
 					</span> <span class="header"> <a

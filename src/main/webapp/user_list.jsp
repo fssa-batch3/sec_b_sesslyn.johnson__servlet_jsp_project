@@ -48,13 +48,13 @@
             <td><%= designer.getName() %></td>
             <td><%= designer.getEmail() %></td>
             <td><%= designer.getPhoneNumber() %></td>
-            <td><a href="user/details?id=<%= designer.getId() %>">
+            <td><a href="user/details">
                     <button type="button">View Details</button>
                 </a></td>
-            <td><a href="user/edit?id=<%= designer.getId() %>">
+            <td><a href="user/edit">
                     <button type="button">Edit</button>
                 </a></td>
-            <td><a href="user/delete?id=<%= designer.getId() %>">
+            <td><a href="user/delete">
                     <button type="button">Delete</button>
                 </a></td>
         </tr>

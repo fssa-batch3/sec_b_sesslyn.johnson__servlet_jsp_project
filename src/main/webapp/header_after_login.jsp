@@ -283,13 +283,13 @@ body {
 <body>
 	<%
 	User user = (User) request.getAttribute("userDetails");
-	System.out.println(user);
 	if (user != null) {
-	%>
+		boolean designer = user.isDesigner();
+%>
 	<div class="head">
 		<div class="main_header">
 			<span class="header" id="header_shop"> <a
-				href="<%=request.getContextPath()%>/home_page"> <img
+				href="<%= request.getContextPath() %>/home_page"> <img
 					class="main_logo" id="main_logo" src="https://iili.io/Hy0p6kx.jpg"
 					alt="logo of minimalistic" />
 			</a>
@@ -304,39 +304,36 @@ body {
 				</span> <span class="header"> <a href="#">
 						<p class="header_para">ORDERS</p>
 				</a>
-				</span> <span class="header"> <a href="<%=request.getContextPath()%>/appointment_list?id=<%=user.getId()%>">
+				</span> <span class="header"> <a
+					href="<%= request.getContextPath() %>/<%= designer ? "designer" : "user" %>/appointment_list">
 						<p class="header_para">SCHEDULE</p>
 				</a>
 				</span> <span class="header"> <a
-					href="<%=request.getContextPath()%>/designer">
+					href="<%= request.getContextPath() %>/designer">
 						<p class="header_para">DESIGNERS</p>
 				</a>
 				</span>
 			</div>
-			<a href="<%=request.getContextPath()%>/user/delete?id=<%=user.getId()%>"
-				onclick="return confirm('Are you sure you want to delete this user?');">
+			<a href="<%= request.getContextPath() %>/user/logout"
+				onclick="return confirm('Are you sure to logout from the website ?');">
 				<button class="btn_delete" id="logOut">
 					<span>Log</span><span>Out</span>
 				</button>
-			</a> 
-			<a href="<%=request.getContextPath()%>/user/details?id=<%=user.getId()%>">
-				<img src="https://iili.io/HyVDPVV.png" class="profile_img"
+			</a> <a href="<%= request.getContextPath() %>/user/details"> <img
+				src="https://iili.io/HyVDPVV.png" class="profile_img"
 				alt="profile picture" />
 
-			</a> 
-			<a href="#"> <img src="https://iili.io/HyVDSHu.png"
+			</a> <a href="#"> <img src="https://iili.io/HyVDSHu.png"
 				class="cart_img" alt="profile picture" />
 			</a>
-
-
 		</div>
 	</div>
-	<%
+<%
 	} else {
-	%>
+%>
 	<p>User not found.</p>
-	<%
+<%
 	}
-	%>
+%>
 </body>
 </html>
