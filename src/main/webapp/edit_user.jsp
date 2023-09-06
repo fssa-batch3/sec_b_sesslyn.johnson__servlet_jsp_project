@@ -15,10 +15,10 @@ body {
 .container_profile {
 	background: #FFFFFF;
 	width: 650px;
-	height: 550px;
+	height: 650px;
 	margin: 0 auto;
 	position: relative;
-	margin-top: 8%;
+	margin-top: 5%;
 	box-shadow: 2px 5px 20px rgba(119, 119, 119, 0.5);
 }
 
@@ -147,8 +147,8 @@ hr.new3 {
 
 .delete {
 	position: absolute;
-    top: 25%;
-    right: 30%;
+	top: 25%;
+	right: 30%;
 }
 
 .deleteIcon {
@@ -178,8 +178,7 @@ hr.new3 {
 	<div class="container_profile">
 		<div class="leftbox">
 			<nav>
-				<a id="profileId" class="active"> <img
-					src="https://iili.io/HyVDPVV.png" class="profileIcon" />
+				<a id="profileId" class="active"> <img src="https://iili.io/HyVDPVV.png" class="profileIcon" />
 				</a>
 			</nav>
 		</div>
@@ -209,12 +208,19 @@ hr.new3 {
 					<button class="btn">Update</button>
 					<hr class="new3">
 
+					<label for="image" class="labelTag"><b>Image URL</b></label> <input
+						type="url" id="image" name="image" value="<%=user.getImage()%>">
+					<button class="btn" type="submit">Update</button>
+					<hr class="new3">
+					<%
+					Boolean isDesigner = user.isDesigner();
+					%>
 					<div class="checkBox">
-						<input type="checkbox" id="is_designer" name="is_designer">
-						<label for="is_designer" class="designerCheckBox">Are you
-							a designer?</label><br>
+						<input type="checkbox" id="is_designer" name="is_designer"
+							<%=isDesigner ? "checked" : ""%>> <label
+							for="is_designer" class="designerCheckBox">Are you a
+							designer?</label><br>
 					</div>
-
 				</div>
 				<button class="formSubmit">Submit</button>
 			</div>
@@ -231,9 +237,10 @@ hr.new3 {
 	%>
 	<div class="delete">
 		<a href="<%=request.getContextPath()%>/user/delete"
-				onclick="return confirm('Are you sure to delete your account from the website ?');">
-			<img src="https://iili.io/J9qwmGI.png" class="deleteIcon" /></a>
+			onclick="return confirm('Are you sure to delete your account from the website ?');">
+			<img src="https://iili.io/J9qwmGI.png" class="deleteIcon" />
+		</a>
 	</div>
-	
+
 </body>
 </html>

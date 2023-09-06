@@ -684,14 +684,29 @@ p.cartEmpty {
 		<div class="side-header">
 			<h3>
 				<a href="<%=request.getContextPath()%>/home_page"> <img
-					src="https://iili.io/J9xbjp9.jpg" class="logo"></a>
+					src="https://iili.io/Hy0p6kx.jpg" class="logo"></a>
 			</h3>
 		</div>
 
 		<div class="side-content">
 			<div class="profile">
+				<%
+				String image = user.getImage();
+				if (image != null && !image.isEmpty()) {
+				%>
 				<div class="profile-img bg-img"
-					style="background-image: url(https://iili.io/J9xbHsj.jpg)"></div>
+					style="background-image: url('<%=image%>')"></div>
+				<%
+				} else {
+				%>
+				<div class="profile-img bg-img"
+					style="background-image: url('https://e1.pxfuel.com/desktop-wallpaper/903/679/desktop-wallpaper-97-aesthetic-best-profile-pic-for-instagram-for-boy-instagram-dp-boys.jpg')">
+				</div>
+				<%
+				}
+				%>
+
+
 				<h4><%=user.getName()%></h4>
 				<small>Designer</small>
 			</div>
@@ -731,8 +746,20 @@ p.cartEmpty {
 				</label>
 				<div class="header-menu">
 					<div class="user">
+						<%
+						if (image != null && !image.isEmpty()) {
+						%>
+						<div class=" bg-img" style="background-image: url('<%=image%>')"></div>
+						<%
+						} else {
+						%>
 						<div class="bg-img"
-							style="background-image: url(https://iili.io/J9xDWDg.jpg)"></div>
+							style="background-image: url('https://e1.pxfuel.com/desktop-wallpaper/903/679/desktop-wallpaper-97-aesthetic-best-profile-pic-for-instagram-for-boy-instagram-dp-boys.jpg')">
+						</div>
+						<%
+						}
+						%>
+
 					</div>
 				</div>
 			</div>
@@ -847,9 +874,23 @@ p.cartEmpty {
 									%>
 									<td>
 										<div class="client">
+										<%String userImage = appointment.getFromUser().getImage(); %>
+											<%
+											if (userImage != null && !userImage.isEmpty()) {
+											%>
 											<div class="client-img bg-img"
-												style="background-image: url(https://iili.io/J9xbHsj.jpg)">
+												style="background-image: url('<%=userImage%>')"></div>
+											<%
+											} else {
+											%>
+											<div class="client-img bg-img"
+												style="background-image: url('https://e1.pxfuel.com/desktop-wallpaper/903/679/desktop-wallpaper-97-aesthetic-best-profile-pic-for-instagram-for-boy-instagram-dp-boys.jpg')">
 											</div>
+											<%
+											}
+											%>
+
+											
 											<div class="client-info">
 												<h4><%=appointment.getFromUser().getName()%></h4>
 												<small><%=appointment.getFromUser().getEmail()%></small><br>

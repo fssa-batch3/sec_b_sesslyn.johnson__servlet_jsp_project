@@ -375,6 +375,12 @@ input[type=email] {
 	margin-left: 130px;
 	margin-top: 5px;
 }
+
+.error_div {
+	position: absolute;
+	bottom: 5%;
+	left: 75%;
+}
 </style>
 </head>
 <body>
@@ -382,7 +388,8 @@ input[type=email] {
 		<div id="main_page">
 			<div class="main_left" id="left-div">
 				<div class="main_header">
-					<span class="header"> <a href="<%=request.getContextPath()%>/index"> <img
+					<span class="header"> <a
+						href="<%=request.getContextPath()%>/index"> <img
 							class="main_logo" src="https://iili.io/Hy0p6kx.jpg"
 							alt="logo of minimalistic m"></span></a> <span class="header">
 						<a href="./pages/shop.html">
@@ -392,7 +399,8 @@ input[type=email] {
 							<p class="header_para">ABOUT</p>
 					</a></span> <span class="header"> <a href="#">
 							<p class="header_para">ORDERS</p>
-					</a></span> <span class="header"> <a href="<%=request.getContextPath()%>/user/appointment_list">
+					</a></span> <span class="header"> <a
+						href="<%=request.getContextPath()%>/user/appointment_list">
 							<p class="header_para">SCHEDULE</p>
 					</a></span> <span class="header"> <a
 						href="<%=request.getContextPath()%>/designer">
@@ -510,9 +518,23 @@ input[type=email] {
 						id="small"> lowercase, and special case.</small>
 					<div class="form_btn">
 						<a href="<%=request.getContextPath()%>/user/login"><button
-								class="btn_register"  type="button">Login</button></a>
-						<button class="btn_register" id="btn_login" type="submit">Sign Up</button>
+								class="btn_register" type="button">Login</button></a>
+						<button class="btn_register" id="btn_login" type="submit">Sign
+							Up</button>
 					</div>
+
+					<%
+					String errorMessage = request.getParameter("error");
+					%>
+					<%
+					if (errorMessage != null) {
+					%>
+					<div class="error_div">
+						<p><%=errorMessage%></p>
+					</div>
+					<%
+					}
+					%>
 				</form>
 			</div>
 		</div>

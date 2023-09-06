@@ -435,6 +435,7 @@ input {
 								in</button></a>
 						<button class="btn_register" id="btn_password" type="submit">Login</button>
 					</div>
+					
 				</form>
 				<div>
 					<img class="sign_img" id="login_img"

@@ -391,7 +391,7 @@ img {
 </style>
 </head>
 <body>
-  
+
 	<%
 	String headerJSP = "";
 	if (request.getAttribute("userDetails") != null) {
@@ -402,7 +402,7 @@ img {
 	%>
 
 	<jsp:include page="<%=headerJSP%>" />
-	
+
 	<%
 	User user = (User) request.getAttribute("userDetails");
 	System.out.println(user);
@@ -411,12 +411,24 @@ img {
 
 	<div class="wrapper">
 		<figure class="card">
-			<img src="https://source.unsplash.com/Co8AlcOhIgE/640x640"
-				width="640" height="640" alt="" />
+			<%
+			String image = user.getImage();
+			%>
+			<%
+			if (image != null) {
+			%>
+			<img src="<%=user.getImage()%>" width="640" height="640" alt="Profile Image" />
+			<%
+			} else {
+			%>
+			<img src="https://e1.pxfuel.com/desktop-wallpaper/903/679/desktop-wallpaper-97-aesthetic-best-profile-pic-for-instagram-for-boy-instagram-dp-boys.jpg"
+			width="640" height="640" alt="Profile Image" />
+			<%
+			}
+			%>
 			<span class="tooltip"> <a
-				href="<%=request.getContextPath()%>/user/edit">
-					<img src="https://iili.io/J9HJ8fs.png" id="edit_icon"
-					alt="edit icon">
+				href="<%=request.getContextPath()%>/user/edit"> <img
+					src="https://iili.io/J9HJ8fs.png" id="edit_icon" alt="edit icon">
 			</a>
 				<p id="tooltiptext">Edit</p>
 			</span>

@@ -29,6 +29,7 @@ public class UpdateUserServlet extends HttpServlet {
 		try {
 			user.setName(request.getParameter("name"));
 			user.setEmail(request.getParameter("email"));
+			user.setImage(request.getParameter("image"));
 			user.setPassword(request.getParameter("password"));
 			String phoneNumber = request.getParameter("phone_number");
 			long number = Long.parseLong(phoneNumber);

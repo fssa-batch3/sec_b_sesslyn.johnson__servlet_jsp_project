@@ -317,9 +317,21 @@ h3.edutext {
 		<div class="card">
 			<div class="containRow">
 				<div class="col-md-6 col-sm-12">
+					<%
+					String image = designer.getImage();
+					if (image != null) {
+					%>
+					<img src="<%=image%>" class="img-fluid details-img"
+						alt="Image of Designers" />
+					<%
+					} else {
+					%>
 					<img class="img-fluid details-img"
-						src="https://interiordesign.net/wp-content/uploads/2021/06/62080-Manit-Rastogi-Morphogenesis.jpg"
-						alt="Designer image">
+						src="https://e1.pxfuel.com/desktop-wallpaper/903/679/desktop-wallpaper-97-aesthetic-best-profile-pic-for-instagram-for-boy-instagram-dp-boys.jpg"
+						alt="Image of Designers" />
+					<%
+					}
+					%>
 				</div>
 				<div class="col-md-6 col-sm-12 description-container p-5">
 					<div class="main-description">
@@ -380,12 +392,12 @@ h3.edutext {
 	
 	function confirmBooking() {
 	    if (confirm("Please login to book an appointment.")) {
-	        window.location.href = '<%=request.getContextPath()%>/user/login';
+	        window.location.href = '<%=request.getContextPath()%>
+		/user/login';
 			} else {
 				return false;
 			}
 		}
-	
 	</script>
 
 </body>

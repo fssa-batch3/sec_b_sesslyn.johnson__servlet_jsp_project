@@ -311,7 +311,7 @@ h3.edutext {
 	%>
 
 	<jsp:include page="<%=headerJSP%>" />
-		
+
 	<%
 	Set<User> designerList = (Set<User>) request.getAttribute("designerDetails");
 	%>
@@ -326,9 +326,20 @@ h3.edutext {
 					%>
 					<div class="slide">
 						<figure class="slide-image">
+							<%
+							String image = designer.getImage();
+							if (image != null) {
+							%>
+							<img src="<%=image%>" alt="Image of Designers" />
+							<%
+							} else {
+							%>
 							<img
-								src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+								src="https://e1.pxfuel.com/desktop-wallpaper/903/679/desktop-wallpaper-97-aesthetic-best-profile-pic-for-instagram-for-boy-instagram-dp-boys.jpg"
 								alt="Image of Designers" />
+							<%
+							}
+							%>
 						</figure>
 						<h4 class="slide-name"><%=designer.getName()%></h4>
 						<p class="slide-profession">Designer</p>
