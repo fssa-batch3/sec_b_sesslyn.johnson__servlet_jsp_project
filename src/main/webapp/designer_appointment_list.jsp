@@ -540,6 +540,17 @@ table tbody tr {
 	margin-right: .5rem;
 }
 
+#searchBtn {
+	height: 35px;
+	border: 1px solid #b0b0b0;
+	border-radius: 3px;
+	display: inline-block;
+	width: 75px;
+	padding: 0rem 0.5rem;
+	margin-right: 0.8rem;
+	color: #666;
+}
+
 .paid {
 	display: inline-block;
 	text-align: center;
@@ -555,7 +566,6 @@ table tbody tr {
 	color: black;
 	background-color: white;
 	float: right;
-	margin-right: 2rem;
 	text-transform: uppercase;
 	font-size: 10px;
 	border: none;
@@ -666,8 +676,6 @@ p.cartEmpty {
 	%>
 
 
-
-
 	<%
 	if (appointmentList != null || !appointmentList.isEmpty()) {
 	%>
@@ -702,8 +710,9 @@ p.cartEmpty {
 						href="<%=request.getContextPath()%>/designer/appointment_list">
 							<span class="las la-clipboard-list"></span> <small>Appointments</small>
 					</a></li>
-					<li><a href=""> <span class="las la-shopping-cart"></span>
-							<small>Portfolio</small>
+					<li><a
+						href="<%=request.getContextPath()%>/designer/details?id=<%=user.getId()%>">
+							<span class="las la-shopping-cart"></span> <small>Portfolio</small>
 					</a></li>
 					<li><a href="<%=request.getContextPath()%>/user/logout"
 						onclick="return confirm('Are you sure to logout from the website ?');">
@@ -806,10 +815,12 @@ p.cartEmpty {
 
 					<div class="record-header">
 						<div class="browse">
-							<input type="search" placeholder="Search" class="record-search">
-							<select name="" id="">
-								<option value="">Status</option>
-							</select>
+							<form
+								action="<%=request.getContextPath()%>/designer/appointment_list/status"
+								method="post">
+								<input type="search" placeholder="Search" class="record-search">
+								<button id="searchBtn" type="submit">Search</button>
+							</form>
 						</div>
 					</div>
 
@@ -824,13 +835,16 @@ p.cartEmpty {
 									<th id="statusHead">STATUS</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="appointmentTableBody">
 								<%
 								int index = 1;
 								for (AppointmentRespondDTO appointment : appointmentList) {
 								%>
 								<tr>
 									<td name="id"><%=appointment.getId()%></td>
+									<%
+									boolean active = appointment.getFromUser().isActive();
+									%>
 									<td>
 										<div class="client">
 											<div class="client-img bg-img"
@@ -838,7 +852,13 @@ p.cartEmpty {
 											</div>
 											<div class="client-info">
 												<h4><%=appointment.getFromUser().getName()%></h4>
-												<small><%=appointment.getFromUser().getEmail()%></small>
+												<small><%=appointment.getFromUser().getEmail()%></small><br>
+												<small><%=appointment.getFromUser().getPhoneNumber()%>
+													<%
+													if (!active) {
+													%> (Inactive) <%
+													}
+													%> </small>
 											</div>
 										</div>
 									</td>
@@ -892,14 +912,15 @@ p.cartEmpty {
 								<%
 								if (appointmentList == null || appointmentList.isEmpty()) {
 								%>
-								<table>
-									<h1 class="message">You have no appointments. yet!</h1>
-								</table>
+								<tr>
+									<td colspan="5">
+										<h1 class="message">You have no appointments yet!</h1>
+									</td>
+								</tr>
 								<%
 								}
 								%>
 							</tbody>
-
 						</table>
 					</div>
 
@@ -912,7 +933,6 @@ p.cartEmpty {
 		}
 		%>
 	</div>
-
 	<script>
 		document
 				.addEventListener(
