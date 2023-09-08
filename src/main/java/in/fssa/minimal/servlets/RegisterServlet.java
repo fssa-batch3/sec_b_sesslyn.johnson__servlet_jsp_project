@@ -11,6 +11,7 @@ import in.fssa.minimal.exception.ServiceException;
 import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.model.User;
 import in.fssa.minimal.service.UserService;
+import in.fssa.minimal.util.Logger;
 
 /**
  * Servlet implementation class AddUserServlet
@@ -32,16 +33,15 @@ public class RegisterServlet extends HttpServlet {
 			String designerValue = request.getParameter("is_designer");
 			boolean isDesigner = designerValue != null && designerValue.equals("true");
 			user.setDesigner(isDesigner);
-			System.out.println(user);
 			UserService userService = new UserService();
 			userService.createUser(user);
 			response.sendRedirect(request.getContextPath() + "/user/login");
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			Logger.error(e);
 			String getError = e.getMessage();
 			response.sendRedirect(request.getContextPath() + "/user/new?error=" + getError);
 		} catch (ValidationException e) {
-			e.printStackTrace();
+			Logger.error(e);
 			String getError = e.getMessage();
 			response.sendRedirect(request.getContextPath() + "/user/new?error=" + getError);
 		}

@@ -13,6 +13,7 @@ import in.fssa.minimal.exception.ServiceException;
 import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.model.User;
 import in.fssa.minimal.service.UserService;
+import in.fssa.minimal.util.Logger;
 import in.fssa.minimal.validator.UserValidator;
 
 @WebServlet("/header")
@@ -36,11 +37,11 @@ public class HeaderServlet extends HttpServlet {
 	            dispatcher.forward(request, response);
 	        }
 	    } catch (NumberFormatException e) {
-	        e.printStackTrace(); 
+	    	Logger.error(e);
 	    } catch (ServiceException e) {
-	        e.printStackTrace();
+	    	Logger.error(e);
 	    } catch (ValidationException e) {
-	        e.printStackTrace();
+	    	Logger.error(e);
 	    }
 	}
 

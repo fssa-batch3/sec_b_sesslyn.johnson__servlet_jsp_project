@@ -11,6 +11,7 @@ import in.fssa.minimal.exception.ServiceException;
 import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.model.User;
 import in.fssa.minimal.service.UserService;
+import in.fssa.minimal.util.Logger;
 
 /**
  * Servlet implementation class UpdateServlet
@@ -40,7 +41,6 @@ public class UpdateUserServlet extends HttpServlet {
 			user.setDesigner(isDesigner);
 
 			user.setDesigner(isDesigner);
-			System.out.println(user);
 			UserService userService = new UserService();
 			 int userId = (Integer) request.getSession().getAttribute("userId");
 
@@ -49,9 +49,9 @@ public class UpdateUserServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath()+"/user/details");
 			}
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			Logger.error(e);
 		} catch (ValidationException e) {
-			e.printStackTrace();
+			Logger.error(e);
 		}
 
 	}

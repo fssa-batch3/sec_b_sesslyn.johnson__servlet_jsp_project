@@ -13,6 +13,7 @@ import in.fssa.minimal.exception.ServiceException;
 import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.model.User;
 import in.fssa.minimal.service.UserService;
+import in.fssa.minimal.util.Logger;
 
 /**
  * Servlet implementation class LoginServlet
@@ -36,11 +37,11 @@ public class LoginServlet extends HttpServlet {
 	        User user = userService.findByEmail(email);
 
 	        if (user == null) {
-	            System.out.println("User not found");
+	            Logger.info("User not found");
 	        } else if (!password.equals(user.getPassword())) {
-	            System.out.println("Incorrect password");
+	        	Logger.info("Incorrect password");
 	        } else {
-	            System.out.println("You have been logged in successfully");
+	        	Logger.info("You have been logged in successfully");
 	            Integer id = user.getId();
 	            if (id != null) {
 	                request.getSession().setAttribute("userId", id); 
@@ -49,9 +50,9 @@ public class LoginServlet extends HttpServlet {
 	        }    
 
 	    } catch (ServiceException e) {
-	        e.printStackTrace();
+	    	Logger.error(e);
 	    } catch (ValidationException e) {
-	        e.printStackTrace();
+	    	Logger.error(e);
 	    }
 	}
 

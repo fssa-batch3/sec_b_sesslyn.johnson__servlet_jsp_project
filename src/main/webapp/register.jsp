@@ -5,18 +5,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Register Form</title>
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
 <style>
 body {
 	margin: 0rem;
@@ -388,10 +382,9 @@ input[type=email] {
 		<div id="main_page">
 			<div class="main_left" id="left-div">
 				<div class="main_header">
-					<span class="header"> <a
-						href="<%=request.getContextPath()%>/index"> <img
+					<span class="header"> <a href="<%=request.getContextPath()%>/index"> <img
 							class="main_logo" src="https://iili.io/Hy0p6kx.jpg"
-							alt="logo of minimalistic m"></span></a> <span class="header">
+							alt="logo of minimalistic m"></a></span> <span class="header">
 						<a href="./pages/shop.html">
 							<p class="header_para">SHOP</p>
 					</a>

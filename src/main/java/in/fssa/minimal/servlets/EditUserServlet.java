@@ -13,6 +13,7 @@ import in.fssa.minimal.exception.ServiceException;
 import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.model.User;
 import in.fssa.minimal.service.UserService;
+import in.fssa.minimal.util.Logger;
 
 /**
  * Servlet implementation class EditUserServlet
@@ -39,9 +40,9 @@ public class EditUserServlet extends HttpServlet {
 				response.sendError(HttpServletResponse.SC_NOT_FOUND, "User not found");
 			}
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			Logger.error(e);
 		} catch (ValidationException e) {
-			e.printStackTrace();
+			Logger.error(e);
 		}
 	}
 }

@@ -15,6 +15,7 @@ import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.model.User;
 import in.fssa.minimal.service.AppointmentService;
 import in.fssa.minimal.service.UserService;
+import in.fssa.minimal.util.Logger;
 
 /**
  * Servlet implementation class FindAppointmentByStatus
@@ -32,7 +33,6 @@ public class FindAppointmentByStatus extends HttpServlet {
 			int userId = userIdObject.intValue();
 			Set<AppointmentRespondDTO> totalApp = appointmentService.getAllAppointment();
 			int numberOfAppointments = totalApp.size();
-			System.out.println(numberOfAppointments);
 			Set<AppointmentRespondDTO> appointment = appointmentService.getAllAppointmentByToUserId(userId);
 			UserService userService = new UserService();
 			User user = userService.findByUserId(userId);
@@ -44,9 +44,9 @@ public class FindAppointmentByStatus extends HttpServlet {
 			request.setAttribute("statusDetails", totalBasedOnStatus);
 			
 		} catch (ValidationException e) {
-			e.printStackTrace();
+			Logger.error(e);
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			Logger.error(e);
 		}
 	}
 

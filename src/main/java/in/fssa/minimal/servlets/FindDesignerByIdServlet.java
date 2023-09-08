@@ -13,6 +13,7 @@ import in.fssa.minimal.exception.ServiceException;
 import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.model.User;
 import in.fssa.minimal.service.UserService;
+import in.fssa.minimal.util.Logger;
 
 /**
  * Servlet implementation class FindDesignerById
@@ -30,14 +31,13 @@ public class FindDesignerByIdServlet extends HttpServlet {
 			try {
 				UserService userService = new UserService();
 				User designer = userService.findByDesignerId(designerId);
-				System.out.println(designer);
 				request.setAttribute("designerDetails", designer);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/get_designer_by_id.jsp");
 				dispatcher.forward(request, response);
 			} catch (ServiceException e) {
-				e.printStackTrace();
+				Logger.error(e);
 			} catch (ValidationException e) {
-				e.printStackTrace();
+				Logger.error(e);
 			}
 			
 		} else {
@@ -46,15 +46,14 @@ public class FindDesignerByIdServlet extends HttpServlet {
 				UserService userService = new UserService();
 				User user = userService.findByUserId(userId);
 				User designer = userService.findByDesignerId(designerId);
-				System.out.println(user);
 				request.setAttribute("userDetails", user);
 				request.setAttribute("designerDetails", designer);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/get_designer_by_id.jsp");
 				dispatcher.forward(request, response);
 			} catch (ServiceException e) {
-				e.printStackTrace();
+				Logger.error(e);
 			} catch (ValidationException e) {
-				e.printStackTrace();
+				Logger.error(e);
 			}
 		}
 	}

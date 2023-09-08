@@ -747,7 +747,7 @@ img.bedroom {
 	<div id="family" class="family-div">
 		<div>
 			<div>
-				<p class="minimalPara">Welocme to Minimalistic</p>
+				<p class="minimalPara">Welcome to Minimalistic</p>
 				<h3 class="heading">Decorate It With Your Heart</h3>
 				<p class="paraMini">The stylish interior makes us want to spend
 					more time in it. We present interesting sets to create an

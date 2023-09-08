@@ -13,6 +13,7 @@ import in.fssa.minimal.exception.ServiceException;
 import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.model.User;
 import in.fssa.minimal.service.UserService;
+import in.fssa.minimal.util.Logger;
 
 @WebServlet("/home_page")
 public class HomePageServlet extends HttpServlet {
@@ -28,9 +29,9 @@ public class HomePageServlet extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/home_page.jsp");
 				rd.forward(request, response);
 			} catch (ValidationException e) {
-				e.printStackTrace();
+				Logger.error(e);
 			} catch (ServiceException e) {
-				e.printStackTrace();
+				Logger.error(e);
 			}
 		} else {
 

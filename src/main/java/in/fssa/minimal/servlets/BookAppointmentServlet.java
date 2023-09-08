@@ -13,6 +13,7 @@ import in.fssa.minimal.model.Appointment;
 import in.fssa.minimal.model.User;
 import in.fssa.minimal.service.AppointmentService;
 import in.fssa.minimal.service.UserService;
+import in.fssa.minimal.util.Logger;
 
 /**
  * Servlet implementation class BookAppointmentServlet
@@ -70,7 +71,6 @@ public class BookAppointmentServlet extends HttpServlet {
 	            address = address.substring(0, address.length() - 2);
 	        }
 
-	        // Set the 'address' field of the 'appointment' object
 	        appointment.setAddress(address);
 
 	        System.out.println(appointment);
@@ -78,9 +78,9 @@ public class BookAppointmentServlet extends HttpServlet {
 	        appointmentService.createAppointment(appointment);
 	        response.sendRedirect(request.getContextPath() + "/user/appointment_list");
 	    } catch (ServiceException e) {
-	        e.printStackTrace();
+	    	Logger.error(e);
 	    } catch (ValidationException e) {
-	        e.printStackTrace();
+	    	Logger.error(e);
 	    }
 	
 	}

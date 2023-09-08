@@ -16,6 +16,7 @@ import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.model.User;
 import in.fssa.minimal.service.AppointmentService;
 import in.fssa.minimal.service.UserService;
+import in.fssa.minimal.util.Logger;
 
 /**
  * Servlet implementation class CreateUserServlet
@@ -39,9 +40,9 @@ public class UserAppointmentListServlet extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/appointment_list.jsp");
 				dispatcher.forward(request, response);
 			} catch (ServiceException e) {
-				e.printStackTrace();
+				Logger.error(e);
 			} catch (ValidationException e) {
-				e.printStackTrace();
+				Logger.error(e);
 			}
 		} else {
 			request.setAttribute("appointmentDetails", null);

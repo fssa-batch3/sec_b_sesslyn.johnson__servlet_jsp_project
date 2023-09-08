@@ -13,6 +13,7 @@ import in.fssa.minimal.exception.ServiceException;
 import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.model.User;
 import in.fssa.minimal.service.UserService;
+import in.fssa.minimal.util.Logger;
 
 /**
  * Servlet implementation class EditAppointmentServlet
@@ -38,9 +39,9 @@ public class NewAppointmentServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/book_appointment.jsp");
 			rd.forward(request, response);
 		} catch (ValidationException e) {
-			e.printStackTrace();
+			Logger.error(e);
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			Logger.error(e);
 		}
 
 	}

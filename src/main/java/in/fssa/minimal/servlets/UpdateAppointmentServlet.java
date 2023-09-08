@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import in.fssa.minimal.exception.ServiceException;
 import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.service.AppointmentService;
+import in.fssa.minimal.util.Logger;
 
 /**
  * Servlet implementation class UpdateAppointmentServlet
@@ -31,9 +32,9 @@ public class UpdateAppointmentServlet extends HttpServlet {
             appService.updateAppointmentRequestStatus(appointmentId, status);
             response.sendRedirect(request.getContextPath() + "/designer/appointment_list");
         } catch (ServiceException e) {
-            e.printStackTrace();
+        	Logger.error(e);
         } catch (ValidationException e) {
-            e.printStackTrace();
+        	Logger.error(e);
         }
     }
 }
