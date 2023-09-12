@@ -155,9 +155,110 @@ hr.new3 {
 	width: 45px;
 	height: 40px;
 }
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	display: none;
+}
+
+.popup.error {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #fff;
+	border-radius: 5px;
+	width: 30%;
+	margin-top: 10%;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+	z-index: 1001;
+	display: none;
+}
+
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+
+.popup {
+	margin: 70px auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 5px;
+	width: 30%;
+	position: relative;
+	transition: all 5s ease-in-out;
+	z-index: 1000;
+}
+
+.popup h2 {
+	margin-top: 0;
+	color: #333;
+	font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
+}
+
+.popup .close:hover {
+	color: #06D85F;
+}
+
+.popup .content {
+	max-height: 30%;
+	overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+	.box {
+		width: 70%;
+	}
+	.popup {
+		width: 70%;
+	}
+}
+
+#alert {
+	padding: 0.4rem 2rem 0.2rem 2rem;
+	margin: 1rem 0rem 0rem 8rem;
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 10px;
+}
 </style>
 </head>
 <body>
+	<%
+	String errorMsg = (String) request.getAttribute("error");
+	if (errorMsg != null && !errorMsg.isEmpty()) {
+	%>
+	<div class="overlay" id="overlay"></div>
+	<div id="popup1" class="popup error">
+		<h2>Alert !</h2>
+		<a class="close" href="#" onclick="closeAlert()">&times;</a>
+		<div class="content">
+			<%=errorMsg%>
+		</div>
+		<button id="alert" onclick="closeAlert()" type="button">Ok</button>
+	</div>
+	<%
+      }
+    %>
+    
 	<%
 	String headerJSP = "";
 	if (request.getAttribute("userDetails") != null) {
@@ -178,7 +279,8 @@ hr.new3 {
 	<div class="container_profile">
 		<div class="leftbox">
 			<nav>
-				<a id="profileId" class="active"> <img src="https://iili.io/HyVDPVV.png" class="profileIcon" />
+				<a id="profileId" class="active"> <img
+					src="https://iili.io/HyVDPVV.png" class="profileIcon" />
 				</a>
 			</nav>
 		</div>
@@ -212,6 +314,7 @@ hr.new3 {
 						type="url" id="image" name="image" value="<%=user.getImage()%>">
 					<button class="btn" type="submit">Update</button>
 					<hr class="new3">
+
 					<%
 					Boolean isDesigner = user.isDesigner();
 					%>
@@ -241,6 +344,31 @@ hr.new3 {
 			<img src="https://iili.io/J9qwmGI.png" class="deleteIcon" />
 		</a>
 	</div>
+	<script>
+	function closeAlert() {
+		var overlay = document.getElementById("overlay");
+		var alertDiv = document.getElementById("popup1");
+		overlay.style.display = "none";
+		alertDiv.style.display = "none";
 
+		var containerProfile = document.querySelector(".container_profile");
+		containerProfile.style.zIndex = "";
+	}
+
+	function showAlert() {
+		var overlay = document.getElementById("overlay");
+		var alertDiv = document.getElementById("popup1");
+		overlay.style.display = "block";
+		alertDiv.style.display = "block";
+
+		var containerProfile = document.querySelector(".container_profile");
+		containerProfile.style.zIndex = -1;
+	}
+
+	const popup = document.getElementById("popup1");
+	if(popup.classList.contains("error")){
+		showAlert();
+	}
+	</script>
 </body>
 </html>

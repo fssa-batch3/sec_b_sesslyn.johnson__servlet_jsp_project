@@ -5,7 +5,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,"
+	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
@@ -313,10 +315,97 @@ input {
 .right_btn {
 	margin-top: 4rem;
 }
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.7);
+}
+
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+
+.popup {
+	margin: 70px auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 5px;
+	width: 30%;
+	position: relative;
+	transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+	margin-top: 0;
+	color: #333;
+	font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
+}
+
+.popup .close:hover {
+	color: #06D85F;
+}
+
+.popup .content {
+	max-height: 30%;
+	overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+	.box {
+		width: 70%;
+	}
+	.popup {
+		width: 70%;
+	}
+}
+
+#alert {
+	padding: 0.4rem 2rem 0.2rem 2rem;
+	margin: 1rem 0rem 0rem 8rem;
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 10px;
+}
 </style>
 </head>
 <body>
-	<div></div>
+
+	<%
+	String errorMsg = (String) request.getAttribute("error");
+	%>
+	<%
+	if (errorMsg != null && !errorMsg.isEmpty()) {
+	%>
+	<div id="popup1" class="overlay">
+		<div class="popup">
+			<h2>Alert !</h2>
+			<a class="close" href="#">&times;</a>
+			<div class="content">
+				<%=errorMsg%>
+			</div>
+			<button id="alert" onclick="closeAlert()" type="button">Ok</button>
+		</div>
+	</div>
+	<%
+	}
+	%>
+
 	<div id="index_main">
 		<div id="main_page">
 			<div class="main_left" id="left-div">
@@ -388,11 +477,12 @@ input {
 				</div>
 			</div>
 		</div>
-
+		<%String email = (String) request.getAttribute("email");%>
+		<%String password = (String) request.getAttribute("password");%>
 		<!-- Login Div -->
 		<div class="right_corner">
 			<div class="menu">
-				<a href="index.jsp"> <img src="https://iili.io/Hy19PWB.png"
+				<a href="<%=request.getContextPath()%>/index"> <img src="https://iili.io/Hy19PWB.png"
 					class="close_icon" alt="close icon" /></a>
 			</div>
 			<div class="circle">
@@ -411,7 +501,7 @@ input {
 
 
 					<div class="form_input">
-						<label for="email">Email Id</label> <input type="email"
+						<label for="email">Email Id</label> <input type="email" value="<%=(email != null) ? email : ""%>"
 							class="no_outline" id="user_email" name="email" required
 							pattern="^[a-zA-Z0-9]+([a-zA-Z0-9_+\-\. ]*[a-zA-Z0-9]+)?@[a-zA-Z0-9]+([a-zA-Z0-9\-\.]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}$"
 							title="Must contain @ and only lower case is allowed."
@@ -420,7 +510,7 @@ input {
 					<hr class="new1">
 
 					<div class="form_input">
-						<label for="password">Password</label> <input type="password"
+						<label for="password">Password</label> <input type="password" value="<%=(password != null) ? password : ""%>"
 							class="no_outline" required name="password"
 							title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
 							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
@@ -429,11 +519,10 @@ input {
 
 					<div class="form_btn">
 						<a href="<%=request.getContextPath()%>/user/new"><button
-								class="btn_register"  type="button">Sign
-								in</button></a>
+								class="btn_register" type="button">Sign in</button></a>
 						<button class="btn_register" id="btn_password" type="submit">Login</button>
 					</div>
-					
+
 				</form>
 				<div>
 					<img class="sign_img" id="login_img"
@@ -442,5 +531,11 @@ input {
 
 			</div>
 		</div>
+		<script>
+		function closeAlert() {
+			var alertDiv = document.getElementById("popup1");
+			alertDiv.style.display = "none";
+		}
+		</script>
 </body>
 </html>

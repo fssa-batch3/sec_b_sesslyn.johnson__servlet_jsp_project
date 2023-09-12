@@ -1,6 +1,8 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,10 +29,17 @@ public class UpdateUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		User user = new User();
+		int userId = (Integer) request.getSession().getAttribute("userId");
+		User returnUser = null;
 		try {
+			UserService userService = new UserService();
+			returnUser = userService.findByUserId(userId);
 			user.setName(request.getParameter("name"));
 			user.setEmail(request.getParameter("email"));
-			user.setImage(request.getParameter("image"));
+			String image = request.getParameter("image");
+			if(image != null) {
+			user.setImage(image);
+			}
 			user.setPassword(request.getParameter("password"));
 			String phoneNumber = request.getParameter("phone_number");
 			long number = Long.parseLong(phoneNumber);
@@ -41,18 +50,19 @@ public class UpdateUserServlet extends HttpServlet {
 			user.setDesigner(isDesigner);
 
 			user.setDesigner(isDesigner);
-			UserService userService = new UserService();
-			 int userId = (Integer) request.getSession().getAttribute("userId");
-
+			
 			if (userId > 0) {
 				userService.updateUser(userId, user);
 				response.sendRedirect(request.getContextPath()+"/user/details");
 			}
-		} catch (ServiceException e) {
-			Logger.error(e);
-		} catch (ValidationException e) {
-			Logger.error(e);
+		}  catch (ServiceException | ValidationException e) {
+		    Logger.error(e);
+		    request.setAttribute("userDetails", returnUser);
+		    request.setAttribute("error", e.getMessage());
+		    RequestDispatcher rd = request.getRequestDispatcher("/edit_user.jsp");
+		    rd.forward(request, response);
 		}
+
 
 	}
 

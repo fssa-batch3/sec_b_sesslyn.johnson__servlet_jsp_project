@@ -166,6 +166,7 @@
 		width: 50%;
 	}
 }
+
 #btn_delete {
 	width: 50%;
 	margin-right: 2rem;
@@ -202,9 +203,98 @@ select {
 	margin-right: 2rem;
 }
 
+
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.7);
+}
+
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+
+.popup {
+	margin: 70px auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 5px;
+	width: 30%;
+	position: relative;
+	transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+	margin-top: 0;
+	color: #333;
+	font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
+}
+
+.popup .close:hover {
+	color: #06D85F;
+}
+
+.popup .content {
+	max-height: 30%;
+	overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+	.box {
+		width: 70%;
+	}
+	.popup {
+		width: 70%;
+	}
+}
+
+#alert {
+	padding: 0.4rem 2rem 0.2rem 2rem;
+	margin: 1rem 0rem 0rem 8rem;
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 10px;
+}
+
 </style>
 </head>
 <body>
+	<%
+	String errorMsg = (String) request.getAttribute("error");
+	%>
+	<%
+	if (errorMsg != null && !errorMsg.isEmpty()) {
+	%>
+	<div id="popup1" class="overlay">
+		<div class="popup">
+			<h2>Alert !</h2>
+			<a class="close" href="#">&times;</a>
+			<div class="content">
+				<%=errorMsg%>
+			</div>
+			<button id="alert" onclick="closeAlert()" type="button">Ok</button>
+		</div>
+	</div>
+	<%
+	}
+	%>
+
 	<%
 	String headerJSP = "";
 	if (request.getAttribute("userDetails") != null) {
@@ -227,21 +317,21 @@ select {
 				<img class="appointmentImg" src="https://iili.io/HgJQo1s.jpg"
 					alt="Appointment image">
 			</div>
-			
+
 			<div class="formbold-main-wrapper">
-			
+
 				<%
 				User designer = (User) request.getAttribute("designerDetails");
 				System.out.println(designer);
 				if (designer != null) {
 				%>
-				
+
 				<div class="formbold-form-wrapper">
-				
+
 					<form id="formDiv"
 						action="<%=request.getContextPath()%>/designer/appointment/create?id=<%=designer.getId()%>"
 						method="post">
-						
+
 						<label class="formbold-form-label formbold-form-label-2">Personal
 							Details</label>
 						<div class="flex flex-wrap formbold--mx-3" id="divform">
@@ -335,11 +425,13 @@ select {
 											class="formbold-form-input" />
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 						<div>
-							<a href="<%=request.getContextPath()%>/designer/appointment/new?id=<%=designer.getId()%>"><button class="formbold-btn" id="appointment">Book Appointment</button></a>
+							<a
+								href="<%=request.getContextPath()%>/designer/appointment/new?id=<%=designer.getId()%>"><button
+									class="formbold-btn" id="appointment">Book Appointment</button></a>
 						</div>
 					</form>
 				</div>
@@ -356,14 +448,12 @@ select {
 		</div>
 	</div>
 
-	
+
 
 	<script>
-		
-
 		let today = new Date();
 
-		let  tomorrow = new Date();
+		let tomorrow = new Date();
 		tomorrow.setDate(today.getDate() + 1);
 
 		let maxDate = new Date();
@@ -377,7 +467,10 @@ select {
 		document.getElementById("user_date").setAttribute("max",
 				formattedMaxDate);
 
-	
+		function closeAlert() {
+			var alertDiv = document.getElementById("popup1");
+			alertDiv.style.display = "none";
+		}
 	</script>
 </body>
 </html>

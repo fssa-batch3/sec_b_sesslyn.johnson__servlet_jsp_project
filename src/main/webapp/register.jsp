@@ -1,3 +1,4 @@
+<%@page import="in.fssa.minimal.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -5,12 +6,18 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Register Form</title>
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap"
+	rel="stylesheet">
 <style>
 body {
 	margin: 0rem;
@@ -357,7 +364,7 @@ input[type=email] {
 .input-container {
 	display: flex;
 	align-items: center;
-	margin: 4px 0px;
+	margin: 4px 0px 15px 0px;
 }
 
 #designer_toggle {
@@ -370,19 +377,124 @@ input[type=email] {
 	margin-top: 5px;
 }
 
-.error_div {
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.7);
+}
+
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+
+.popup {
+	margin: 70px auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 5px;
+	width: 30%;
+	position: relative;
+	transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+	margin-top: 0;
+	color: #333;
+	font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
 	position: absolute;
-	bottom: 5%;
-	left: 75%;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
+}
+
+.popup .close:hover {
+	color: #06D85F;
+}
+
+.popup .content {
+	max-height: 30%;
+	overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+	.box {
+		width: 70%;
+	}
+	.popup {
+		width: 70%;
+	}
+}
+
+#alert {
+	padding: 0.4rem 2rem 0.2rem 2rem;
+	margin: 1rem 0rem 0rem 8rem;
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 10px;
+}
+
+.password-container {
+	position: relative;
+}
+
+.password-toggle-1 {
+    position: absolute;
+    top: 58.5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    left: 81%;
+}
+.password-toggle-2 {
+    position: absolute;
+    top: 66%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    left: 84%;
+}
+.fa-eye {
+	color: #3498db;
 }
 </style>
 </head>
 <body>
+	<%
+	String errorMsg = (String) request.getAttribute("error");
+	%>
+	<%
+	if (errorMsg != null && !errorMsg.isEmpty()) {
+	%>
+	<div id="popup1" class="overlay">
+		<div class="popup">
+			<h2>Alert !</h2>
+			<a class="close" href="#">&times;</a>
+			<div class="content">
+				<%=errorMsg%>
+			</div>
+			<button id="alert" onclick="closeAlert()" type="button">Ok</button>
+		</div>
+	</div>
+	<%
+	}
+	%>
+
 	<div id="index_main">
 		<div id="main_page">
 			<div class="main_left" id="left-div">
 				<div class="main_header">
-					<span class="header"> <a href="<%=request.getContextPath()%>/index"> <img
+					<span class="header"> <a
+						href="<%=request.getContextPath()%>/index"> <img
 							class="main_logo" src="https://iili.io/Hy0p6kx.jpg"
 							alt="logo of minimalistic m"></a></span> <span class="header">
 						<a href="./pages/shop.html">
@@ -447,7 +559,7 @@ input[type=email] {
 		</div>
 		<div id="right_corner">
 			<div class="menu">
-				<a href="index.jsp"> <img src="https://iili.io/Hy19PWB.png"
+				<a href="<%=request.getContextPath()%>/index"> <img src="https://iili.io/Hy19PWB.png"
 					class="close_icon" alt="close icon" /></a>
 			</div>
 			<div class="circle">
@@ -463,17 +575,23 @@ input[type=email] {
 			</div>
 			<div class="data_form">
 
+				<%
+				User user = (User) request.getAttribute("userDetails");
+				%>
 				<!-- Form -->
-				<form action="create" method="post">
+				<form action="<%=request.getContextPath()%>/user/create"
+					method="post">
 					<div class="form_input">
 						<label for="name">Name</label> <input type="text" name="name"
 							class="no_outline" id="user_name" pattern="[a-zA-Z]+"
+							value="<%=(user != null) ? user.getName() : ""%>"
 							title="Only contain Alphabets" required placeholder="Sesslyn">
 					</div>
 					<hr class="new3">
 					<div class="form_input">
 						<label for="email">Email Id</label> <input type="email"
 							name="email" class="no_outline" id="user_email"
+							value="<%=(user != null) ? user.getEmail() : ""%>"
 							pattern="^[a-zA-Z0-9]+([a-zA-Z0-9_+\-\. ]*[a-zA-Z0-9]+)?@[a-zA-Z0-9]+([a-zA-Z0-9\-\.]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}$"
 							title="Must contain @ and only lower case is allowed." required
 							placeholder="sess@...">
@@ -482,31 +600,45 @@ input[type=email] {
 					<div class="form_input">
 						<label for="phone">Phone Number</label> <input
 							pattern="[6-9][0-9]{9}" type="tel" name="phone_number"
+							value="<%=(user != null) ? user.getPhoneNumber() : ""%>"
 							title="It should be a 10-digit number starting with a digit between 6 and 9."
 							class="no_outline" id="user_no" required maxlength="10"
 							placeholder="995239...">
 					</div>
 					<hr class="new3">
+
 					<div class="form_input">
-						<label for="password">Password</label> <input class="no_outline"
-							required type="password" name="password"
-							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+						<label for="password">Password</label>
+						<div class="password-toggle-1">
+							<i class="fas fa-eye" id="togglePassword1"></i>
+						</div>
+						<input class="no_outline" required type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 							title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
 							placeholder="Password" id="user_password">
 					</div>
 					<hr class="new3">
+
 					<div class="form_input">
-						<label for="repeat_password">Confirm password</label> <input
-							class="no_outline" required type="password"
-							name="repeat_password"
-							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+						<label for="repeat_password">Confirm password</label> 
+						<div class="password-toggle-2">
+							<i class="fas fa-eye" id="togglePassword2"></i>
+						</div>
+						<input class="no_outline" required type="password" name="repeat_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 							title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
 							placeholder="Password" id="confirm_password">
 					</div>
+					<hr class="new3">
+
 					<div class="input-container">
-						<input type="checkbox" id="inbox" name="is_designer" value="true">
-						<p for="is_designer" id="designer_toggle">Are you a designer ?</p>
+						<%
+						boolean isDesigner = (user != null) ? user.isDesigner() : false;
+						%>
+						<input type="checkbox" id="inbox" name="is_designer"
+							<%=isDesigner ? "checked" : ""%> value="true"> <label
+							for="is_designer" id="designer_toggle">Are you a designer
+							?</label>
 					</div>
+
 					<small>* Password must have 8 characters, uppercase,</small> <small
 						id="small"> lowercase, and special case.</small>
 					<div class="form_btn">
@@ -516,18 +648,7 @@ input[type=email] {
 							Up</button>
 					</div>
 
-					<%
-					String errorMessage = request.getParameter("error");
-					%>
-					<%
-					if (errorMessage != null) {
-					%>
-					<div class="error_div">
-						<p><%=errorMessage%></p>
-					</div>
-					<%
-					}
-					%>
+
 				</form>
 			</div>
 		</div>
@@ -541,6 +662,36 @@ input[type=email] {
 				document.getElementById("confirm_password").value = "";
 			}
 		}
+
+		function closeAlert() {
+			var alertDiv = document.getElementById("popup1");
+			alertDiv.style.display = "none";
+		}
+		
+		const passwordInput1 = document.getElementById('user_password');
+		const togglePasswordButton1 = document.getElementById('togglePassword1'); // Update id
+		const eyeIcon1 = document.getElementById('togglePassword1'); // Update id
+
+		const passwordInput2 = document.getElementById('confirm_password');
+		const togglePasswordButton2 = document.getElementById('togglePassword2'); // Unique id for confirm password
+		const eyeIcon2 = document.getElementById('togglePassword2'); // Unique id for confirm password
+
+		togglePasswordButton1.addEventListener('click', () => {
+		    togglePasswordVisibility(passwordInput1, eyeIcon1);
+		});
+
+		togglePasswordButton2.addEventListener('click', () => {
+		    togglePasswordVisibility(passwordInput2, eyeIcon2);
+		});
+
+		function togglePasswordVisibility(inputField, eyeIcon) {
+		    const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
+		    inputField.setAttribute('type', type);
+		    eyeIcon.classList.toggle('fa-eye');
+		    eyeIcon.classList.toggle('fa-eye-slash');
+		}
+
+
 	</script>
 </body>
 </html>

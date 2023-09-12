@@ -21,40 +21,43 @@ import in.fssa.minimal.util.Logger;
 @WebServlet("/user/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-		rd.forward(request, response);	
+		rd.forward(request, response);
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    String email = request.getParameter("email");
+	    String password = request.getParameter("password");
 	    try {
-	        String email = request.getParameter("email");
-	        String password = request.getParameter("password");
 	        UserService userService = new UserService();
 	        User user = userService.findByEmail(email);
 
 	        if (user == null) {
-	            Logger.info("User not found");
+	            throw new ValidationException("User not found");
 	        } else if (!password.equals(user.getPassword())) {
-	        	Logger.info("Incorrect password");
+	            throw new ValidationException("Incorrect password");
 	        } else {
-	        	Logger.info("You have been logged in successfully");
+	            Logger.info("You have been logged in successfully");
 	            Integer id = user.getId();
 	            if (id != null) {
-	                request.getSession().setAttribute("userId", id); 
+	                request.getSession().setAttribute("userId", id);
 	                response.sendRedirect(request.getContextPath() + "/user/details");
+	                return; // Ensure the method exits here to avoid further processing
 	            }
-	        }    
-
-	    } catch (ServiceException e) {
-	    	Logger.error(e);
-	    } catch (ValidationException e) {
-	    	Logger.error(e);
+	        }
+	    } catch (ServiceException | ValidationException e) {
+	        Logger.error(e);
+	        request.setAttribute("email", email);
+	        request.setAttribute("password", password);
+	        request.setAttribute("error", e.getMessage());
+	        // Forward to the login page without any query parameter
+	        RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+	        rd.forward(request, response);
 	    }
 	}
-
-
 }

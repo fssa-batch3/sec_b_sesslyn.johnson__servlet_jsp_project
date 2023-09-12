@@ -1,6 +1,8 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,15 +38,13 @@ public class RegisterServlet extends HttpServlet {
 			UserService userService = new UserService();
 			userService.createUser(user);
 			response.sendRedirect(request.getContextPath() + "/user/login");
-		} catch (ServiceException e) {
+		} catch (ServiceException | ValidationException e) {
 			Logger.error(e);
-			String getError = e.getMessage();
-			response.sendRedirect(request.getContextPath() + "/user/new?error=" + getError);
-		} catch (ValidationException e) {
-			Logger.error(e);
-			String getError = e.getMessage();
-			response.sendRedirect(request.getContextPath() + "/user/new?error=" + getError);
-		}
+			request.setAttribute("userDetails", user);
+			request.setAttribute("error", e.getMessage());
+			RequestDispatcher rd = request.getRequestDispatcher("/register.jsp?error=");
+			rd.forward(request, response);	
+		} 
 
 	}
 
