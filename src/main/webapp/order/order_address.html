@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details Page</title>
+    <link rel="stylesheet" href="../../assets/css/order/order_details.css">
+    <link rel="stylesheet" href="../../assets/css/profile/header.css">
+    <link rel="stylesheet" href="../../assets/css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+</head>
+
+</head>
+
+<body>
+    <main>
+        <div>
+            <div class="heading_page">
+                <td>
+                    <img src="https://iili.io/HgdYtLv.png" class="page" id="page" alt="bag icon">
+                    <img class="dotted_line" src="../../assets/images/home_page/dotted-line-icon.png" alt="dotted_line">
+                </td>
+                <td>
+                    <img src="https://iili.io/HgdYg1V.png" class="page" id="page_2" alt="bag icon">
+                    <img class="dotted_line" src="../../assets/images/home_page/dotted-line-icon.png" alt="dotted_line">
+                </td>
+                <td>
+                    <img src="https://iili.io/HgdYQIa.png" class="page" id="page_3" alt="bag icon">
+                </td>
+            </div>
+            <div class="heading_page">
+                <small class="page_new">Your Shipping</small>
+                <small class="page_text">Delivery Address</small>
+                <small class="page_text">Payment Method</small>
+            </div>
+        </div>
+        <h2>Delivery Addressess</h2>
+        <div class="addressInfo" id="address">
+            <table class="table_product">
+                <caption></caption>
+                <th></th>
+                <caption></caption>
+                <tbody>
+                    <tr class="tr_row">
+                        <td><a href="./order_details.html"><img src="../../assets/images/home_page/plus.png"
+                                    class="plus_icon" alt="plus icon"></a>
+                        </td>
+                        <td>
+                            <h3>Add New Address</h3>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="addressContainer">
+        </div>
+
+        <div class="bottom_container">
+            <h2>Payment Method</h2>
+            <div class="details_pay">
+                <div class="pay_ment" id="payment_option">
+                    <div class="input_cash" id="cash_1">
+                        <input type="radio" id="net_bank" class="user_cash">
+                        <label class="payment_label">Net Banking </label>
+                        <br>
+                    </div>
+
+                    <div class="input_cash" id="cash_2">
+                        <input type="radio" id="cash_delivery" class="user_cash">
+                        <label class="payment_label">Cash on Delivery</label>
+                        <br>
+                    </div>
+
+                    <div class="input_cash" id="cash_2">
+                        <input type="radio" id="credit_cards" class="user_cash">
+                        <label class="payment_label">Credit / Debit cards</label>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn_order" id="btn_order" type="submit">Proceed</button>
+    </main>
+    <script>
+        //Radio button
+        const netBank = document.querySelector("#net_bank");
+        netBank.addEventListener("change", () => {
+            if (netBank.checked) {
+                cashDelivery.checked = false;
+                creditCards.checked = false;
+                localStorage.setItem("user_delivery", "Net Banking");
+            }
+        });
+
+        const cashDelivery = document.querySelector("#cash_delivery");
+        cashDelivery.addEventListener("change", () => {
+            if (cashDelivery.checked) {
+                netBank.checked = false;
+                creditCards.checked = false;
+                localStorage.setItem("user_delivery", "Cash On Delivery");
+            }
+        });
+
+        const creditCards = document.querySelector("#credit_cards");
+        creditCards.addEventListener("change", () => {
+            if (creditCards.checked) {
+                cashDelivery.checked = false;
+                netBank.checked = false;
+                localStorage.setItem("user_delivery", "Credit / Debit cards");
+            }
+        });
+
+        const deliveryMethod = localStorage.getItem("user_delivery");
+        if (deliveryMethod === "Net Banking") {
+            netBank.checked = true;
+        }
+        if (deliveryMethod === "Cash On Delivery") {
+            cashDelivery.checked = true;
+        }
+        if (deliveryMethod === "Credit / Debit cards") {
+            creditCards.checked = true;
+        }
+        console.log(deliveryMethod)
+
+        let addressList = JSON.parse(localStorage.getItem("addressList"));
+        let profile_id = JSON.parse(localStorage.getItem("profile_id"));
+        let addressArray = addressList.filter((e) => e.user_email == profile_id);
+        console.log(addressArray)
+
+
+        let productCount = 0;
+
+        for (const address of addressArray) {
+            productCount++;
+
+            const newDiv = document.createElement('div');
+            newDiv.classList.add('addressInfo');
+            newDiv.setAttribute('id', 'detailsAddress');
+
+            const table = document.createElement('table');
+            table.classList.add('table_product');
+            newDiv.appendChild(table);
+
+            const tbody = document.createElement('tbody');
+            table.appendChild(tbody);
+
+            const tr = document.createElement('tr');
+            tr.classList.add('tr_row');
+            tbody.appendChild(tr);
+
+            const td1 = document.createElement('td');
+            tr.appendChild(td1);
+
+            const input = document.createElement('input');
+            input.type = 'checkbox';
+            input.classList.add('radioButton');
+            input.value = productCount;
+            input.setAttribute('id', 'radio' + productCount);
+            input.alt = 'plus icon';
+            td1.appendChild(input);
+
+            const td2 = document.createElement('td');
+            tr.appendChild(td2);
+
+            if (address['user_notes']) {
+                const h3 = document.createElement('h3');
+                h3.innerText = address['user_notes'];
+                td2.appendChild(h3);
+            } else {
+                const h3 = document.createElement('h3');
+                h3.innerText = 'Delivery Address';
+                td2.appendChild(h3);
+            }
+
+            const p1 = document.createElement('p');
+            p1.innerText = address['user_name'];
+            td2.appendChild(p1);
+
+            const p2 = document.createElement('p');
+            p2.innerText = `${address['user_address']} ${address['user_city']}, ${address['user_state']}, ${address['user_country']} - ${address['user_code']}`;
+            td2.appendChild(p2);
+
+            const p3 = document.createElement('p');
+            p3.innerText = `Phone Number: ${address['user_no']}`;
+            td2.appendChild(p3);
+
+            const span = document.createElement('span');
+            span.classList.add('tooltip');
+            newDiv.appendChild(span);
+
+            const img = document.createElement('img');
+            img.src = '../../assets/images/home_page/edit_icon.png';
+            img.setAttribute('data-id', address.address_id);
+            img.alt = 'edit icon';
+            img.id = 'edit_icon';
+            span.appendChild(img);
+
+            const p = document.createElement('p');
+            p.classList.add('tooltiptext');
+            p.textContent = 'Edit';
+            span.appendChild(p);
+
+            document.querySelector('div.addressContainer').append(newDiv);
+        }
+
+
+        const bookCovers = document.querySelectorAll("#edit_icon");
+        bookCovers.forEach((bookCover) => {
+            bookCover.addEventListener("click", (event) => {
+                const person_data = bookCover.dataset.id;
+                window.location.href = `./edit_address.html?edit_address=${person_data}`;
+            });
+        });
+
+        //Checkbox button
+        const radioButtons = document.querySelectorAll('input[type="checkbox"]');
+        radioButtons.forEach((radioButton) => {
+            radioButton.addEventListener("change", () => {
+                if (radioButton.checked) {
+                    radioButtons.forEach((rb) => {
+                        if (rb !== radioButton) {
+                            rb.checked = false;
+                        }
+                    });
+                    console.log("deliveryAddress", radioButton.value);
+                    console.log(radioButton.id);
+                    const selectedRadio = Array.from(radioButtons).find(rb => rb.checked);
+                    const selectedIndex = parseInt(selectedRadio.value - 1);
+                    console.log(selectedIndex)
+                    // Get the corresponding array from the data source
+                    const selectedArray = addressArray[selectedIndex];
+                    console.log(selectedArray)
+                    // Set the array in localStorage
+                    localStorage.setItem("selectedArray", JSON.stringify(selectedArray));
+                }
+            });
+        });
+
+        document.getElementById("btn_order").addEventListener("click", function () {
+            if (!document.querySelector('input[type="radio"]:checked')) {
+                alert("Please select a payment method");
+            } else if (!document.querySelector('input[type="checkbox"]:checked')) {
+                alert("PLease select the delivery address");
+            } else {
+                window.location.href = "./order_summary.html";
+            }
+        });
+
+
+
+
+    </script>
+    <script src="../../assets/js/chatBot.js"></script>
+    <script src="../../assets/comments/header.js"></script>
+</body>
+
+</html>

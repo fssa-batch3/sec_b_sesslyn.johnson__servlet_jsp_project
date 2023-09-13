@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chamber-Shop</title>
+    <link rel="stylesheet" href="../../assets/css/product/page.css">
+    <link rel="stylesheet" href="../../assets/css/profile/header.css">
+    <link rel="stylesheet" href="../../assets/css/profile/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <main class="main_div">
+
+    </main>
+
+    <script>
+
+        //URL Params
+        const urlParams = new URLSearchParams(window.location.search);
+        const room_id = urlParams.get("chamber_name");
+
+        //Filter
+        const roomDetails = JSON.parse(localStorage.getItem("roomDetails"));
+        const room_name = JSON.parse(localStorage.getItem("room_name"));
+        const exactRoom = roomDetails.filter(product => product.roomCategory === room_id)
+        console.log(exactRoom);
+
+        //Room details DOM
+        let productCount = 0;
+
+        for (const room of exactRoom) {
+            productCount++;
+
+            const productDiv = document.createElement('div');
+            productDiv.setAttribute("class", "productDiv");
+            productDiv.setAttribute('id', 'div1');
+            console.log(productDiv);
+
+            const divProductDiv = document.createElement('div');
+            divProductDiv.setAttribute("class", "div_product");
+            productDiv.append(divProductDiv);
+
+            const detailsDiv = document.createElement('div');
+            detailsDiv.setAttribute("class", "details");
+            divProductDiv.append(detailsDiv);
+
+            const menuIconDiv = document.createElement('div');
+            menuIconDiv.setAttribute("class", "menu_icon");
+            detailsDiv.append(menuIconDiv);
+
+            const designHuntP = document.createElement('p');
+            designHuntP.setAttribute("class", "paraIcon");
+            designHuntP.innerHTML = 'DesignHunt';
+            menuIconDiv.append(designHuntP);
+
+            const menuDiv = document.createElement('div');
+            menuDiv.setAttribute("class", "menu");
+            menuIconDiv.append(menuDiv);
+
+            const menuBarDiv1 = document.createElement('div');
+            menuBarDiv1.setAttribute("class", "menu_bar");
+            menuDiv.append(menuBarDiv1);
+
+            const menuBarDiv2 = document.createElement('div');
+            menuBarDiv2.setAttribute("class", "menu_bar");
+            menuDiv.append(menuBarDiv2);
+
+            const menuBarDiv3 = document.createElement('div');
+            menuBarDiv3.setAttribute("class", "menu_bar");
+            menuDiv.append(menuBarDiv3);
+
+            const hideoutDiv = document.createElement('div');
+            hideoutDiv.setAttribute("class", "hideout");
+            detailsDiv.append(hideoutDiv);
+
+            const hideoutImgDiv = document.createElement('div');
+            hideoutDiv.append(hideoutImgDiv);
+
+            const hideoutImg = document.createElement('img');
+            hideoutImg.setAttribute('src', room.productImg);
+            hideoutImg.setAttribute("class", "hideout_lamp");
+            hideoutImg.setAttribute('alt', 'product image');
+            hideoutImgDiv.append(hideoutImg);
+
+            const spanImgDiv = document.createElement('div');
+            hideoutDiv.append(spanImgDiv);
+
+            const apartmentSpan = document.createElement('span');
+            apartmentSpan.setAttribute("class", "apartment");
+            spanImgDiv.append(apartmentSpan);
+
+            const apartmentP1 = document.createElement('p');
+            apartmentP1.setAttribute("class", "paraIcon");
+            apartmentP1.innerHTML = 'Apartments design';
+            apartmentSpan.append(apartmentP1);
+
+            const apartmentP2 = document.createElement('p');
+            apartmentP2.setAttribute("class", "year");
+            apartmentP2.innerHTML = room.yearBuilt;
+            apartmentSpan.append(apartmentP2);
+
+            const classyNamesSpan = document.createElement('span');
+            classyNamesSpan.setAttribute("class", "classy_names");
+            spanImgDiv.append(classyNamesSpan);
+
+            const classyNameH2_1 = document.createElement('h2');
+            classyNameH2_1.innerHTML = room.catchyName1;
+            classyNamesSpan.append(classyNameH2_1);
+
+            const classyNameH2_2 = document.createElement('h2');
+            classyNameH2_2.innerHTML = room.catchyName2;
+            classyNamesSpan.append(classyNameH2_2);
+
+            const classyNameP = document.createElement('p');
+            classyNameP.setAttribute("class", "budget");
+            classyNameP.innerHTML = 'Designed By :' + room.designer;
+            classyNamesSpan.append(classyNameP);
+
+            const rightArrowSpan = document.createElement('span');
+            spanImgDiv.append(rightArrowSpan);
+
+            const rightArrowImg = document.createElement('img');
+            rightArrowImg.setAttribute('src', 'https://iili.io/J9eAf7S.png');
+            rightArrowImg.setAttribute("class", "right_arrow");
+            rightArrowImg.setAttribute('alt', 'angle right arrow');
+            rightArrowImg.setAttribute('id', 'arrow' + productCount);
+            rightArrowSpan.append(rightArrowImg);
+
+            const locationSpan = document.createElement('span');
+            locationSpan.setAttribute("class", "location");
+            spanImgDiv.append(locationSpan);
+
+            const rightLocateH4 = document.createElement('h4');
+            rightLocateH4.setAttribute("class", "right_locate");
+            rightLocateH4.innerHTML = 'Location';
+            locationSpan.append(rightLocateH4);
+
+            const apartNameP = document.createElement('p');
+            apartNameP.setAttribute("class", "apart_name");
+            apartNameP.innerHTML = room.apartmentName;
+            locationSpan.append(apartNameP);
+
+            const cityP = document.createElement('p');
+            cityP.setAttribute("class", "city");
+            cityP.innerHTML = room.place;
+            locationSpan.append(cityP);
+
+            const collectDiv = document.createElement('div');
+            collectDiv.setAttribute("class", "collect");
+            detailsDiv.append(collectDiv);
+
+            const collectSpan = document.createElement('span');
+            collectDiv.append(collectSpan);
+
+            const collectP = document.createElement('p');
+            collectP.setAttribute("class", "collect");
+            collectP.innerHTML = 'Collections';
+            collectSpan.append(collectP);
+
+            const projectsSpan = document.createElement('span');
+            collectDiv.append(projectsSpan);
+
+            const projectsP = document.createElement('p');
+            projectsP.setAttribute("class", "projects");
+            projectsP.innerHTML = 'Similar projects';
+            projectsSpan.append(projectsP);
+
+            // Create the main card div
+            const cardDiv = document.createElement('div');
+            cardDiv.setAttribute('class', 'card');
+            divProductDiv.append(cardDiv);
+
+            // Create the image element
+            const imageElement = document.createElement('img');
+            imageElement.setAttribute('src', room.image);
+            imageElement.setAttribute('class', 'product_img');
+            imageElement.setAttribute('alt', 'living_room');
+            cardDiv.appendChild(imageElement);
+
+            // Create the content div
+            const contentDiv = document.createElement('div');
+            contentDiv.setAttribute('class', 'content');
+            cardDiv.appendChild(contentDiv);
+
+            const bottomContainerDiv = document.createElement('div');
+            bottomContainerDiv.setAttribute('class', 'bottom_container');
+            contentDiv.appendChild(bottomContainerDiv);
+
+            // Create the heading element
+            const headingElement = document.createElement('h4');
+            headingElement.setAttribute('class', 'bottomHeading');
+            headingElement.textContent = 'About';
+            bottomContainerDiv.appendChild(headingElement);
+
+            // Create the paragraph element
+            const paragraphElement = document.createElement('p');
+            paragraphElement.setAttribute('id', 'bottomPara');
+            paragraphElement.textContent = room.about;
+            bottomContainerDiv.appendChild(paragraphElement);
+
+            document.querySelector("main.main_div").append(productDiv);
+
+        }
+
+        //Div to change
+        const productDivs = document.querySelectorAll('.productDiv');
+        let currentDivIndex = 0;
+        const arrow = document.getElementById('arrow1');
+        arrow.addEventListener("click", function () {
+            for (const div of productDivs) {
+                div.hidden = true;
+            }
+            productDivs[currentDivIndex].hidden = false;
+            currentDivIndex++;
+            if (currentDivIndex >= productDivs.length) {
+                currentDivIndex = 0;
+            }
+        });
+
+
+    </script>
+    <script src="../../assets/js/profile/header.js"></script>
+    <script src="../../assets/js/profile/chatBot.js"></script>
+
+
+</body>
+
+</html>

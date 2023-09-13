@@ -27,14 +27,9 @@ public class HeaderServlet extends HttpServlet {
 
 	        if (userId > 0) {
 	            User user = UserService.findByUserId(userId);
-	            if (user != null) {
 	                request.setAttribute("userDetails", user);
-	                RequestDispatcher dispatcher = request.getRequestDispatcher("/header_after_login.jsp");
+	                RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/profile/header.jsp");
 	                dispatcher.forward(request, response);
-	            } 
-	        } else {
-	            RequestDispatcher dispatcher = request.getRequestDispatcher("/header_before_login.jsp");
-	            dispatcher.forward(request, response);
 	        }
 	    } catch (NumberFormatException e) {
 	    	Logger.error(e);

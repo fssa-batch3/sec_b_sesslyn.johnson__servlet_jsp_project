@@ -1,0 +1,136 @@
+body {
+    margin: 0rem;
+    padding: 0rem;
+    height: 100%;
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    cursor: pointer;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.left_container {
+    overflow: hidden;
+    margin: 2rem 0rem 2rem 2rem;
+    box-sizing: border-box;
+    width: 35%;
+    border-radius: 10px;
+    background-color: rgb(232, 229, 229);
+}
+
+.review_icon {
+    width: 20rem;
+    height: 15rem;
+    margin: 9.5rem 2rem 0rem 4rem;
+}
+
+h2 {
+    margin: 2rem 0rem 0rem 4rem;
+    color: #000000a6;
+}
+
+.left-para {
+    margin: 2rem 4rem 0rem 4rem;
+    line-height: 1.6;
+    color: #000000bb;
+}
+
+.right_container {
+    margin: 2rem 2rem 2rem 2rem;
+    background-color: rgba(245, 245, 245, 0.386);
+    width: 70%;
+    height: 87vh;
+    overflow-y: scroll;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    padding: 6px;
+    border: 3px solid transparent;
+    background: #060337;
+    color: #fff;
+    text-align: center;
+    font: 14px Arial, sans-serif;
+}
+
+.right_reaction {
+    display: flex;
+    flex-direction: row;
+    margin: 2rem 0rem 0rem 2rem;
+}
+
+.reaction {
+    border: 1px solid grey;
+    width: 90px;
+    padding: 1.5rem 2rem 1.5rem 2rem;
+    margin: 0rem;
+    background-color: #fff;
+}
+
+.reaction img {
+    width: 30px;
+    height: 30px;
+    margin: 0rem 2rem;
+}
+
+.right_question {
+    display: flex;
+    flex-direction: row;
+    margin: 0rem 0rem 0rem 2rem;
+}
+
+.review_contain {
+    width: 88%;
+    border: none;
+    padding: 2rem;
+    margin: 2rem -3rem 0rem 2rem;
+}
+
+h4 {
+    font-size: 1.3rem;
+    margin: 0rem 0rem 1rem 1rem;
+}
+
+small {
+    margin: -0.5rem 1rem 0rem 3rem;
+    color: rgb(106, 105, 105);
+}
+
+p {
+    text-align: center;
+    margin: 1rem 0rem 0rem 0rem;
+}
+
+.input_search {
+    padding: 0.5rem 35.5rem 0.5rem 1rem;
+    margin: 1rem 0rem 0rem 2rem;
+    border: 1px solid rgb(174, 174, 174);
+    outline: none;
+}
+
+#contain {
+    margin-bottom: 2rem;
+}
+
+.btn_primary {
+    padding: 0.5rem 3rem;
+    margin: 0.5rem 0rem 2rem 45rem;
+    border: 1px solid transparent;
+    background-color: rgb(6, 6, 6);
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}

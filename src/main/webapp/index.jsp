@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet" href="./styles/index.css">
-</head>
+</head> 
 <body>
 	<div id="index_main">
 		<div id="main_page">
@@ -29,7 +29,7 @@
 						<a href="#">
 							<p class="header_para">SHOP</p>
 					</a>
-					</span> <span class="header"> <a href="#">
+					</span> <span class="header"> <a href="<%=request.getContextPath()%>/about">
 							<p class="header_para">ABOUT</p>
 					</a></span> <span class="header"> <a href="#">
 							<p class="header_para">ORDERS</p>

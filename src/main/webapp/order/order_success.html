@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+    <link rel="stylesheet" href="../../assets/css/order/order_summary.css">
+    <link rel="stylesheet" href="../../assets/css/profile/header.css">
+    <link rel="stylesheet" href="../../assets/css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+</head>
+
+</head>
+
+<body>
+    <div class="center">
+        <img src="https://iili.io/HgJio1j.jpg" class="main_img" alt="order_success image" />
+        <a href="./order.html">
+            <button class="btnDone type1" onclick="showThanks()">Done</button>
+        </a>
+    </div>
+    <script>
+
+        function showThanks() {
+            var btn = document.querySelector('.btnDone');
+            btn.classList.add('clicked');
+            btn.innerText = 'Thanks';
+        }
+
+
+    </script>
+    <script src="../../assets/js/chatBot.js"></script>
+    <script src="../../assets/comments/header.js"></script>
+</body>
+
+</html>

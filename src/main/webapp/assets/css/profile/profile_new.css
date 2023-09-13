@@ -1,0 +1,314 @@
+body {
+    margin: 0rem;
+    padding: 0rem;
+    font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+    /* overflow-x: hidden;
+    overflow-y: hidden; */
+    cursor: pointer;
+}
+
+.profile_container {
+    display: grid;
+    grid-template-columns: 33% 67%;
+}
+
+.profile_left {
+    margin: 1rem 0rem 0rem 8rem;
+}
+
+#profile_left {
+    margin: 1rem 4rem 0rem 4rem;
+}
+
+.user_profile {
+    height: 15.5rem;
+    width: 16.5rem;
+    margin: 4.5rem 0rem 1rem 0rem;
+}
+
+.new1 {
+    border-top: 1px solid rgb(184, 183, 183);
+    margin: -2.4rem 7rem 1rem 7rem;
+}
+
+.new {
+    border-top: 1px solid rgb(184, 183, 183);
+    margin: -2.4rem 7rem 1rem 4.2rem;
+}
+
+p.head_profile {
+    color: grey;
+    padding: 1rem 0rem;
+    font-size: 1.1rem;
+}
+
+h4.heading_left {
+    font-size: 1.6rem;
+    color: rgb(11, 11, 69);
+    margin: 3rem 0rem 2.2rem 0rem;
+}
+
+p.left_para {
+    padding-right: 8rem;
+    margin: -1rem 0rem 3rem 0rem;
+    font-size: 1.16rem;
+}
+
+li {
+    font-size: 1.16rem;
+}
+
+p.left_text {
+    margin-top: 2rem;
+
+}
+
+.profile_right {
+    margin: 3rem 0rem;
+    overflow: hidden;
+}
+
+h3.user_name {
+    font-size: 2rem;
+    margin-left: 0.3rem;
+}
+
+#edit_icon {
+    margin-top: 3rem;
+    padding-left: 40rem;
+    width: 1.2rem;
+    height: 1rem;
+    padding-right: 0.5rem;
+}
+
+p.user-title {
+    margin: -1rem 0rem 1rem 0.3rem;
+    color: rgb(11, 11, 69);
+}
+
+.button_navigate {
+    display: flex;
+    flex-direction: row;
+}
+
+.button_navigate button {
+
+    border: none;
+    background-color: transparent;
+    font-size: 1.2rem;
+    color: black;
+}
+
+.btn_wish {
+    padding: 0.8rem 1rem 0.8rem 1rem;
+    margin: 1rem 1rem 1rem 0rem;
+}
+
+.btn_cart {
+    padding: 0.8rem 1rem 0.8rem 1rem;
+    margin: 1rem 1rem 1rem 3rem;
+}
+
+.btn_orders {
+    padding: 0.8rem 1rem 0.8rem 1rem;
+    margin: 1rem 1rem 1rem 3rem;
+}
+
+.icon {
+    width: 1.2rem;
+    height: 1rem;
+    padding-right: 0.5rem;
+}
+p#user_dob {
+    margin-top: 0rem;
+}
+
+.button_navigate button:hover {
+    transform: scale(1.1);
+    transition: 1s;
+    background-color: rgb(242, 242, 242);
+}
+
+.new2 {
+    border-top: 1px solid rgb(184, 183, 183);
+    margin: 0rem 3rem 1rem 0.5rem;
+}
+
+p.right_profile {
+    color: grey;
+    padding: 1rem 0rem;
+    font-size: 1.1rem;
+    margin-left: 1rem;
+}
+
+.user_details {
+    display: flex;
+    flex-direction: row;
+}
+
+.user_details p {
+    margin: 1rem 1rem;
+}
+
+#user {
+    padding-bottom: 1rem;
+}
+
+#user_no {
+    padding-bottom: 1rem;
+}
+
+p.content {
+    font-size: 1.2rem;
+}
+
+p.details {
+    font-size: 1.1rem;
+}
+
+#contact {
+    margin-top: 0rem;
+}
+
+.contact p {
+    margin-top: 0rem;
+    padding-top: 0rem;
+}
+
+#user_city {
+    margin-left: -0.8rem;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    /* border-bottom: 1px dotted black; */
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 75px;
+    background-color: rgb(198, 196, 196);
+    color: #000;
+    text-align: center;
+    border-radius: 6px;
+    margin: -4rem 0rem 0rem 0rem;
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    margin: -1.5rem 0rem 0rem 42rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.btn_secondary {
+    margin: 0rem 0rem 0rem 35rem;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    border: 1px solid transparent;
+    background-color: rgb(6, 6, 6);
+    color: white;
+    display: inline;
+}
+
+p#seller_city {
+    display: block;
+}
+
+
+.plus_icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 1rem;
+}
+
+h3 {
+    margin: 0rem 0rem 0rem 2rem;
+}
+
+#address {
+    background-color: rgb(218, 216, 216);
+    margin: 2rem 0rem;
+    padding: 0.5rem 0.5rem;
+}
+
+.addressInfo {
+    margin: 2rem 0rem;
+    padding: 0rem 2rem;
+    background-color: rgb(218, 216, 216);
+}
+
+h4 {
+    margin: -1rem 0rem 0.5rem 0rem;
+}
+
+.addressDiv {
+    overflow-y: scroll;
+    height: 405px;
+
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.tr_address {
+    display: flex;
+    flex-direction: column;
+}
+
+#user_image {
+    height: 15.5rem;
+    width: 16.5rem;
+    margin: 2rem 0rem -1rem 2rem;
+}
+
+.address_td {
+    margin-top: 0rem;
+    margin-bottom: 0.1rem;
+}
+
+.edit_icon {
+    margin: 0.8rem 0rem 0rem 19rem;
+    width: 10px;
+    height: 10px;
+    padding-right: 0.5rem;
+}
+
+#address_td {
+    margin-top: 0.2rem;
+}
+
+
+.setDefault {
+    margin: 0.5rem 0rem 0.5rem 2rem;
+    background-color: rgb(253, 251, 251);
+    border-color: transparent;
+}
+
+.setDefault:hover {
+    box-shadow: 30px 5px 33px 0px rgb(137, 137, 137);
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.buttonTd {
+    display: flex;
+}
+
+.btnDefault {
+    margin: 0.5rem 0rem 0.5rem 0rem;
+    border-color: transparent;
+    background-color: rgb(253, 251, 251);
+}
+
+.btnDefault:hover {
+    box-shadow: 30px 5px 33px 0px rgb(137, 137, 137);
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}

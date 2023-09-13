@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order page</title>
+    <link rel="stylesheet" href="../../assets/css/order/order.css">
+    <link rel="stylesheet" href="../../assets/css/profile/header.css">
+    <link rel="stylesheet" href="../../assets/css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="small_container">
+        <div class="top-container">
+            <div class="top_contain">
+                <div>
+                    <img src="https://iili.io/HgdJlDJ.png" class="delivery_girl" alt="Delivery receiving image">
+                </div>
+                <div>
+                    <h1>
+                        Best Furniture For Your Home <br> From Minimalistic
+                    </h1>
+                    <a href="../shop.html">
+                        <p class="start_shop">
+                            Start Shopping <img src="../../assets/images/home_page/arrow.png" alt="arrow image"
+                                class="arrow_icon"></p>
+                    </a>
+
+                </div>
+            </div>
+            <div class="bottom_contain">
+
+
+            </div>
+        </div>
+    </div>
+    <div id="cart_empty">
+        <img src="https://iili.io/HgJi5I1.jpg" class="emptyCart" alt="Empty Cart image" />
+        <p class="cartEmpty">You haven't placed an order yet.</p>
+    </div>
+    <script>
+
+        const order_list = JSON.parse(localStorage.getItem("order_list")) || [];
+        const profile_id = JSON.parse(localStorage.getItem("profile_id"));
+        const order_user = order_list.filter((e) => e.order_email == profile_id);
+        console.log(order_user);
+
+        const emptyCart = document.getElementById('cart_empty');
+        const cartFull = document.getElementById('small_container');
+
+        function showMessageDiv() {
+            emptyCart.style.display = 'block';
+            cartFull.style.display = 'none';
+        }
+
+        if (order_user.length === 0) {
+            showMessageDiv();
+        }
+
+        for (const order of order_user) {
+            const table = document.createElement("table");
+            table.setAttribute("id", "table_product");
+            console.log(table);
+
+            const caption = document.createElement("caption");
+            table.append(caption);
+
+            const row = document.createElement("tr");
+            table.append(row);
+
+            const header = document.createElement("th");
+            row.append(header);
+
+            const productData = document.createElement("td");
+            row.append(productData);
+
+            const cartInfo = document.createElement("div");
+            cartInfo.setAttribute("class", "cart_info");
+            productData.append(cartInfo);
+
+            const productImg = document.createElement("img");
+            productImg.setAttribute("src", order.ordered_items.image_url);
+            productImg.setAttribute("data-id", order.order_uuid);
+            productImg.setAttribute("class", "product_1");
+            productImg.setAttribute("alt", "Compat camal brown sofa");
+            cartInfo.appendChild(productImg);
+
+            const productName = document.createElement("h3");
+            productName.textContent = order.ordered_items.product_name;
+            cartInfo.appendChild(productName);
+
+            const orderDate = document.createElement("td");
+            const inputDate = order.ordered_time.substr(0, 10);
+            const date = new Date(inputDate);
+
+            const months = [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
+            ];
+
+            const month = months[date.getMonth()];
+            const day = date.getDate();
+            const year = date.getFullYear();
+
+            orderDate.textContent = `Order on ${day} ${month}, ${year}`;
+            row.appendChild(orderDate);
+
+            const quantity = document.createElement("td");
+            row.appendChild(quantity);
+
+            const quantityInput = document.createElement("input");
+            quantityInput.setAttribute("type", "number");
+            quantityInput.setAttribute("value", order.ordered_items.product_quantity);
+            quantityInput.setAttribute("disabled", "");
+            quantity.appendChild(quantityInput);
+
+            const price = document.createElement("td");
+            price.textContent = "₹" + order.ordered_items.product_price;
+            row.appendChild(price);
+
+
+            const deliveryStatus = document.createElement("td");
+            row.appendChild(deliveryStatus);
+
+            const startTime = new Date(order.ordered_time);
+            console.log(startTime);
+
+            //date
+            const endTime = new Date(
+                startTime.getFullYear(),
+                startTime.getMonth(),
+                startTime.getDate() + 7, 0, 0, 0, 0);
+            console.log(endTime);
+            const now = new Date();
+
+            if (endTime > now) {
+                const order_list = JSON.parse(localStorage.getItem("order_list"));
+                order.order_status = "On the Way";
+                localStorage.setItem("order_list", JSON.stringify(order_list));
+
+
+                const deliveryButton = document.createElement("button");
+                deliveryButton.setAttribute("class", "btn btn_tertiary");
+                deliveryButton.textContent = "On the Way";
+                deliveryStatus.appendChild(deliveryButton);
+            } else {
+                const order_list = JSON.parse(localStorage.getItem("order_list"));
+                order.order_status = "Delivered";
+                localStorage.setItem("order_list", JSON.stringify(order_list));
+            }
+            document.querySelector("div.bottom_contain").append(table);
+        }
+
+        //URL Params
+        const bookCovers = document.querySelectorAll(".product_1");
+        bookCovers.forEach((bookCover) => {
+            bookCover.addEventListener("click", (event) => {
+                const person_data = bookCover.dataset.id;
+                window.location.href = `./order_history.html?order_id=${person_data}`;
+            });
+        });
+
+
+    </script>
+    <script src="../../assets/js/chatBot.js"></script>
+    <script src="../../assets/comments/header.js"></script>
+
+</body>
+
+</html>

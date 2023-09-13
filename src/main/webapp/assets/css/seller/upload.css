@@ -1,0 +1,112 @@
+body {
+    background-image: linear-gradient(rgb(246, 187, 187), rgb(250, 220, 220), rgb(252, 219, 219));
+    margin: 0rem;
+    padding: 0rem;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background-image: linear-gradient(rgb(246, 187, 187), rgb(250, 220, 220), rgb(252, 219, 219));
+}
+
+.upload-img img {
+    border-radius: 5%;
+    border: 0.1rem solid rgb(250, 129, 129);
+}
+
+.upload-img .round-img {
+    position: absolute;
+    bottom: 12rem;
+    left: 34rem;
+    background-color: rgba(186, 177, 177, 0.8);
+    border: 0.188rem solid white;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.upload-img .round-img input[type="file"] {
+    position: absolute;
+    transform: scale(2);
+    opacity: 0%;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    cursor: pointer;
+}
+
+.upload-img {
+    margin: 4rem 0rem 0rem 6rem;
+}
+
+.form-details {
+    margin: 0rem 0rem 0rem 8rem;
+}
+
+.form .details_list {
+    display: flex;
+    flex-direction: row;
+    margin-left: -1rem;
+
+}
+
+.form .details .list {
+    width: 6.25rem;
+    font-size: 1.1rem;
+    padding: 1rem;
+    font-weight: bold;
+    color: rgb(67, 43, 43);
+}
+
+.form .details .list_2 {
+    width: 25rem;
+    font-size: 1rem;
+    margin-left: 1.5rem;
+    outline: none;
+    padding-bottom: 0rem;
+    border: 0.063rem solid transparent;
+    border-bottom-color: gray;
+    background-color: transparent;
+}
+
+.form .save {
+    border-radius: 0.313rem;
+    border: transparent;
+    color: white;
+    background-color: rgb(239, 86, 86);
+    padding: 0.625rem 3.125rem 0.938rem 3.125rem;
+    margin: 2.5rem 0.625rem 0.625rem 12rem;
+}
+
+.save:hover {
+    transform: scale(1.1);
+    transition: 1s;
+    background-color: crimson;
+    color: white;
+}
+
+.profile_details .run {
+    border-radius: 0.625rem;
+}
+
+.btn-delete {
+    border-radius: 0.313rem;
+    border: transparent;
+    color: white;
+    background-color: rgb(239, 86, 86);
+    padding: 0.625rem 3.125rem 0.938rem 3.125rem;
+    margin: 2.5rem 0.625rem 0.625rem 16rem;
+}
+
+.btn-delete:hover {
+    transform: scale(1.1);
+    transition: 1s;
+    background-color: crimson;
+    color: white;
+}

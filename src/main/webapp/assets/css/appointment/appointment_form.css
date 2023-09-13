@@ -1,0 +1,260 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.block {
+  display: block;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.appointmentImg {
+  width: 40rem;
+  height: 40rem;
+  margin: 6rem 0rem 0rem 8rem;
+}
+
+.formbold-mb-5 {
+  margin-bottom: 15px;
+}
+
+.formbold-pt-3 {
+  padding-top: 12px;
+}
+
+.formbold-main-wrapper {
+  display: flex;
+  padding: 80px;
+}
+
+.formbold-form-wrapper {
+  margin: 0 auto;
+  max-width: 550px;
+  width: 100%;
+  background: white;
+}
+
+.formbold-form-label {
+  display: block;
+  font-weight: 500;
+  font-size: 16px;
+  color: #0e0e0e;
+  margin-bottom: 12px;
+}
+
+.formbold-form-label-2 {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.formbold-form-input {
+  width: 100%;
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  font-weight: 500;
+  font-size: 16px;
+  color: #020202;
+  outline: none;
+  resize: none;
+}
+
+.formbold-form-input:focus {
+  border-color: #151515;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.formbold-btn {
+  text-align: center;
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 14px 32px;
+  border: none;
+  font-weight: 600;
+  background-color: #0e0e0f;
+  color: white;
+  width: 100%;
+  cursor: pointer;
+}
+
+.formbold-btn:hover {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+#divform {
+  margin-left: 0px;
+  justify-content: space-between;
+}
+
+#emailForm {
+  margin-right: 30px;
+}
+
+.formbold--mx-3 {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+.formbold-px-3 {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.pay_ment {
+  display: flex;
+  flex-direction: row;
+}
+
+.input_cash {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0rem;
+}
+
+.radioButton {
+  margin-top: -1.5rem;
+}
+
+.user_cash {
+  margin: 2rem 2rem 1rem 1.8rem;
+  padding: 0rem 0rem 0rem 2rem;
+  display: inline;
+  width: 20px;
+  height: 20px;
+  accent-color: rgb(5, 5, 5);
+}
+
+#cash_2,
+#cash_3,
+#cash_4 {
+  margin-left: 2.3rem;
+}
+
+.payment_label {
+  display: block;
+  margin-top: 2rem;
+  margin-left: -1.5rem;
+}
+
+#edit_icon {
+  margin-top: 3rem;
+  margin-right: 2rem;
+  width: 1.2rem;
+  height: 1rem;
+  padding-right: 0.5rem;
+}
+
+@media (min-width: 540px) {
+  .sm\:w-half {
+    width: 50%;
+  }
+}
+
+.blur-background {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.center-div {
+  display: none;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  height: 350px;
+  background-color: #ccc;
+  border-radius: 15px;
+}
+
+h3 {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+p {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.imgSuccess {
+  width: 200px;
+  height: 200px;
+  margin-left: 60px;
+}
+
+.dashBoard {
+  border-radius: 20px;
+  padding: 0.5rem;
+  margin: -1rem 0rem 1rem 3.5rem;
+  border-color: black;
+}
+
+.buttonDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#btn_delete {
+  width: 50%;
+  margin-right: 2rem;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 14px 32px;
+  border: none;
+  font-weight: 600;
+  background-color: #0e0e0f;
+  color: white;
+  cursor: pointer;
+}
+
+#btn_appointment {
+  width: 50%;
+  margin-left: 2rem;
+}
+
+select {
+  width: 100%;
+  padding: 12px 44px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  font-weight: 500;
+  font-size: 16px;
+  color: #020202;
+  outline: none;
+  resize: none;
+}
+
+#designers_name {
+  margin-right: 2rem;
+}

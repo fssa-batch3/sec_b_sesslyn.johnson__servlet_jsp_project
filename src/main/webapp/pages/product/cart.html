@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart page</title>
+  <link rel="stylesheet" href="../assets/css/cart.css">
+  <link rel="stylesheet" href="../assets/css/profile/header.css">
+  <link rel="stylesheet" href="../assets/css/normalize.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <div>
+    <div class="heading_page">
+      <td>
+        <img src="https://iili.io/HgdYtLv.png" class="page" id="page" alt="bag icon">
+        <img class="dotted_line" src="../assets/images/home_page/dotted-line-icon.png" alt="dotted_line">
+      </td>
+      <td>
+        <img src="https://iili.io/HgdYg1V.png" class="page" id="page_2" alt="bag icon">
+        <img class="dotted_line" src="../assets/images/home_page/dotted-line-icon.png" alt="dotted_line">
+      </td>
+      <td>
+        <img src="https://iili.io/HgdYQIa.png" class="page" id="page_2" alt="bag icon">
+      </td>
+    </div>
+    <div class="heading_page">
+      <small class="page_new">Your Shipping</small>
+      <small class="page_text">Delivery Address</small>
+      <small class="page_text">Payment Method</small>
+    </div>
+  </div>
+  <div id="cart_empty">
+    <img src="https://iili.io/HgJU7Xj.jpg" class="emptyCart" alt="Empty Cart image" />
+    <p class="cartEmpty">Your Cart is Empty !</p>
+  </div>
+  <div class="small_container" id="small_container">
+ <p class="parah3" id="headh1">Image</p>
+ <p class="parah3" id="headh2">Product Name</p>
+ <p class="parah3" id="headh3">Delivery Date</p>
+ <p class="parah3" id="headh4">Qty</p>
+ <p class="parah3" id="headh5">Price</p>
+ <p class="parah3" id="headh6">Delete</p>
+    <div class="contain_cart">
+
+    </div>
+
+    <div class="total_price">
+      <table>
+        <caption></caption>
+        <th></th>
+        <tr class="amount">
+          <td>Total Amount :</td>
+          <td id="total_amount"></td>
+        </tr>
+      </table>
+
+      <button type="submit" class="btn_order" id="btn_order">Buy Now</button>
+
+    </div>
+  </div>
+  
+  <script src="../assets/js/chatBot.js"></script>
+  <script src="../assets/js/cart.js"></script>
+  <script src="../assets/comments/header.js"></script>
+</body>
+
+</html>

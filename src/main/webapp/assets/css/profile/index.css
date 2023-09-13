@@ -1,0 +1,373 @@
+body {
+  margin: 0rem;
+  padding: 0rem;
+  cursor: pointer;
+  overflow:hidden;
+}
+
+#index_main {
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  text-transform: uppercase;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.hide {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+#main_page {
+
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.main_header {
+  display: flex;
+  flex-direction: row;
+
+  height: 8.8%;
+}
+
+hr.new2 {
+  border-bottom: 1px solid rgb(209, 209, 209);
+  margin: -0.5rem 1rem 0rem 7rem;
+}
+
+.header {
+  margin: 0.3rem 0.5rem 0rem 0.9rem;
+  padding-bottom: 0rem;
+}
+
+.main_logo {
+  height: 3rem;
+  width: 3rem;
+  margin-left: 2rem;
+  padding: 0.9rem 1.5rem 0rem 1.5rem;
+}
+
+.main_header a {
+  text-decoration: none;
+}
+
+.main_header p {
+  font-size: 1.3rem;
+  padding: 1rem 1.5rem 0rem 1.5rem;
+  margin: 0.5rem 0rem 0.8rem 0rem;
+  color: rgb(27, 25, 25);
+}
+
+.left_img {
+  width: 32rem;
+  height: 30rem;
+  margin: 4rem 2rem 1rem 12rem;
+}
+
+.media a {
+  text-decoration: none;
+  color: #000;
+}
+
+.left_para {
+  text-align: justify;
+  margin: 1rem 19rem 1rem 14rem;
+  letter-spacing: 0.1rem;
+  font-size: 1.1rem;
+}
+
+.media {
+  margin: 3rem 10rem 3rem 13rem;
+}
+
+.media span {
+  padding: 1rem;
+  font-weight: bold;
+  font-size: medium;
+}
+
+.media span p {
+  display: inline;
+  margin-left: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.main_right {
+  width: 100%;
+}
+
+.right_img {
+  width: 37.5rem;
+  height: 40rem;
+  margin-bottom: -0.3rem;
+}
+
+.main_img {
+  box-shadow: -46px 250px 0px 0px rgba(217, 217, 217, 0.66);
+}
+
+#btn {
+  background-color: transparent;
+  color: black;
+  border-color: transparent;
+  font-size: 1.5rem;
+  float: right;
+  margin: -2.5rem 6rem 2rem 1rem;
+}
+
+#btn img {
+  width: 2rem;
+  height: 1rem;
+  padding-left: 1rem;
+}
+
+hr.new1 {
+  border-top: 1px solid rgb(20, 19, 19);
+  margin: 3.5rem 3rem 2rem 1rem;
+  width:80%;
+}
+
+.right_para {
+  margin: 0rem 2rem 0rem 2rem;
+  letter-spacing: 0.1rem;
+}
+
+.para_right {
+  text-transform: none;
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin: 0rem 2rem 1rem 2rem;
+}
+
+.header_para {
+  display: inline-block;
+  position: relative;
+  color: #000;
+}
+
+.header_para:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.6px;
+  top: 3.4rem;
+  left: 0;
+  background-color: #000;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.header_para:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* login */
+
+#right_corner {
+  float: right;
+  height: 100%;
+  width: 30%;
+  background-color: #fff;
+}
+
+.menu {
+  margin: 3rem 5rem;
+  float: right;
+}
+
+.close_icon {
+  width: 18px;
+  height: 20px;
+  margin: 4px 0;
+}
+
+.double_circle {
+  width: 10px;
+  float: left;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgb(13, 12, 12);
+  border: 1px solid black;
+  box-shadow: inset 0 0 0 2px white;
+  margin: 7rem 0rem 0rem 4rem;
+}
+
+.dot {
+  float: left;
+  height: 8px;
+  width: 8px;
+  background-color: #bbb;
+  border-radius: 50%;
+  margin: 7rem 0rem 0rem 0.5rem;
+}
+
+.sign-up {
+  margin: 10rem 2rem 2rem 4rem;
+  text-transform: uppercase;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.text_sign {
+  margin: 0.1rem 2rem 2rem 4rem;
+  color: grey;
+  text-transform: uppercase;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.form_input {
+  margin: 1rem 0rem 1rem 4rem;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+label {
+  font-size: medium;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+input {
+  background-color: transparent;
+  color: black;
+  font-size: medium;
+  float: right;
+  font-weight: bold;
+  border: none;
+}
+
+.no_outline:focus {
+  outline: none;
+}
+
+#email {
+  float: inherit;
+  margin: 0rem 1rem 0rem 4rem;
+}
+
+hr.new3 {
+  border-top: 1px solid rgb(20, 19, 19);
+  margin: 1rem 5rem 2rem 4rem;
+}
+
+.form_btn {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn_register {
+  border-style: hidden hidden groove hidden;
+  text-transform: uppercase;
+  background-color: transparent;
+  font-size: medium;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 300;
+  margin: 2rem 1rem 2rem 4rem;
+}
+
+#btn_login {
+  margin: 2rem 1rem 2rem 9rem;
+}
+
+#btn_password {
+  margin: 2rem 1rem 2rem 7rem;
+}
+
+.btn_register a {
+  color: black;
+  text-decoration: none;
+}
+
+/* .sign_img {
+  width: 10rem;
+  height: 10rem;
+  margin: 1rem 8rem;
+} */
+
+#login_img {
+  margin: 4rem 8rem;
+}
+
+.btn_register:hover {
+  border-color: rgb(172, 170, 170);
+}
+
+small {
+  padding-left: 4rem;
+  padding-right: 5rem;
+
+}
+
+#small {
+  padding-left: 4.5rem;
+}
+
+input[type=email] {
+  text-overflow: ellipsis;
+  padding-right: 0rem;
+}
+#inbox{
+  margin-right: 350px;
+  margin-top: 5px;
+}
+.input-container {
+  display: flex;
+  align-items: center; 
+  margin:4px 0px;
+}
+
+#designer_toggle {
+  margin-left: -320px; 
+  text-transform: none;
+}
+
+#inbox {
+  margin-left: 130px; 
+  margin-top: 5px;
+}
+
+.password-container {
+	position: relative;
+}
+
+.password-toggle-1 {
+    position: absolute;
+    top: 58%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    left: 81%;
+}
+.password-toggle-2 {
+    position: absolute;
+    top: 65.5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    left: 84%;
+}
+.fa-eye {
+	color: #3498db;
+}
+.password-toggle-3 {
+    position: absolute;
+    top: 42%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    left: 81%;
+}
+
+.sign_img {
+	width: 12rem;
+	height: 12rem;
+	margin: 2rem 8rem;
+}
+
+#login_img {
+	margin: 4rem 8rem;
+}

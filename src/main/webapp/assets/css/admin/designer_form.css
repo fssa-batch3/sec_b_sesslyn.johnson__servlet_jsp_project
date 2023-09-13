@@ -1,0 +1,120 @@
+body{
+    background: #fff;
+    margin:0;
+  }
+  .container{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    width: 45%;
+    margin: 50px auto; 
+  }
+  header{
+    color: #000;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 600;
+    margin: 50px 0;
+  }
+  header>span{
+    display: block;
+    font-size: 30px;
+    font-weight: 400;
+  }
+  .in-container{
+    width: 100%;
+    margin: 40px 0;
+    color: #000;
+  }
+  h2{
+    font-weight: 400;
+    color: #000;
+    border-bottom: 1px solid #000;
+    border-width: 1px;
+    margin: 20px 50px;
+    padding: 10px;
+    text-align: center;
+  }
+  .row{
+    width: 100%;
+    margin: 20px 0;
+    padding: 0;
+    display: table;
+  }
+  .col2{
+    display: table;
+    width: 47%;
+    float: left;
+  }
+  .col2:nth-child(2){
+    display: table;
+    float: right;
+  }
+  label{
+    line-height: 35px;
+    display: table-header-group;
+    letter-spacing: 0.9px;
+    transition: all 0.3s ease;
+  }
+  input{
+    width: 100%;
+    display: table-row-group;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: transparent;
+    color: black;
+    font-size: 1rem;
+  }
+  input:focus{
+    outline: none !important;
+    border-color: #EF5350;
+  }
+  input:focus + label{
+    color: #EF5350;
+  }
+  input[type="submit"]{
+    display: table;
+    width: 30%;
+    margin: 20px -32px 0 auto;
+    background: #fff;
+    color:#EF5350;
+    border:1px solid #EF5350;
+    
+  }
+  input[type="submit"]:hover{
+    background: transparent;
+   background: #EF5350;
+    color: #fff;
+    cursor: pointer;
+  }
+  textarea{
+    width: 100%;
+    display: table-row-group;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: transparent;
+    color: #000;
+    font-size: 1rem;
+  }
+  textarea:focus{
+    outline: none !important;
+    border-color: #EF5350;
+  }
+  
+  textarea[type="submit"]{
+    display: table;
+    width: 30%;
+    margin: 20px -32px 0 auto;
+    background: #fff;
+    color:#EF5350;
+    border:1px solid #EF5350;
+    
+  }
+  textarea[type="submit"]:hover{
+    background: transparent;
+   background: #EF5350;
+    color: #fff;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,263 @@
+body {
+    margin: 0rem;
+    padding: 0rem;
+    font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+    overflow-x: hidden;
+   
+    cursor: pointer;
+}
+
+.container {
+    display: block;
+}
+
+.new {
+    margin-top: 0.1rem;
+    color: white;
+}
+
+.room_div {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    margin: 2rem 0rem 0rem 8rem;
+}
+
+.view_more {
+    width: 100px;
+    height: 100px;
+    margin: 8rem 21rem 0rem 0rem;
+    border-radius: 50%;
+}
+
+p.main_heading {
+    font-size: 5rem;
+    margin: 0rem 10rem 0rem 0rem;
+    padding: 5px;
+}
+
+.room_name {
+    color: #FF5757;
+}
+
+p.text_description {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.image_living {
+    width: 100%;
+    height: 100%;
+    margin-top: 4rem;
+}
+
+.main_div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.productDiv {
+    display: block;
+    width: 100%;
+}
+
+.div_product {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid whitesmoke;
+    background: whitesmoke;
+    margin: 3rem 1rem 3rem 4rem;
+    justify-content: space-between;
+}
+
+.hideout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 2rem 0rem 1rem 0rem;
+}
+
+.hideout_lamp {
+    width: 200px;
+    height: 450px;
+    padding: 1rem 0rem;
+}
+
+.classy_names h2 {
+    font-size: 3rem;
+    margin-left: -1rem;
+}
+
+p.budget {
+    margin: 1rem 0rem 0rem 8rem;
+    font-size: 1.2rem;
+}
+
+.classy_names h2:nth-child(2) {
+    margin: -2rem 0rem 0rem 4rem;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0rem 0rem 1rem;
+}
+
+.right_arrow {
+    width: 50px;
+    height: 50px;
+    margin: 2rem 0rem 0rem 2rem;
+}
+
+.menu_icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.menu_icon p {
+    float: left;
+    margin-left: 2rem;
+}
+
+.projects {
+    padding-left: 16rem;
+    margin-right: 5rem;
+    display: block;
+}
+
+.collect {
+    display: flex;
+    flex-direction: row;
+    float: left;
+    margin-left: 2rem;
+}
+
+.menu {
+    margin: 0rem 30rem 0rem 7rem;
+    position: absolute;
+    top: 10rem;
+    left: 43rem;
+}
+
+.menu_bar {
+    width: 18px;
+    height: 2px;
+    background-color: black;
+    margin: 2px 0;
+}
+
+.location h4,
+p {
+    margin-left: 16rem;
+}
+.product_img {
+    width: 500px;
+    height: 650px;
+  }
+  .bottom_container{
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    transition: .3s ease;
+  }
+  .card:hover .bottom_container{
+    bottom: 0;
+    height: 100%;
+  }
+.card {
+    margin: 2rem 4rem 2rem 0rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 650px;
+       overflow: hidden;
+    border-radius: 10px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    color: #e8e8e8;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .content .bottom_container {
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 0px;
+    line-height: 1.76;
+    text-transform: none;
+  }
+  
+  .bottomHeading {
+    font-size: 25px;
+    text-align: center;
+    padding-top:4rem;
+
+  } 
+  
+   #bottomPara {
+    margin:2rem 2rem 0rem 2rem;
+    text-align: center;
+    font-size: 21px;
+  }
+  
+  .content .btn {
+    color: #e8e8e8;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100%);
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100%);
+    z-index: -1;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .card:hover::before {
+    height: 100%;
+  }
+  
+  .card:hover {
+    box-shadow: none;
+  }
+  
+  .card:hover .btn {
+    color: #212121;
+    background: #e8e8e8;
+  }
+  
+  .content .btn:hover {
+    outline: 2px solid #e8e8e8;
+    background: transparent;
+    color: #e8e8e8;
+  }
+  
+  .content .btn:active {
+    box-shadow: none;
+  }
+  

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Address Page</title>
+  <link rel="stylesheet" href="../../assets/css/order/order_details.css">
+  <link rel="stylesheet" href="../../assets/css/profile/header.css">
+  <link rel="stylesheet" href="../../assets/css/normalize.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+</head>
+
+</head>
+
+<body>
+  <main>
+
+    <div class="top">
+      <div class="top_container">
+        <h2>Delivery Information</h2>
+        <form role="form" onsubmit="saveAddress()" id="formDiv">
+          <div class="order-details">
+            <div class="details">
+              <div class="form_details">
+                <label>Name</label>
+                <input type="text" class="name" required="true" id="user_name" title="Only Alphabets are allowed."
+                  pattern="[a-zA-Z]+" placeholder="Daniel">
+              </div>
+
+              <div class="form_details">
+                <label class="mobile_no">Mobile Number</label>
+                <input type="text" class="name" required="true" value="9952393568" title="it should be 10 digit number"
+                  id="user_no" pattern="[6-9]{1}[0-9]{9}" placeholder="9952393568">
+              </div>
+            </div>
+
+            <div class="details">
+              <div class="form_details">
+                <label>E-mail</label>
+                <input type="text" class="name" disabled required="true" id="user_email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  title="Must contain @ and only lower case is allowed." required="true"
+                  placeholder="daniel05@gmail.com">
+              </div>
+
+              <div class="form_details">
+                <label class="mobile_no">City</label>
+                <input type="text" class="name" title="Only Alphabets and space is allowed" value="Chennai"
+                  required="true" id="user_city" placeholder="Chennai">
+              </div>
+            </div>
+
+            <div class="details">
+              <div class="form_details">
+                <label>State</label>
+                <input type="text" class="name" required="true" id="user_state" value="TamilNadu"
+                  title="Only Alphabets and space is allowed" placeholder="Tamil Nadu">
+              </div>
+
+              <div class="form_details" id="zip_no">
+                <label>ZIP Code</label>
+                <input type="number" class="name" required="true" value="600096"
+                  title="It should be a 6 digit number without spaces and first digit can not be zero"
+                  pattern="[6]{1}[0-9]{4}[1-9]{1}" maxlength="6" min="600001" max="643253" id="user_code"
+                  placeholder="600094">
+              </div>
+
+              <div class="form_details" id="country_no">
+                <label class="country_no">Country</label>
+                <input type="text" class="name" required="true" id="user_country" value="India"
+                  title="Only Alphabets and space is allowed" placeholder="India">
+              </div>
+
+            </div>
+
+            <div class="details">
+              <div class="form_details">
+                <label>Address</label>
+                <input type="text" class="name" required="true" id="user_address" value="12th Nehru street, Perungudi."
+                  title="Accepts Alphabets, number and special character and space too."
+                  placeholder="12th Nehru street, Perungudi.">
+              </div>
+              <div class="form_details">
+                <label class="notes">Title</label>
+                <input type="text" class="name" id="user_notes" value="Own House"
+                  title="Accepts Alphabets, number and special character and space too." placeholder="Home">
+              </div>
+            </div>
+          </div>
+
+          <div class="defaultCheckBox" id="defaultCheckBox">
+
+          </div>
+
+
+          <button class="btn_order" type="submit">Proceed</button>
+
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+const checkboxDefault = document.createElement('input');
+checkboxDefault.type = 'checkbox';
+checkboxDefault.id = 'checkdefault';
+
+const label = document.createElement('label');
+label.setAttribute('for', 'checkdefault');
+label.innerText = 'Make this Address default';
+
+document.querySelector("div.defaultCheckBox").append(checkboxDefault);
+document.querySelector("div.defaultCheckBox").append(label);
+
+let addressList = JSON.parse(localStorage.getItem("addressList")) || [];
+const profile_id = JSON.parse(localStorage.getItem("profile_id"));
+if (addressList && addressList.length > 0) {
+  const existing_users = addressList.filter((e) => e.user_email === profile_id);
+  if (existing_users.length > 1) {
+    for (const user of existing_users) {
+      const defaultBox = document.getElementById('defaultCheckBox');
+      if (user['default_status'] === true) {
+        defaultBox.style.display = 'none';
+      } else {
+        defaultBox.style.display = 'block';
+      }
+    }
+  } else if (existing_users.length === 1) {
+    const defaultBox = document.getElementById('defaultCheckBox');
+    if (existing_users[0]['default_status'] === true) {
+      defaultBox.style.display = 'none';
+    } else {
+      defaultBox.style.display = 'block';
+    }
+  }
+}
+
+// Order details from user
+const user_crud = JSON.parse(localStorage.getItem("user_crud"));
+
+function login_data(e) {
+  return e.user_email === profile_id;
+}
+
+const user_data = user_crud.find(login_data);
+console.log(user_data);
+document.getElementById("user_name").value = user_data.user_name;
+document.getElementById("user_no").value = user_data.user_no;
+document.getElementById("user_email").value = user_data.user_email;
+document.getElementById("user_city").value = user_data.user_city;
+document.getElementById("user_state").value = user_data.user_state;
+document.getElementById("user_country").value = user_data.user_country;
+document.getElementById("user_address").value = user_data.user_address;
+document.getElementById("user_code").value = "";
+document.getElementById("user_notes").value = "";
+
+function saveAddress() {
+  event.preventDefault();
+  const getUserInputValue = (elementId) => {
+    return document.getElementById(elementId).value.trim().split(/\s+/g).join(" ");
+  };
+
+  const user_name = getUserInputValue("user_name");
+  const user_no = getUserInputValue("user_no");
+  const user_email = getUserInputValue("user_email");
+  const user_state = getUserInputValue("user_state");
+  const user_city = getUserInputValue("user_city");
+  const user_country = getUserInputValue("user_country");
+  const user_address = getUserInputValue("user_address");
+  const user_notes = getUserInputValue("user_notes");
+  const user_code = document.getElementById("user_code").value;
+  const checkbox = document.getElementById("checkdefault").checked;
+
+  const validatePhoneNumber = () => {
+    if (user_no.length !== 10) {
+      alert("Enter your number properly");
+      return false;
+    }
+  };
+
+  const validateCode = () => {
+    if (user_code.length !== 6) {
+      alert("Enter your Pincode properly");
+      return false;
+    }
+  };
+
+  validatePhoneNumber();
+  validateCode();
+
+  if (user_address === "" || user_city === "" || user_state === "" || user_country === "") {
+    alert("Please enter your address information");
+    return false;
+  }
+  
+
+  if (addressList.length === 0) {
+    addressList.push({
+      address_id: uuidv4(),
+      user_name,
+      user_email,
+      user_no,
+      user_address,
+      user_city,
+      user_state,
+      user_country,
+      user_code,
+      user_notes,
+      default_status: true
+    });
+  } else {
+    const profile_id = JSON.parse(localStorage.getItem("profile_id"));
+    const current_user = addressList.filter((e) => e.user_email === profile_id);
+
+    if (current_user.length === 0) {
+      addressList.push({
+        address_id: uuidv4(),
+        user_name,
+        user_email,
+        user_no,
+        user_address,
+        user_city,
+        user_state,
+        user_country,
+        user_code,
+        user_notes,
+        default_status: true
+      });
+    } else {
+      if (checkbox === true) {
+        let default_address = current_user.find((e) => e.default_status === true);
+        default_address.default_status = false;
+        localStorage.setItem("addressList", JSON.stringify(addressList));
+
+        addressList.push({
+          address_id: uuidv4(),
+          user_name,
+          user_email,
+          user_no,
+          user_address,
+          user_city,
+          user_state,
+          user_country,
+          user_code,
+          user_notes,
+          default_status: true
+        });
+      } else {
+        addressList.push({
+          address_id: uuidv4(),
+          user_name,
+          user_email,
+          user_no,
+          user_address,
+          user_city,
+          user_state,
+          user_country,
+          user_code,
+          user_notes,
+          default_status: false
+        });
+      }
+    }
+  }
+  localStorage.setItem("addressList", JSON.stringify(addressList));
+  alert("Address has been added!");
+  console.log(addressList);
+  history.back();
+}
+  </script>
+  <script src="../../assets/js/chatBot.js"></script>
+  <script src="../../assets/comments/header.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
+</body>
+
+</html>

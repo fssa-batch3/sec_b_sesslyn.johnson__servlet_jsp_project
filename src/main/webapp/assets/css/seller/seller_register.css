@@ -1,0 +1,130 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+    overflow-x: hidden;
+    cursor: pointer;
+}
+
+
+.family-div {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+    height: 90vh;
+    background-color: white;
+}
+
+.family-div div:nth-child(1) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    padding-left: 60px;
+    padding-right: 20px;
+    font-size: 20px;
+    color: rgb(16, 15, 15);
+}
+
+.family-div div:nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+}
+
+.family-img {
+    height: 30rem;
+    width: 32rem;
+}
+
+.container {
+    display: flex;
+    margin-top: 0rem;
+}
+
+.login {
+    margin: 0.625rem 0rem 0rem 6.25rem;
+}
+
+.login h1 {
+    margin: 2.5rem 0rem 0.625rem 0rem;
+    font-size: 2.5rem;
+    color: rgb(25, 16, 16);
+}
+
+.account {
+    padding-right: 1.875rem;
+}
+
+.login .content {
+    margin-bottom: 3.125rem;
+}
+
+.content p {
+    margin-bottom: 0rem;
+}
+
+input[type=email],
+input[type=name],
+input[type=password],
+input[type=text] {
+    border-radius: 0.313rem;
+    border-color: transparent;
+    background-color: rgba(32, 2, 2, 0.276);
+    outline: none;
+    padding: 0.3rem 4.5rem 0.625rem 1.5rem;
+    width: 18.75rem;
+    margin-bottom: 1.25rem;
+    margin-top: 0rem;
+}
+
+::placeholder {
+    color: white;
+    opacity: 1;
+}
+
+.forget {
+    margin-bottom: 0.625rem;
+}
+
+.forget a {
+    color: rgb(190, 60, 60);
+    padding: 1rem 0rem;
+}
+
+.btn_sell {
+    padding: 0.188rem;
+    width: 5.313rem;
+    /* border-radius: 0.625rem; */
+    border-color: transparent;
+    background-color: black;
+    color: white;
+    margin: 1rem;
+}
+
+#primary {
+    margin-top: 1rem;
+    margin-left: 0rem;
+
+}
+
+.btn_sell:hover {
+    transform: scale(1.2);
+    transition: 1s;
+    background-color: crimson;
+    color: white;
+    border-radius: 0.625rem;
+}
+
+.register a {
+    color: rgb(190, 60, 60);
+    padding-left: 1rem;
+}

@@ -1,0 +1,47 @@
+
+.video-stream{
+    /* z-index: 10; */
+    position: relative;
+    text-align:center;
+    margin-top:2rem;
+}
+.projectName{
+    display:block;
+    margin-right:54rem;
+    font-size:1.8rem;
+}
+.main-video{
+    width:1000px;
+    height:563px;
+    left:0px;
+    top:0px;
+}
+.postMeta{
+    display:flex;
+    flex-direction: row;
+    align-items:space-between;
+    justify-content: space-between;
+    margin:2rem 15rem 0rem 15rem;
+}
+.projectsTitle{
+    text-align: center;
+    margin:4rem 4rem 2rem 1rem;
+    font-size:2rem;
+}
+.heading {
+    color:rgb(201, 199, 199);
+}
+.newLine{
+    margin:0rem 15rem 0rem 15rem;
+}
+.has-text{
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    text-align:center;
+    font-size: 21px;
+    letter-spacing: 0px;
+    line-height: 1.76;
+    text-transform: none;
+    color: #444444;
+    margin:3rem 15rem 2rem 15rem;
+}

@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  width: 600px;
+  margin: 0 auto;
+  background-image: url('https://images.pexels.com/photos/2079715/pexels-photo-2079715.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  height: 100vh;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  background-size:contain;
+background-position:center;
+}
+html {
+  background: rgb(241, 242, 254);
+}
+header {
+  font: bold Arial, Helvetica, sans-serif;
+  background: white;
+  color: rgb(13, 33, 112);
+  text-transform: uppercase;
+  text-align: center;
+  padding:4%;
+  border-radius: 0px 0px 50% 50%;
+}
+header h1{
+  font-weight: bold;
+  font-size: 30px;
+  padding-bottom: 10px;
+  font-family: 'Lemonada', cursive;
+}
+section p {
+  font: bold 24px/150% Arial, Helvetica, sans-serif;
+  background: white;
+  color: rgb(6, 18, 62);
+  text-align: center;
+  padding: 50px;
+  margin: 50px;
+  width: 400px;
+  height:200px;
+  border-radius: 5px;
+  font-family: 'Fuzzy Bubbles', cursive;
+}
+.right {
+  background: #0c0;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  height: 5px;
+  padding:40px;
+}
+.wrong {
+  background: #c00;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  height: 5px;
+  padding:40px;
+}
+button {
+  font: bold 24px/150% Arial, Helvetica, sans-serif;
+  display: block;
+  width: 300px;
+  padding: 10px;
+  margin: 40px auto;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(145, 143, 143, 0.297);
+  color: white;
+  transition: 0.5s;
+  font-family: 'Fuzzy Bubbles', cursive;
+}
+button:hover{
+  width: 350px;
+  padding:15px;
+}
+#answer input{
+
+  font: bold 24px/150% Arial, Helvetica, sans-serif;
+  font-family: 'Fuzzy Bubbles', cursive;
+  width: 350px;
+  padding: 3px;
+  margin-left: 110px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  text-align: center;
+  color: rgb(6, 18, 62);
+}
+#timer{
+  text-align: center;
+  background-color: rgb(206, 231, 254);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-left: 48%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 20px;
+  }

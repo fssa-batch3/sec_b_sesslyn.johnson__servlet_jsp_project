@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chamber-Shop</title>
+    <link rel="stylesheet" href="../../assets/css/product/page.css">
+    <link rel="stylesheet" href="../../assets/css/profile/header.css">
+    <link rel="stylesheet" href="../../assets/css/profile/header.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+
+    </div>
+
+    <script>
+        //URL Params
+        const room_details = JSON.parse(localStorage.getItem("room_details"));
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const room_id = urlParams.get("chamber_name");
+
+        const unique_page = room_details.filter((e) => e.page_id === room_id);
+        console.log(unique_page);
+
+        const interiorRow = document.createElement("div");
+        interiorRow.setAttribute("class", "contain");
+        console.log(interiorRow);
+
+        const hrElement = document.createElement("hr");
+        hrElement.setAttribute("class", "new");
+        interiorRow.append(hrElement);
+
+        const roomDiv = document.createElement("div");
+        roomDiv.setAttribute("class", "room_div");
+        interiorRow.append(roomDiv);
+
+        const firstDiv = document.createElement("div");
+        roomDiv.append(firstDiv);
+
+        const mainHeading = document.createElement("p");
+        mainHeading.setAttribute("class", "main_heading");
+
+        const roomName = document.createElement("span");
+        roomName.setAttribute("class", "room_name");
+        roomName.innerHTML = unique_page[0].text;
+
+        mainHeading.innerText = "Bring your dream ";
+        mainHeading.append(roomName);
+        mainHeading.innerHTML += " to life.";
+
+        firstDiv.appendChild(mainHeading);
+
+        const textDescription = document.createElement("p");
+        textDescription.setAttribute("class", "text_description");
+        textDescription.innerHTML = "Designing, Manufacturing, Installing custom furniture in India.";
+        firstDiv.append(textDescription);
+
+        const secondDiv = document.createElement("div");
+        roomDiv.append(secondDiv);
+
+        const aLink = document.createElement("a");
+        aLink.setAttribute("href", `./product_view.html?chamber_name=${room_id}`);
+        secondDiv.append(aLink);
+
+        const viewMoreImage = document.createElement("img");
+        viewMoreImage.setAttribute("class", "view_more");
+        viewMoreImage.setAttribute("src", "../../assets/images/Living room/living room rich/view_more.png");
+        viewMoreImage.setAttribute("alt", "view_more");
+        aLink.append(viewMoreImage);
+
+        const imageDiv = document.createElement("div");
+        imageDiv.setAttribute("class", "image_div");
+        interiorRow.append(imageDiv);
+
+        const imageLiving = document.createElement("img");
+        imageLiving.setAttribute("class", "image_living");
+        imageLiving.setAttribute("src", unique_page[0].page_img);
+        imageLiving.setAttribute("alt", "living_room");
+        imageDiv.append(imageLiving);
+
+        document.querySelector("div.container").append(interiorRow);
+
+    </script>
+    <script src="../../assets/js/profile/chatBot.js"></script>
+    <script src="../../assets/js/profile/header.js"></script>
+</body>
+
+</html>

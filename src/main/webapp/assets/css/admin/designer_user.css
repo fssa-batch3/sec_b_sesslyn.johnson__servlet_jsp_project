@@ -1,0 +1,132 @@
+:root {
+  --font-family: 'Source Sans Pro', sans-serif;
+  --white: #ffffff;
+  --lightBG: #dce1df;
+  --salmon: #ff6666;
+  --teal: #0096a0;
+  --darkGrey: #4f585e;
+  --white-lighten: #e3f7f9;
+  --white-darken: #006366;
+}
+
+body {
+  color: var(--darkGrey);
+  font-family: var(--font-family);
+  text-rendering: optimizeLegibility;
+  margin-bottom:2rem;
+}
+h2{
+  margin-left: 16rem;
+  margin-bottom:2rem;
+  font-size: 1.5rem;
+}
+a.btnNew {
+  background: var(--salmon);
+  border-radius: 4px;
+  box-shadow: 0 2px 0px 0 rgba(0, 0, 0, 0.25);
+  color: var(--white);
+  display: inline-block;
+  padding: 6px 30px 8px;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.1s 0s ease-out;
+}
+
+div.cardsNew {
+ 
+  display:flex;
+  flex-direction: row;
+  text-align: center;
+}
+#new1{
+  margin-left:16rem;
+}
+#new2{
+  margin-left:4rem;
+}
+#new3{
+  margin-left:4rem;
+}
+div.cardNew {
+  background: var(--white);
+  display: inline-block;
+  margin: 8px;
+  max-width: 350px;
+  perspective: 1000;
+  position: relative;
+  text-align: left;
+  transition: all 0.3s 0s ease-in;
+  width: 300px;
+  z-index: 1;
+}
+
+.card__image-holderNew {
+  background: rgba(0, 0, 0, 0.1);
+  height: 0;
+  padding-bottom: 75%;
+}
+
+div.card-titleNew {
+  background: var(--white);
+  padding: 6px 15px 10px;
+  position: relative;
+  z-index: 0;
+}
+
+a.toggle-info {
+  border-radius: 32px;
+  height: 32px;
+  padding: 0;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  width: 32px;
+}
+
+a.toggle-info span {
+  background: var(--white);
+  display: block;
+  height: 2px;
+  position: absolute;
+  top: 16px;
+  transition: all 0.15s 0s ease-out;
+  width: 12px;
+}
+
+a.toggle-info span.left {
+  right: 14px;
+  transform: rotate(45deg);
+}
+
+a.toggle-info span.right {
+  left: 14px;
+  transform: rotate(-45deg);
+}
+
+.card-titleNew h2 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  margin: 0;
+  padding: 0;
+}
+
+.card-titleNew small {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+div.card-descriptionNew {
+  padding: 0 15px 10px;
+  position: relative;
+  font-size: 14px;
+}
+.card-flap.flap1 {
+  display: none;
+}
+
+.card-flap.flap1.show {
+  display: block;
+}
