@@ -37,7 +37,7 @@ public class UserAppointmentListServlet extends HttpServlet {
 				User user = userService.findByUserId(userId);
 				request.setAttribute("userDetails", user);
 				request.setAttribute("appointmentDetails", appointment);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/appointment_list.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/designer/appointment_list.jsp");
 				dispatcher.forward(request, response);
 			} catch (ServiceException e) {
 				Logger.error(e);
@@ -46,7 +46,7 @@ public class UserAppointmentListServlet extends HttpServlet {
 			}
 		} else {
 			request.setAttribute("appointmentDetails", null);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/appointment_list.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/designer/appointment_list.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

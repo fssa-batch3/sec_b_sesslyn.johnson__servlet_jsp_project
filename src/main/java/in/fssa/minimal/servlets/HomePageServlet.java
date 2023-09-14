@@ -26,7 +26,7 @@ public class HomePageServlet extends HttpServlet {
 				UserService userService = new UserService();
 				User user = userService.findByUserId(userId);
 				request.setAttribute("userDetails", user);
-				RequestDispatcher rd = request.getRequestDispatcher("/home_page.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/pages/profile/home_page.jsp");
 				rd.forward(request, response);
 			} catch (ValidationException e) {
 				Logger.error(e);

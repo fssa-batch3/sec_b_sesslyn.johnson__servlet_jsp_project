@@ -85,7 +85,7 @@ public class BookAppointmentServlet extends HttpServlet {
 			request.setAttribute("userDetails", user);
 			request.setAttribute("designerDetails", designer);
 			request.setAttribute("error", e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("/book_appointment.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/pages/designer/book_appointment.jsp");
 			rd.forward(request, response);
 		}
 

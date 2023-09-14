@@ -270,7 +270,7 @@ add.forEach(function (findId) {
   });
 });
 
-const queryString = window.location.origin;
+const queryString = window.location.origin+'/minimalweb';
 console.log(queryString);
 const interiorRow1 = `
 

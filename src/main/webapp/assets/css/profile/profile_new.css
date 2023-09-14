@@ -266,6 +266,7 @@ h4 {
     height: 15.5rem;
     width: 16.5rem;
     margin: 2rem 0rem -1rem 2rem;
+    border-radius: 50%;
 }
 
 .address_td {

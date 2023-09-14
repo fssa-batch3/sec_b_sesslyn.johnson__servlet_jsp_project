@@ -16,7 +16,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="./styles/index.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/index.css">
+ <script src="<%=request.getContextPath()%>/assets/js/profile/main.js"></script>
 </head> 
 <body>
 	<div id="index_main">
@@ -26,12 +27,12 @@
 					<span class="header"> <a href="<%=request.getContextPath()%>/index"> <img
 							class="main_logo" src="https://iili.io/Hy0p6kx.jpg"
 							alt="logo of minimalistic m"></span></a> <span class="header">
-						<a href="#">
+						<a href="<%=request.getContextPath()%>/shop">
 							<p class="header_para">SHOP</p>
 					</a>
-					</span> <span class="header"> <a href="#">
+					</span> <span class="header"> <a href="<%=request.getContextPath()%>/about">
 							<p class="header_para">ABOUT</p>
-					</a></span> <span class="header"> <a href="#">
+					</a></span> <span class="header"> <a href="<%=request.getContextPath()%>/order">
 							<p class="header_para">ORDERS</p>
 					</a></span> <span class="header"> <a href="<%=request.getContextPath()%>/user/appointment_list">
 							<p class="header_para">SCHEDULE</p>

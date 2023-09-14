@@ -25,19 +25,15 @@ public class HeaderServlet extends HttpServlet {
 	    try {
 	    	 int userId = (Integer) request.getSession().getAttribute("userId");
 
-	        if (userId > 0) {
+	        if (userId > 0) { 
 	            User user = UserService.findByUserId(userId);
 	                request.setAttribute("userDetails", user);
 	                RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/profile/header.jsp");
 	                dispatcher.forward(request, response);
 	        }
-	    } catch (NumberFormatException e) {
+	    } catch (NumberFormatException | ServiceException | ValidationException e) {
 	    	Logger.error(e);
-	    } catch (ServiceException e) {
-	    	Logger.error(e);
-	    } catch (ValidationException e) {
-	    	Logger.error(e);
-	    }
+	    } 
 	}
 
 }

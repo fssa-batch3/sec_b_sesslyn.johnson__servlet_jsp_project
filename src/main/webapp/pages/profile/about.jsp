@@ -8,6 +8,7 @@
     <title>Queries</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/profile/about.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/profile/normalize.css">
+     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/profile/header.css">
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Red+Hat+Text:wght@300;400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet" />
@@ -19,12 +20,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 
-
+<style>
+#sign_in {
+  background-color: #000;
+  color: white;
+  border-radius: 10px;
+  border-color: transparent;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  font-size: 1.2rem;
+  margin:0rem;
+}
+#userLogin {
+  background-color: #000;
+  color: white;
+  margin: 0rem 2rem 0rem 2rem;
+  border-radius: 10px;
+  border-color: transparent;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  font-size: 1.2rem;
+}
+</style>
 </head>
 
 <body>
 	<%
-	String headerJSP =  "/pages/profile/header_after_login.jsp";
+	String headerJSP =  "/pages/profile/header.jsp";
 	%>
 
 	<jsp:include page="<%=headerJSP%>" />

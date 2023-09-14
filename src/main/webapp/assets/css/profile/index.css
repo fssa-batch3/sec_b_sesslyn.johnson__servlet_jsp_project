@@ -6,11 +6,11 @@ body {
 }
 
 #index_main {
-  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   text-transform: uppercase;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
 }
 
 .hide {
@@ -308,7 +308,9 @@ small {
 #small {
   padding-left: 4.5rem;
 }
-
+input{
+	font-family: 'Roboto Condensed', sans-serif;
+}
 input[type=email] {
   text-overflow: ellipsis;
   padding-right: 0rem;

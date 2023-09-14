@@ -36,7 +36,7 @@ public class NewAppointmentServlet extends HttpServlet {
 			
 			request.setAttribute("userDetails", user);
 			request.setAttribute("designerDetails", designer);
-			RequestDispatcher rd = request.getRequestDispatcher("/book_appointment.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/pages/designer/book_appointment.jsp");
 			rd.forward(request, response);
 		} catch (ValidationException e) {
 			Logger.error(e);

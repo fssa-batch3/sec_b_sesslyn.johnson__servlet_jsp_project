@@ -36,7 +36,7 @@ public class FindAppointmentByStatus extends HttpServlet {
 			Set<AppointmentRespondDTO> appointment = appointmentService.getAllAppointmentByToUserId(userId);
 			UserService userService = new UserService();
 			User user = userService.findByUserId(userId);
-			boolean isDesigner = user.isDesigner();
+			String role = user.getRole();
 			Set<AppointmentRespondDTO> totalBasedOnStatus = appointmentService.getAllAppointmentByStatus(status);
 			request.setAttribute("userDetails", user);
 			request.setAttribute("totalAppointments", numberOfAppointments);

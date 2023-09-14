@@ -1,194 +1,340 @@
 body {
-    margin: 0rem;
-    padding: 0rem;
-    font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    cursor: pointer;
+	margin: 0;
+	padding: 0;
 }
 
-.order-details {
-    box-shadow: 19px 1px 27px 0px rgba(193, 192, 192, 0.562);
-    margin: 0rem 4rem 0rem 6rem;
-    padding: 1rem 0rem 1rem 0rem;
+.container_profile {
+	background: #FFFFFF;
+	width: 650px;
+	height: 650px;
+	margin: 0 auto;
+	position: relative;
+	margin-top: 5%;
+	box-shadow: 2px 5px 20px rgba(119, 119, 119, 0.5);
 }
 
-h2 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    padding: 0.5rem 0rem;
-    margin: 2rem 0rem 0.3rem 4rem;
-    letter-spacing: 0.5px;
-
+.formSubmit {
+	position: absolute;
+	top: 102%;
+	left: 74%;
+	width: 100px;
+	height: 40px;
+	border-radius: 10px;
+	background-color: #232323;
+	color: white;
+	border: none;
 }
 
-.details {
-    display: flex;
-    flex-direction: row;
+.formSubmit:hover {
+	background-color: #ffbc43;
+	color: black;
+}
+
+.leftbox {
+	float: left;
+	top: -5%;
+	left: 5%;
+	position: absolute;
+	width: 15%;
+	height: 110%;
+	background: #ffbc43;
+	box-shadow: 3px 3px 10px rgba(119, 119, 119, 0.5);
+}
+
+.leftbox nav a {
+	list-style: none;
+	padding: 35px;
+	color: #FFFFFF;
+	font-size: 1.1em;
+	display: block;
+	transition: all 0.3s ease-in-out;
+}
+
+.leftbox nav a:hover {
+	color: #893a3f;
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+.leftbox nav a:first-child {
+	margin-top: 7px;
+}
+
+.active {
+	color: #893a3f;
+}
+
+.rightbox {
+	width: 60%;
+	height: 100%;
+	margin-left: 12rem;
+}
+
+.profileId {
+	transition: opacity 0.5s ease-in;
+	position: absolute;
+	width: 70%;
+}
+
+.profileId h1 {
+	color: #2d2c2c;
+	font-size: 1.5rem;
+	margin-top: 40px;
+	margin-bottom: 35px;
+}
+
+.profileIcon {
+	height: 26px;
+	width: 26px;
+}
+
+.labelTag {
+	display: block;
+	color: #777777;
+	font-size: 1.2rem;
+	margin-top: 1.5rem;
+	margin-bottom: 0.5rem; /* Adjust this value as needed */
+}
+
+input[type="text"] {
+	border: none;
+	padding: 2px;
+	margin: 0;
+	display: block;
+}
+
+.profileId span {
+	font-size: 0.5em;
+	color: #777777;
+}
+
+.profileId .btn {
+	float: right;
+	margin-right: 2rem;
+	text-transform: uppercase;
+	font-size: 10px;
+	border: none;
+	color: #893a3f;
+}
+
+.profileId .btn:hover {
+	text-decoration: underline;
+	font-weight: 900;
+}
+
+.profileId input {
+	border: none;
+	padding: 2px;
+	margin: 0;
+}
+
+hr.new3 {
+	border-top: 1px solid rgb(20, 19, 19);
+	margin: 0.2rem 2rem 0rem 0rem;
+}
+
+.checkBox {
+	margin-top: 2rem;
+}
+
+.designerCheckBox {
+	margin-left: 0.8rem;
+}
+
+.delete {
+	position: absolute;
+	top: 4%;
+	right: 10%;
+}
+
+.deleteIcon {
+	width: 45px;
+	height: 40px;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	display: none;
+}
+
+.popup.error {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #fff;
+	border-radius: 5px;
+	width: 30%;
+	margin-top: 10%;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+	z-index: 1001;
+	display: none;
+}
+
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+
+.popup {
+	margin: 70px auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 5px;
+	width: 30%;
+	position: relative;
+	transition: all 5s ease-in-out;
+	z-index: 1000;
+}
+
+.popup h2 {
+	margin-top: 0;
+	color: #333;
+	font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
+}
+
+.popup .close:hover {
+	color: #06D85F;
+}
+
+.popup .content {
+	max-height: 30%;
+	overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+	.box {
+		width: 70%;
+	}
+	.popup {
+		width: 70%;
+	}
+}
+
+#alert {
+	padding: 0.4rem 2rem 0.2rem 2rem;
+	margin: 1rem 0rem 0rem 8rem;
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 10px;
+}
+
+.flexDiv {
+	display: flex;
+	flex-direction: row;
 }
 
 .form_details {
-    padding: 0rem 2rem 0rem 1rem;
-    margin: 0.5rem 2rem 0.5rem 2rem;
-}
-
-input {
-    border: 1px solid rgb(190, 190, 190);
-    font-size: 1px sans-serif;
-    outline: none;
-    width: 100%;
-}
-
-::-webkit-input-placeholder {
-    color: grey;
-    opacity: 1;
-}
-
-input.name {
-    width: 100%;
-    padding: 0.5rem 3.5rem 0.5rem 0.5rem;
-    margin: 0.5rem 10rem 0.5rem 0.2rem;
-    color: black;
-}
-
-input#seller_no {
-    padding: 0.5rem 0rem 0.5rem 0.5rem;
-}
-
-input#seller_email {
-    padding: 0.5rem 0rem 0.5rem 0.5rem;
-}
-
-input#seller_city {
-    padding: 0.5rem 0rem 0.5rem 0.5rem;
-}
-
-input#seller_dob {
-    padding: 0.5rem 0rem 0.5rem 0.5rem;
-}
-
-#city_code {
-    margin-left: 0.5rem;
-}
-
-#usercity_gender {
-    padding-bottom: 0.5rem;
-}
-
-input#seller_aadhar {
-    padding: 0.5rem 1rem 0.5rem 0.5rem;
-    width: 100%;
-}
-
-input#seller_state {
-    padding: 0.5rem 2rem 0.5rem 0.5rem;
-    width: 100%;
-}
-
-#country_no {
-    margin: 0.5rem 0rem 0.5rem 0.7rem;
-}
-
-#gst_no {
-    margin: 0.5rem 0rem 0.5rem -0.5rem;
-}
-
-input#seller_country {
-    width: 90%;
-    padding: 0.5rem 0.8rem 0.5rem 0.5rem;
-}
-
-input#seller_gst {
-    width: 90%;
-
-    padding: 0.5rem 0.8rem 0.5rem 0.5rem;
-}
-
-input#seller_image {
-    width: 90%;
-    padding: 0.5rem 0.8rem 0.5rem 0.5rem;
-}
-
-input#seller_address {
-    padding: 0.5rem 11rem 0.5rem 0.5rem;
-}
-
-.form_details label {
-    font-size: 1rem;
-    padding: 1rem 0rem;
-    margin: 0.5rem 0rem;
-}
-
-.click_button {
-    display: flex;
-    flex-direction: row;
-}
-
-a {
-    text-decoration: none;
-}
-
-.btn_save {
-    margin: 0.8rem 0rem 2rem 40rem;
-    padding: 0.5rem 3.3rem 0.8rem 3.3rem;
-    border: 1px solid transparent;
-    background-color: rgb(6, 6, 6);
-    color: white;
-    display: inline;
+	width: 50%;
 }
 
 select {
-    display: block;
-    padding: 0.2rem 17.5rem 0.5rem 0.5rem;
-    margin: 1rem 10rem 0.5rem 0.2rem;
-    outline: none;
-    border: 1px solid rgb(190, 190, 190);
+	width: 90%;
+	padding-top: 0.2rem;
 }
 
-select#seller_gender {
-    margin: 0.2rem 7rem 0.5rem 0.2rem;
-    padding: 0.2rem 17rem 0.5rem 0.5rem;
+.tw-toggle {
+	display: flex;
+	align-items: center;
+	height: 40px;
+	padding: 2px 3px;
+	border-radius: 50px;
+	position: relative;
+	border: 1px solid #777;
+	margin: 2rem 0rem 1rem 2rem;
+	flex-flow: wrap;
+	width: 300px
 }
 
-#usercity_code {
-    margin-left: -9.2rem;
+.tw-toggle label {
+	text-align: center;
+	font-family: sans-serif;
+	display: inline-block;
+	color: #777;
+	position: relative;
+	z-index: 2;
+	margin: 0;
+	text-align: center;
+	padding: 2px 0;
+	font-size: 15px;
+	/* cursor: pointer; */
+	width: 100px
 }
 
-#usercity_dob {
-    margin-left: -1.5rem;
+.tw-toggle input {
+	/* display: none; */
+	height: 40px;
+	margin: 0;
+	position: absolute;
+	z-index: 3;
+	opacity: 0;
+	cursor: pointer;
+	width: 100px
 }
 
-/* Buyer */
-input#user_name {
-    padding: 0.5rem 10rem 0.5rem 0.5rem;
+.tw-toggle span {
+	height: 40px;
+	width: 100px;
+	line-height: 40px;
+	border-radius: 50px;
+	background: #fff;
+	display: block;
+	position: absolute;
+	left: 22px;
+	top: 2px;
+	transition: all 0.3s ease-in-out;
 }
 
-input#user_no {
-    padding: 0.5rem 8rem 0.5rem 0.5rem;
+.tw-toggle input[value="false"] {
+	left: 3px;
 }
 
-input#user_email {
-    padding: 0.5rem 10rem 0.5rem 0.5rem;
+.tw-toggle input[value="-1"] {
+	left: 103px;
 }
 
-input#user_city {
-    padding: 0.5rem 0rem 0.5rem 0.5rem;
+.tw-toggle input[value="true"] {
+	left: 203px;
 }
 
-input#user_dob {
-
-    padding: 0.5rem 12rem 0.5rem 0.5rem;
+.tw-toggle input[value="false"]:checked ~ span {
+	background: #664326;
+	left: 3px;
+	color: #fff;
 }
 
-
-
-input#user_image {
-    width: 90%;
-    padding: 0.5rem 12rem 0.5rem 0.5rem;
+.tw-toggle input[value="true"]:checked ~ span {
+	background: #E4A83A;
+	left: 203px;
 }
 
+.tw-toggle input[value="-1"]:checked ~ span {
+	background: #444;
+	left: 103px;
+}
 
-select#user_gender {
-    margin: 0.2rem 7rem 0.5rem 0.2rem;
-    padding: 0.2rem 38rem 0.5rem 0.5rem;
+.tw-toggle input[value="false"]:checked+label, .tw-toggle input[value="true"]:checked+label
+	{
+	color: #fff;
+}
+
+.tw-toggle input[value="-1"]:checked+label {
+	color: #fff;
 }

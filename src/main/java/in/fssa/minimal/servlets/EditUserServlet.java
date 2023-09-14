@@ -34,7 +34,7 @@ public class EditUserServlet extends HttpServlet {
 			User user = UserService.findByUserId(userId);
 			if (user != null) {
 				request.setAttribute("userDetails", user);
-				RequestDispatcher rd = request.getRequestDispatcher("/edit_user.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/pages/profile/edit_user.jsp");
 				rd.forward(request, response);
 			} else {
 				response.sendError(HttpServletResponse.SC_NOT_FOUND, "User not found");

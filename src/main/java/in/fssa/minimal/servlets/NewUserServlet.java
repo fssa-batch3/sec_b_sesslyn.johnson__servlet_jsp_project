@@ -17,7 +17,7 @@ public class NewUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/pages/profile/register.jsp");
 		rd.forward(request, response);	
 	}
 

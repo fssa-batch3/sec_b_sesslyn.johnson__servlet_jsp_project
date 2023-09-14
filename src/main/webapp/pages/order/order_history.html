@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order page</title>
+    <link rel="stylesheet" href="../../assets/css/order/order_history.css">
+    <link rel="stylesheet" href="../../assets/css/order/review.css">
+    <link rel="stylesheet" href="../../assets/css/profile/header.css">
+    <link rel="stylesheet" href="../../assets/css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="contain">
+        <div class="container">
+            <div class="iphone">
+                <div class="flex">
+                    <div class="flex_left">
+                        <div class="flexHeader">
+                            <div class="order-summary">
+                                <div class="order-status">Arriving date</div>
+                                <div id="orderDate">
+                                    19 April, 2023
+                                </div>
+                                <div id="orderDay">
+                                    Friday
+                                </div>
+                            </div>
+                            <div class="action-btn">
+                                <div class="back-btn"><i class="far fa-long-arrow-left"></i></div>
+                            </div>
+                        </div>
+                        <div class="hero-img-container">
+                            <div class="triangle1"></div>
+                            <div class="arc"></div>
+                            <div class="pattern"></div>
+                            <img src="#" id="productImage" alt="productImg" class="hero-img">
+                        </div>
+                    </div>
+                    <div class="flex_right">
+
+                        <div class="order-details-container">
+
+                            <div class="odc-wrapper">
+                                <div class="odc-header-line">
+                                    Your order details
+                                </div>
+
+                                <div class="product-container">
+                                    <div class="product">
+                                        <div class="product-photo">
+                                            <img src="../../assets/images/Sofa/Sofa 3.png" alt="productImg" id="reference_image"
+                                                class="img-photo">
+                                        </div>
+                                        <div class="product-desc">
+                                            <span class="orderText" id="lastchild"></span>
+
+                                        </div>
+                                        <div class="product-desk">
+                                            <span class="orderText" id="lastchild1">₹</span>
+                                            <span class="orderText" id="firstchild1"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="order-desc">
+                                        <div class="orderId">
+                                            <p class="price">Order ID :</p>
+                                            <p class="price" id="order_uuid"></p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <hr>
+
+                                <div class="shipping-desc">Delivery Address</div>
+                                <div class="order-desc">
+                                    <div>
+                                        <p class="price">Delivery Status :</p>
+                                    </div>
+                                    <div>
+                                        <p class="price" id="delivery_status"></p>
+                                    </div>
+                                </div>
+                                <div class="shipping-address">
+                                    <p id="buyer_name">Mahagun Moderne</p>
+                                    <p id="buyer_address">12/333b, water tank street, West Sivanthipuram</p>
+                                    <p id="buyer_town">Tirunelveli</p>
+                                    <p id="buyer_city">Tamil Nadu - 627425</p>
+                                </div>
+                                <hr>
+
+                                <div class="shipping-desc">Order Summary</div>
+                                <div class="order-desc">
+                                    <div>
+                                        <p class="price">Total Price :</p>
+                                    </div>
+                                    <div>
+                                        <p class="price" id="total_price">₹ 40000</p>
+                                    </div>
+                                </div>
+                                <button id="reviewBtn">Review</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="review">
+        <main>
+            <div class="containerDiv">
+                <div class="post">
+                    <div class="text">Thanks for rating us!</div>
+                    <a href="./order.html"><button class="btnDone">Done</button></a>
+                </div>
+                <div class="star-widget">
+                    <input type="radio" name="rate" value="5" id="rate-5">
+                    <label for="rate-5" class="fas fa-star"></label>
+                    <input type="radio" name="rate" value="4" id="rate-4">
+                    <label for="rate-4" class="fas fa-star"></label>
+                    <input type="radio" name="rate" value="3" id="rate-3">
+                    <label for="rate-3" class="fas fa-star"></label>
+                    <input type="radio" name="rate" value="2" id="rate-2">
+                    <label for="rate-2" class="fas fa-star"></label>
+                    <input type="radio" name="rate" value="1" id="rate-1">
+                    <label for="rate-1" class="fas fa-star"></label>
+                    <form class="reviewForm" action="#">
+                        <header class="comment"> </header>
+                        <div class="textarea">
+                            <textarea cols="30" id="about" placeholder="Describe your experience.."></textarea>
+                        </div>
+                        <div class="btn" id="btn">
+                            <button class="btnPost" id="btnPost" type="button">Post </button>
+                            <button class="btnCancel" id="btnCancel" type="button">Cancel </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        //Url params
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const order_id = urlParams.get("order_id");
+
+        const order_list = JSON.parse(localStorage.getItem("order_list")) || [];
+        let profile_id = JSON.parse(localStorage.getItem("profile_id"));
+        const order_user = order_list.filter((e) => e.order_email == profile_id);
+        console.log(order_user);
+
+        const unique_id = order_user.find((e) => e.order_uuid == order_id);
+        console.log(unique_id);
+
+        const dateStr = unique_id.ordered_time;
+
+        const date = new Date(dateStr);
+        date.setDate(date.getDate() + 7); // Add 7 days to the current date
+
+        // Array of month names
+        const months = [
+            "January", "February", "March", "April", "May", "June", "July",
+            "August", "September", "October", "November", "December"
+        ];
+
+        // Array of weekday names
+        const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+        // Get the day, month, and year
+        const day = date.getDate();
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+
+        // Get the weekday
+        const weekday = weekdays[date.getDay()];
+
+        // Format the date string
+        const formattedDate = `${day} ${month}, ${year}`;
+        const formattedWeekday = weekday;
+
+        document.getElementById("orderDate").innerText = formattedDate;
+        document.getElementById("orderDay").innerText = formattedWeekday;
+
+        document.getElementById("productImage").src = unique_id.ordered_items.image_url;
+        document.getElementById("reference_image").src = unique_id.ordered_items.image_url;
+        document.getElementById("lastchild").innerText = unique_id.ordered_items.product_name;
+        document.getElementById("lastchild1").innerText = "₹" + unique_id.ordered_items.product_price;
+        document.getElementById("firstchild1").innerText = "Qty: " + unique_id.ordered_items.product_quantity;
+        document.getElementById("order_uuid").innerText = unique_id.order_uuid;
+        document.getElementById("buyer_name").innerText = unique_id.selectedArray.user_name;
+        document.getElementById("delivery_status").innerText = unique_id.order_status;
+        document.getElementById("buyer_address").innerText = unique_id.selectedArray.user_address;
+        document.getElementById("buyer_town").innerText = unique_id.selectedArray.user_city;
+        document.getElementById("buyer_city").innerText = unique_id.selectedArray.user_state + " - " + unique_id.selectedArray.user_code;
+        document.getElementById("total_price").innerText = "₹" + unique_id.ordered_items.product_price * unique_id.ordered_items.product_quantity;
+
+        document.getElementById("reviewBtn").addEventListener('click', function () {
+            function showMessageDiv() {
+                const messageDiv = document.getElementById("review");
+                messageDiv.style.display = "block";
+                document.getElementById("contain").classList.add("blur-background");
+            }
+            showMessageDiv();
+            const btn = document.querySelector(".btnPost");
+            const post = document.querySelector(".post");
+            const widget = document.querySelector(".star-widget");
+            document.getElementById('btnPost').addEventListener('click', function () {
+                widget.style.display = "none";
+                post.style.display = "block";
+                return false;
+            });
+
+            btnCancel.addEventListener('click', function () {
+                window.location.reload();
+            });
+        });
+
+
+        document.getElementById("btnPost").addEventListener('click', function () {
+            let product_id = unique_id.ordered_items.product_uuid;
+            let ratingValue = ''; // Initialize the ratingValue variable
+
+            const starInputs = document.querySelectorAll('.star-widget input[name="rate"]');
+            starInputs.forEach(input => {
+                if (input.checked) {
+                    ratingValue = input.value; // Assign the value of the checked input to ratingValue
+                }
+            });
+            const about = document.getElementById("about").value.trim().split(/\s+/g).join(" ");
+            const reviewsInfo = JSON.parse(localStorage.getItem("reviewsInfo")) || [];
+            reviewsInfo.push({
+                ratingValue,
+                about,
+                profile_id,
+                product_id
+            });
+            localStorage.setItem("reviewsInfo", JSON.stringify(reviewsInfo));
+        });
+
+    </script>
+    <script src="../../assets/comments/header.js"></script>
+</body>
+
+</html>

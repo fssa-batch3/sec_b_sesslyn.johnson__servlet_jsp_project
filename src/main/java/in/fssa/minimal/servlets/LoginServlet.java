@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/pages/profile/login.jsp");
 		rd.forward(request, response);
 	}
 
@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 	        request.setAttribute("password", password);
 	        request.setAttribute("error", e.getMessage());
 	        // Forward to the login page without any query parameter
-	        RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+	        RequestDispatcher rd = request.getRequestDispatcher("/pages/profile/login.jsp");
 	        rd.forward(request, response);
 	    }
 	}

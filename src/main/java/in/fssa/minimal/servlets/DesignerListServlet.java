@@ -2,7 +2,6 @@ package in.fssa.minimal.servlets;
 
 import java.io.IOException;
 import java.util.Set;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,9 +30,9 @@ public class DesignerListServlet extends HttpServlet {
 				UserService userService = new UserService();
 				Set<User> designers = userService.getAllDesigner();
 				request.setAttribute("designerDetails", designers);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/designer.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/designer/designer.jsp");
 				dispatcher.forward(request, response);
-			} catch (ServiceException e) {
+			}catch (ServiceException | ValidationException e) {
 				Logger.error(e);
 			}
 			
@@ -41,15 +40,13 @@ public class DesignerListServlet extends HttpServlet {
 			try {
 				int userId = userIdObject.intValue();
 				UserService userService = new UserService();
-				User user = userService.findByUserId(userId);
+				User user = 	UserService.findByUserId(userId);
 				Set<User> designers = userService.getAllDesigner();
 				request.setAttribute("userDetails", user);
 				request.setAttribute("designerDetails", designers);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/designer.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/designer/designer.jsp");
 				dispatcher.forward(request, response);
-			} catch (ServiceException e) {
-				Logger.error(e);
-			} catch (ValidationException e) {
+			} catch (ServiceException | ValidationException e) {
 				Logger.error(e);
 			}
 		}

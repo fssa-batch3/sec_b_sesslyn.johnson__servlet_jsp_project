@@ -59,17 +59,16 @@ body {
 .sign_in {
   background-color: #000;
   color: white;
-  margin: 1rem 2rem 0.625rem -2rem;
   border-radius: 10px;
   border-color: transparent;
   padding: 0.5rem 1rem 0.5rem 1rem;
   font-size: 1.2rem;
+  margin: 1rem 2rem 0.625rem -2rem;
 }
 
 .signIn {
   background-color: #000;
   color: white;
-  margin: 1rem 2rem 0.625rem 4rem;
   border-radius: 10px;
   border-color: transparent;
   padding: 0.5rem 1rem 0.5rem 1rem;

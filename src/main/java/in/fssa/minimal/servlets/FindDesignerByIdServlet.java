@@ -30,15 +30,14 @@ public class FindDesignerByIdServlet extends HttpServlet {
 		if (userIdObject == null) {
 			try {
 				UserService userService = new UserService();
+				request.setAttribute("userDetails", null);
 				User designer = userService.findByDesignerId(designerId);
 				request.setAttribute("designerDetails", designer);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/get_designer_by_id.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/designer/get_designer_by_id.jsp");
 				dispatcher.forward(request, response);
-			} catch (ServiceException e) {
+			}  catch (ServiceException | ValidationException e) {
 				Logger.error(e);
-			} catch (ValidationException e) {
-				Logger.error(e);
-			}
+			} 
 			
 		} else {
 			try {
@@ -48,13 +47,11 @@ public class FindDesignerByIdServlet extends HttpServlet {
 				User designer = userService.findByDesignerId(designerId);
 				request.setAttribute("userDetails", user);
 				request.setAttribute("designerDetails", designer);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/get_designer_by_id.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/designer/get_designer_by_id.jsp");
 				dispatcher.forward(request, response);
-			} catch (ServiceException e) {
+			} catch (ServiceException | ValidationException e) {
 				Logger.error(e);
-			} catch (ValidationException e) {
-				Logger.error(e);
-			}
+			} 
 		}
 	}
 }

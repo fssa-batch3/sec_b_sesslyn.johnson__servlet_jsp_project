@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Address Page</title>
+    <link rel="stylesheet" href="../../assets/css/order/order_details.css">
+    <link rel="stylesheet" href="../../assets/css/profile/header.css">
+    <link rel="stylesheet" href="../../assets/css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+</head>
+
+</head>
+
+<body>
+    <main>
+        <form role="form" id="formAddress">
+            <div class="top">
+                <div class="top_container">
+                    <h2>Delivery Information</h2>
+
+                    <div class="order-details">
+                        <div class="details">
+                            <div class="form_details">
+                                <label>Name</label>
+                                <input type="text" class="name" required="true" id="user_name"
+                                    title="Only Alphabets are allowed." pattern="[a-zA-Z]+" placeholder="Daniel">
+                            </div>
+
+                            <div class="form_details">
+                                <label class="mobile_no">Mobile Number</label>
+                                <input type="text" class="name" required="true" title="it should be 10 digit number"
+                                    id="user_no" pattern="[6-9]{1}[0-9]{9}" placeholder="9952393568">
+                            </div>
+                        </div>
+
+                        <div class="details">
+                            <div class="form_details">
+                                <label>E-mail</label>
+                                <input type="text" class="name" disabled required="true" id="user_email"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                    title="Must contain @ and only lower case is allowed." required="true"
+                                    placeholder="daniel05@gmail.com">
+                            </div>
+
+                            <div class="form_details">
+                                <label class="mobile_no">City</label>
+                                <input type="text" class="name" title="Only Alphabets and space is allowed"
+                                    required="true" id="user_city" placeholder="Chennai">
+                            </div>
+                        </div>
+
+                        <div class="details">
+                            <div class="form_details">
+                                <label>State</label>
+                                <input type="text" class="name" required="true" id="user_state"
+                                    title="Only Alphabets and space is allowed" placeholder="Tamil Nadu">
+                            </div>
+
+                            <div class="form_details" id="zip_no">
+                                <label class="codeUser">ZIP Code</label>
+                                <input type="number" class="name" required="true"
+                                    title="It should be a 6 digit number without spaces and first digit can not be zero"
+                                    maxlength="6" min="600001" max="643253" id="user_code" placeholder="600094">
+                            </div>
+
+                            <div class="form_details" id="country_no">
+                                <label class="country_no">Country</label>
+                                <input type="text" class="name" required="true" id="user_country"
+                                    title="Only Alphabets and space is allowed" placeholder="India">
+                            </div>
+
+                        </div>
+
+                        <div class="details">
+                            <div class="form_details">
+                                <label>Address</label>
+                                <input type="text" class="name" required="true" id="user_address"
+                                    title="Accepts Alphabets, number and special character and space too."
+                                    placeholder="12th Nehru street, Perungudi.">
+                            </div>
+
+                            <div class="form_details">
+                                <label class="notes">Title</label>
+                                <input type="text" class="name" id="user_notes"
+                                    title="Accepts Alphabets, number and special character and space too."
+                                    placeholder="Home">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            </div>
+
+            <button class="delete" id="delete" type="submit">Delete</button>
+            <button class="btn_order" id="order" type="submit">Proceed</button>
+
+            </div>
+        </form>
+    </main>
+
+    <script>
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const product_id = urlParams.get("edit_address");
+
+        let addressList = JSON.parse(localStorage.getItem("addressList"));
+        let profileId = JSON.parse(localStorage.getItem("profile_id"));
+        let foundUserAddress = addressList.filter((e) => e.user_email === profileId);
+        let unique_id = foundUserAddress.find((e) => e.address_id === product_id);
+        console.log(unique_id);
+
+
+        document.getElementById("user_name").value = unique_id.user_name;
+        document.getElementById("user_no").value = unique_id.user_no;
+        document.getElementById("user_email").value = unique_id.user_email;
+        document.getElementById("user_city").value = unique_id.user_city;
+        document.getElementById("user_state").value = unique_id.user_state;
+        document.getElementById("user_country").value = unique_id.user_country;
+        document.getElementById("user_address").value = unique_id.user_address;
+        document.getElementById("user_code").value = unique_id.user_code;
+        document.getElementById("user_notes").value = unique_id.user_notes;
+
+        const btn_order = document.querySelector("#order");
+        btn_order.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            const user_name = document.getElementById("user_name").value;
+            const user_no = document.getElementById("user_no").value;
+            const user_email = document.getElementById("user_email").value;
+            const user_state = document.getElementById("user_state").value.trim().split(/\s+/g).join(" ");
+            const user_city = document.getElementById("user_city").value.trim().split(/\s+/g).join(" ");
+            const user_country = document.getElementById("user_country").value.trim().split(/\s+/g).join(" ");
+            const user_address = document.getElementById("user_address").value.trim().split(/\s+/g).join(" ");
+            const user_notes = document.getElementById("user_notes").value.trim().split(/\s+/g).join(" ");
+            const user_code = document.getElementById("user_code").value;
+
+            unique_id.user_name = user_name;
+            unique_id.user_no = user_no;
+            unique_id.user_email = user_email;
+            unique_id.user_state = user_state;
+            unique_id.user_city = user_city;
+            unique_id.user_country = user_country;
+            unique_id.user_address = user_address;
+            unique_id.user_notes = user_notes;
+            unique_id.user_code = user_code;
+
+            // Validate
+            if (
+                user_address === "" ||
+                user_city === "" ||
+                user_state === "" ||
+                user_country === "" ||
+                user_no === "" ||
+                user_code === ""
+            ) {
+                alert("Please enter all the required fields.");
+                return;
+            }
+
+            // Phone Number
+            if (user_no.length !== 10) {
+                alert("Enter your number properly");
+                user_no.value = "";
+                return;
+            }
+
+            // Code
+            if (user_code.length !== 6) {
+                alert("Enter your Pincode properly");
+                user_code.value = "";
+                return;
+            }
+
+            localStorage.setItem("addressList", JSON.stringify(addressList));
+            alert("Address updated successfully");
+            history.back();
+        });
+    
+
+        const del_product = document.querySelector("button.delete");
+        del_product.addEventListener("click", delData);
+
+        function delData() {
+            if (confirm("Are you sure?")) {
+                const addressList = JSON.parse(localStorage.getItem("addressList"));
+                const product_data = addressList.find((e) => e.address_id == product_id);
+                const indexOfUser = addressList.indexOf(product_data);
+
+                addressList.splice(indexOfUser, 1);
+                localStorage.setItem("addressList", JSON.stringify(addressList));
+                history.back();
+            }
+        }
+
+
+    </script>
+    <script src="../../assets/js/chatBot.js"></script>
+    <script src="../../assets/comments/header.js"></script>
+</body>
+
+</html>

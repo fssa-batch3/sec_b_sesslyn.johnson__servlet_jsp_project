@@ -39,15 +39,15 @@ public class DesignerAppointmentServlet extends HttpServlet {
 				Set<AppointmentRespondDTO> appointment = appointmentService.getAllAppointmentByToUserId(userId);
 				UserService userService = new UserService();
 				User user = userService.findByUserId(userId);
-				boolean isDesigner = user.isDesigner();
+				String role = user.getRole();
 				request.setAttribute("userDetails", user);
 				request.setAttribute("totalAppointments", numberOfAppointments); // Set the totalAppointment attribute here
 				request.setAttribute("appointmentDetails", appointment);
-				if (isDesigner) {
-				    RequestDispatcher dispatcher = request.getRequestDispatcher("/designer_appointment_list.jsp");
+				if ("designer".equals(role)) {
+				    RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/designer/designer_appointment_list.jsp");
 				    dispatcher.forward(request, response);
 				} else {
-				    RequestDispatcher dispatcher = request.getRequestDispatcher("/appointment_list.jsp");
+				    RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/designer/appointment_list.jsp");
 				    dispatcher.forward(request, response);
 				}
 
@@ -58,7 +58,7 @@ public class DesignerAppointmentServlet extends HttpServlet {
 			}
 		} else {
 			request.setAttribute("appointmentDetails", null);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/appointment_list.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/designer/appointment_list.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

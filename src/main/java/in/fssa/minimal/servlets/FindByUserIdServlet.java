@@ -26,7 +26,7 @@ public class FindByUserIdServlet extends HttpServlet {
             User user = UserService.findByUserId(userId);
             if (user != null) {
                 request.setAttribute("userDetails", user);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/get_user_by_id.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/profile/profile.jsp");
                 dispatcher.forward(request, response);
             } else {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "User not found");

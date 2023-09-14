@@ -15,18 +15,19 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/assets/css/profile/header.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/profile/header.css">
 </head>
-
 <body>
 	<%
 	User user = (User) request.getAttribute("userDetails");
+	boolean designer = false;
 	if (user != null) {
-		boolean designer = user.isDesigner();
+		String role = user.getRole();
+		if("designer".equals(role)){
+		   designer = true;
+		}
 	%>
 	<div class="head">
 		<div class="main_header">
@@ -37,13 +38,13 @@
 			</a>
 			</span>
 			<div class="nav_header">
-				<span class="header"> <a href="#">
+				<span class="header"> <a href="<%=request.getContextPath()%>/shop"> 
 						<p class="header_para">SHOP</p>
 				</a>
-				</span> <span class="header"> <a href="#">
+				</span> <span class="header"> <a href="<%=request.getContextPath()%>/about">
 						<p class="header_para">ABOUT</p>
 				</a>
-				</span> <span class="header"> <a href="#">
+				</span> <span class="header"> <a href="<%=request.getContextPath()%>/order">
 						<p class="header_para">ORDERS</p>
 				</a>
 				</span> <span class="header"> <a
@@ -82,13 +83,13 @@
 			</a>
 			</span>
 			<div class="nav_header">
-				<span class="header"> <a href="#">
+				<span class="header"> <a href="<%=request.getContextPath()%>/shop"> 
 						<p class="header_para">SHOP</p>
 				</a>
-				</span> <span class="header"> <a href="#">
+				</span> <span class="header"> <a href="<%=request.getContextPath()%>/about">
 						<p class="header_para">ABOUT</p>
 				</a>
-				</span> <span class="header"> <a href="#">
+				</span> <span class="header"> <a href="<%=request.getContextPath()%>/order">
 						<p class="header_para">ORDERS</p>
 				</a>
 				</span> <span class="header"> <a

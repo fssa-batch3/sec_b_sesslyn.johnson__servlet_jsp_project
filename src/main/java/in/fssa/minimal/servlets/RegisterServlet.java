@@ -33,8 +33,17 @@ public class RegisterServlet extends HttpServlet {
 			long number = Long.parseLong(phoneNumber);
 			user.setPhoneNumber(number);
 			String designerValue = request.getParameter("is_designer");
-			boolean isDesigner = designerValue != null && designerValue.equals("true");
-			user.setDesigner(isDesigner);
+			 String role = request.getParameter("toggle");
+		        if (role == null || role.isEmpty()) {
+		            role = "false";
+		        }
+		        if (role.equals("true")) {
+		            user.setRole("Designer");
+		        } else if (role.equals("-1")) {
+		            user.setRole("Seller");
+		        } else {
+		            user.setRole("User");
+		        }
 			UserService userService = new UserService();
 			userService.createUser(user);
 			response.sendRedirect(request.getContextPath() + "/user/login");
@@ -42,7 +51,7 @@ public class RegisterServlet extends HttpServlet {
 			Logger.error(e);
 			request.setAttribute("userDetails", user);
 			request.setAttribute("error", e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("/register.jsp?error=");
+			RequestDispatcher rd = request.getRequestDispatcher("/pages/profile/register.jsp?error=");
 			rd.forward(request, response);	
 		} 
 
