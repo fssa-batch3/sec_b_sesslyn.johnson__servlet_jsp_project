@@ -91,7 +91,7 @@
 					<li><a href="<%=request.getContextPath()%>/user/details">
 							<span class="las la-user-alt"></span> <small>Profile</small>
 					</a></li>
-					<li><a href=""> <span class="las la-envelope"></span> <small>Designs</small>
+					<li><a href="<%=request.getContextPath()%>/designer/design"> <span class="las la-envelope"></span> <small>Designs</small>
 					</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/designer/appointment_list">

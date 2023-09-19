@@ -1,3 +1,8 @@
+<%@page import="in.fssa.minimal.util.StringUtil"%>
+<%@page import="in.fssa.minimal.model.Asset"%>
+<%@page import="in.fssa.minimal.model.Design"%>
+<%@page import="in.fssa.minimal.dto.DesignAssetRespondDTO"%>
+<%@page import="java.util.Set"%>
 <%@page import="in.fssa.minimal.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -9,6 +14,17 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/designer/designer_details.css">
 </head>
+<style>
+div.cardsNew {
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+	margin-left: 18rem;
+	flex-wrap: wrap;
+}
+#new1{
+margin-left:0rem;
+}</style>
 <body>
 	<%
 	String headerJSP = "/pages/profile/header.jsp";
@@ -115,6 +131,52 @@
 	<%
 	}
 	%>
+	<%
+	Set<DesignAssetRespondDTO> designAssets = (Set<DesignAssetRespondDTO>) request.getAttribute("designAssetList");
+	if (designAssets != null) {
+		
+	%>
+	<h2>Projects</h2>
+	<div class="cardsNew">
+	<%for (DesignAssetRespondDTO designAsset : designAssets) {
+		Design design = designAsset.getDesignId();
+		Asset asset = designAsset.getAssetsId(); %>
+	
+		<div class="cardNew" id="new1">
+			<div class="card__image-holderNew">
+				<iframe width="300" height="280" src="<%=asset.getAssetsUrl()%>"
+					frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			</div>
+
+			<div class="card-titleNew">
+				<a href="#" class="toggle-info btnNew"> <span class="left"></span>
+					<span class="right"></span>
+				</a>
+				<h2>
+					<%=design.getName()%>
+					<small><%=design.getLocation()%></small>
+				</h2>
+			</div>
+			<div class="card-flap flap1">
+				<div class="card-descriptionNew">
+					<ul>
+						<li>Customer Name: <%=(design != null) ? StringUtil.extractValue("Customer Name", design.getDescription()) : ""%></li>
+						<li>Property Name: <%=(design != null) ? StringUtil.extractValue("Property Name", design.getDescription()) : ""%></li>
+						<li>Apartment Size: <%=(design != null) ? StringUtil.extractValue("Apartment Size", design.getDescription()) : ""%></li>
+						<li>Project Value: <%=(design != null) ? StringUtil.extractValue("Project Value", design.getDescription()) : ""%></li>
+						<li>Designer: <%=designer.getName()%></li>
+					</ul>
+					<p><%=(design != null) ? StringUtil.extractValue("Design Description", design.getDescription()) : ""%></p>
+				</div>
+				<div class="card-flap flap2"></div>
+			</div>
+		</div>
+	
+	<%
+	}
+	}
+	%>
+	</div>
 	<script>
     function confirmBooking(e) {
         if (confirm("Please login to book an appointment.")) {
@@ -123,6 +185,19 @@
 				return false;
 			}
 		}
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleButtons = document.querySelectorAll(".toggle-info");
+
+        toggleButtons.forEach(button => {
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                const cardFlap = this.closest(".cardNew").querySelector(".card-flap.flap1");
+                cardFlap.classList.toggle("show");
+            });
+        });
+    });
 	</script>
 
 </body>
