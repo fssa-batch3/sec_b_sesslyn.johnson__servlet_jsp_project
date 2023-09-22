@@ -3,15 +3,8 @@ let wish_list = JSON.parse(localStorage.getItem("wish_list"))||[];
  
 const profile_id = JSON.parse(localStorage.getItem("profile_id"));
 const user_crud = JSON.parse(localStorage.getItem("user_crud"));
-
+console.log(user_crud);
 //Specific Usere data
-const prod_data = user_crud.find((user) => user.user_email === profile_id);
-console.log(prod_data);
-
-//User Image
-if (prod_data.user_image !== "") {
-  document.getElementById("user_image").src = prod_data.user_image;
-}
 
 const product_crud = JSON.parse(localStorage.getItem("product_crud"));
 
@@ -61,7 +54,7 @@ for (const wish of wish_list) {
     img_delete.setAttribute("alt", "Delete icon");
     img_delete.setAttribute("class", "delete_icon");
     img_delete.setAttribute("data-remove", prod_data.product_uuid);
-    img_delete.setAttribute("src", "../assets/images/home_page/delete_icon.png");
+    img_delete.setAttribute("src", "https://iili.io/JJRqSN2.png");
     div_delete.append(img_delete);
 
     const hr = document.createElement("hr");
@@ -157,3 +150,10 @@ products.forEach(function (check) {
     window.location.reload();
   });
 });
+
+const path = window.location.origin + '/minimalweb';
+console.log(path);
+
+// Set the href attributes using JavaScript
+document.getElementById("scheduleLink").href = path + '/user/appointment_list';
+document.getElementById("accountLink").href = path + '/user/details';

@@ -8,7 +8,6 @@
   <title>New Address Page</title>
   <link rel="stylesheet" href="../../assets/css/order/order_details.css">
   <link rel="stylesheet" href="../../assets/css/profile/header.css">
-  <link rel="stylesheet" href="../../assets/css/normalize.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -39,7 +38,7 @@
 
               <div class="form_details">
                 <label class="mobile_no">Mobile Number</label>
-                <input type="text" class="name" required="true" value="9952393568" title="it should be 10 digit number"
+                <input type="text" class="name" required="true" title="it should be 10 digit number"
                   id="user_no" pattern="[6-9]{1}[0-9]{9}" placeholder="9952393568">
               </div>
             </div>
@@ -55,7 +54,7 @@
 
               <div class="form_details">
                 <label class="mobile_no">City</label>
-                <input type="text" class="name" title="Only Alphabets and space is allowed" value="Chennai"
+                <input type="text" class="name" title="Only Alphabets and space is allowed" 
                   required="true" id="user_city" placeholder="Chennai">
               </div>
             </div>
@@ -63,13 +62,13 @@
             <div class="details">
               <div class="form_details">
                 <label>State</label>
-                <input type="text" class="name" required="true" id="user_state" value="TamilNadu"
+                <input type="text" class="name" required="true" id="user_state" 
                   title="Only Alphabets and space is allowed" placeholder="Tamil Nadu">
               </div>
 
               <div class="form_details" id="zip_no">
                 <label>ZIP Code</label>
-                <input type="number" class="name" required="true" value="600096"
+                <input type="number" class="name" required="true" 
                   title="It should be a 6 digit number without spaces and first digit can not be zero"
                   pattern="[6]{1}[0-9]{4}[1-9]{1}" maxlength="6" min="600001" max="643253" id="user_code"
                   placeholder="600094">
@@ -77,7 +76,7 @@
 
               <div class="form_details" id="country_no">
                 <label class="country_no">Country</label>
-                <input type="text" class="name" required="true" id="user_country" value="India"
+                <input type="text" class="name" required="true" id="user_country" 
                   title="Only Alphabets and space is allowed" placeholder="India">
               </div>
 
@@ -86,13 +85,13 @@
             <div class="details">
               <div class="form_details">
                 <label>Address</label>
-                <input type="text" class="name" required="true" id="user_address" value="12th Nehru street, Perungudi."
+                <input type="text" class="name" required="true" id="user_address"
                   title="Accepts Alphabets, number and special character and space too."
                   placeholder="12th Nehru street, Perungudi.">
               </div>
               <div class="form_details">
                 <label class="notes">Title</label>
-                <input type="text" class="name" id="user_notes" value="Own House"
+                <input type="text" class="name" id="user_notes" 
                   title="Accepts Alphabets, number and special character and space too." placeholder="Home">
               </div>
             </div>
@@ -125,6 +124,8 @@ document.querySelector("div.defaultCheckBox").append(label);
 
 let addressList = JSON.parse(localStorage.getItem("addressList")) || [];
 const profile_id = JSON.parse(localStorage.getItem("profile_id"));
+console.log(profile_id);
+
 if (addressList && addressList.length > 0) {
   const existing_users = addressList.filter((e) => e.user_email === profile_id);
   if (existing_users.length > 1) {
@@ -147,21 +148,18 @@ if (addressList && addressList.length > 0) {
 }
 
 // Order details from user
-const user_crud = JSON.parse(localStorage.getItem("user_crud"));
 
 function login_data(e) {
   return e.user_email === profile_id;
 }
 
-const user_data = user_crud.find(login_data);
-console.log(user_data);
-document.getElementById("user_name").value = user_data.user_name;
-document.getElementById("user_no").value = user_data.user_no;
-document.getElementById("user_email").value = user_data.user_email;
-document.getElementById("user_city").value = user_data.user_city;
-document.getElementById("user_state").value = user_data.user_state;
-document.getElementById("user_country").value = user_data.user_country;
-document.getElementById("user_address").value = user_data.user_address;
+document.getElementById("user_name").value = "";
+document.getElementById("user_no").value = "";
+document.getElementById("user_email").value = profile_id;
+document.getElementById("user_city").value = "";
+document.getElementById("user_state").value = "";
+document.getElementById("user_country").value = "";
+document.getElementById("user_address").value = "";
 document.getElementById("user_code").value = "";
 document.getElementById("user_notes").value = "";
 
@@ -204,7 +202,7 @@ function saveAddress() {
     return false;
   }
   
-
+const path = window.location.origin + '/minimalweb';
   if (addressList.length === 0) {
     addressList.push({
       address_id: uuidv4(),
@@ -276,11 +274,11 @@ function saveAddress() {
   localStorage.setItem("addressList", JSON.stringify(addressList));
   alert("Address has been added!");
   console.log(addressList);
-  history.back();
+   window.location.href = path + '/pages/order/order_address.html';
 }
   </script>
-  <script src="../../assets/js/chatBot.js"></script>
-  <script src="../../assets/comments/header.js"></script>
+  <script src="../../assets/js/profile/chatBot.js"></script>
+  <script src="../../assets/js/profile/header.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
 </body>
 

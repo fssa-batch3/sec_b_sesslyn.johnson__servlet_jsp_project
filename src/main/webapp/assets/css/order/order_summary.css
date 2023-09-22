@@ -199,11 +199,11 @@ a {
     border: none;
     cursor: pointer;
     position: absolute;
-    top: 27.7rem;
+    top: 27.6rem;
     left: 37rem;
     border-radius: 50px;
     overflow: hidden;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out
 }
 
 .btnDone:hover {

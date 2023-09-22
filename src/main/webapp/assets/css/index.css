@@ -267,11 +267,11 @@ hr.new3 {
 	font-size: medium;
 	font-family: 'Roboto Condensed', sans-serif;
 	font-weight: 300;
-	margin: 2rem 1rem 2rem 4rem;
+	margin: 1rem 1rem 2rem 4rem;
 }
 
 #btn_login {
-	margin: 2rem 1rem 2rem 9rem;
+	margin: 1rem 1rem 2rem 9rem;
 }
 
 #btn_password {

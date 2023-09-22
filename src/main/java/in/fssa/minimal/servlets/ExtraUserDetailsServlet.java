@@ -41,12 +41,14 @@ public class ExtraUserDetailsServlet extends HttpServlet {
 	        user.setPhoneNumber(user1.getPhoneNumber());
 
 	       String role = user1.getRole();
+	       System.out.println(role);
 	        if (role.equals("designer")) 
 	        {
 	        	user.setRole("designer");
 	            String exper = request.getParameter("experience");
 	            int experience = Integer.parseInt(exper);
 	            user.setExperience(experience);
+	            user.setImage(request.getParameter("image"));
 	            user.setDesigner_description(request.getParameter("description"));
 	        } else if (role.equals("seller")) {
 	        	user.setRole("seller");

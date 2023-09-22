@@ -47,9 +47,14 @@ public class BookAppointmentServlet extends HttpServlet {
 			String inputTime = request.getParameter("time");
 			String formattedTime = inputTime + ":00";
 			appointment.setTime(formattedTime);
-			appointment.setAddress(request.getParameter("address"));
+			String address = request.getParameter("address");
+			if(address != null && !address.trim().isEmpty()) {
+				appointment.setAddress(address);
+			}
+			else {
+				appointment.setAddress(null);
+			}
 
-			System.out.println(appointment);
 			AppointmentService appointmentService = new AppointmentService();
 			appointmentService.createAppointment(appointment);
 			response.sendRedirect(request.getContextPath() + "/user/appointment_list");

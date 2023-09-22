@@ -75,15 +75,14 @@ small {
 			String image = user.getImage();
 			%>
 			<%
-			if (image != null) {
+			if (image != null && !image.trim().isEmpty()) {
 			%>
 			<img src="<%=user.getImage()%>" id="user_image" class="user_profile"
 				alt="Profile Image" />
 			<%
 			} else {
 			%>
-			<img
-				src="https://e1.pxfuel.com/desktop-wallpaper/903/679/desktop-wallpaper-97-aesthetic-best-profile-pic-for-instagram-for-boy-instagram-dp-boys.jpg"
+			<img src="https://e1.pxfuel.com/desktop-wallpaper/903/679/desktop-wallpaper-97-aesthetic-best-profile-pic-for-instagram-for-boy-instagram-dp-boys.jpg"
 				id="user_image" alt="Profile Image" />
 			<%
 			}
@@ -119,7 +118,7 @@ small {
 						<caption></caption>
 						<tbody>
 							<tr class="tr_row">
-								<td><a href="../order/order_details.html"><img
+								<td><a href="<%=request.getContextPath()%>/pages/order/order_details.html"><img
 										src="https://iili.io/JHo3oVj.png" class="plus_icon"
 										alt="plus icon"></a></td>
 								<td>
@@ -146,17 +145,17 @@ small {
 			</div>
 			<p class="user-title"></p>
 			<div class="button_navigate">
-				<a href="../wishlist.html">
+				<a href="<%=request.getContextPath()%>/pages/product/wishlist.html">
 					<button class="btn_wish">
 						<img src="https://iili.io/JHo3lWJ.png" class="icon"
 							alt="heart image">Wishlist
 					</button>
-				</a> <a href="../cart.html">
+				</a> <a href="<%=request.getContextPath()%>/pages/product/cart.html">
 					<button class="btn_cart">
 						<img src="https://iili.io/JHo3MUN.png" class="icon"
 							alt="cart image">Cart
 					</button>
-				</a> <a href="../order/order.html">
+				</a> <a href="<%=request.getContextPath()%>/pages/order/order.html">
 					<button class="btn_orders">
 						<img src="https://iili.io/JHo3hOX.png" class="icon"
 							alt="order image">Orders
@@ -250,7 +249,6 @@ small {
 	}
 	%>
 	<script src="<%=request.getContextPath()%>/assets/js/order/order.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/profile/chatBot.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/profile/chatBot.js"></script>
 </body>
 </html>

@@ -156,7 +156,7 @@ function product_crockery(crockery_units) {
               `;
   return template6;
 }
-
+const queryString = window.location.origin+'/minimalweb';
 //Room Create Element
 const room_details = JSON.parse(localStorage.getItem("room_details"));
 for (const roomDetail of room_details) {
@@ -171,7 +171,7 @@ for (const roomDetail of room_details) {
   tooltipDiv1.append(tooltip1);
 
   const a_link = document.createElement("a");
-  a_link.setAttribute("href", `../product/page.html?chamber_name=${roomDetail.page_id}`);
+  a_link.setAttribute("href", "./page.html?chamber_name=${roomDetail.page_id}");
   tooltip1.append(a_link);
 
   // create a new image element for the icon
@@ -179,7 +179,7 @@ for (const roomDetail of room_details) {
   image.setAttribute("id", roomDetail.id_img);
   image.setAttribute("class", "chamber_data");
   image.setAttribute("src", roomDetail.image);
-  image.setAttribute("alt", "icon of every chamber");
+  image.setAttribute("alt", "every chamber");
   a_link.append(image);
 
   // create a new p element for the tooltip text and set its content
@@ -234,9 +234,9 @@ for (const product of shoppingProduct) {
 //URL Params
 const bookCovers = document.querySelectorAll(".overlay_button");
 bookCovers.forEach((bookCover) => {
-  bookCover.addEventListener("click", (event) => {  //sess
+  bookCover.addEventListener("click", (event) => {  
     const person_data = bookCover.dataset.id;
-    window.location.href = `../product/description.html?product_id=${person_data}`;
+    window.location.href = `./description.html?product_id=${person_data}`;
   });
 });
 
@@ -250,7 +250,7 @@ add.forEach(function (findId) {
     const condition = JSON.parse(localStorage.getItem("profile_id"));
     if (!condition) {
       alert("Log In");
-      window.location.href = "../profile/login.html";
+      window.location.href = "${queryString}/user/login";
       return;
     }
     const prod_data = wish_list.find(
@@ -270,39 +270,38 @@ add.forEach(function (findId) {
   });
 });
 
-const queryString = window.location.origin+'/minimalweb';
 console.log(queryString);
 const interiorRow1 = `
 
 <div class="container">
-<img class="crockery" src="${queryString}/assets/images/home_page/living space 4.png" alt="chandleir image">
+<img class="crockery" src="https://iili.io/JJuN3Zl.jpg" alt="chandleir image">
 <div class="overlay">
-    <a href="${queryString}/pages/product/page.html?chamber_name=living_room">
+    <a href="./page.html?chamber_name=living_room">
         <p>Living Room</p>
     </a>
 </div>
 </div>
 <div class="container">
-<img class="crockery" src="${queryString}/assets/images/Bedroom/couple bedroom 5.jpg" alt="chandleir image">
+<img class="crockery" src="https://iili.io/JJuwDGI.jpg" alt="chandleir image">
 <div class="overlay">
-    <a href="${queryString}/pages/product/page.html?chamber_name=bedroom">
+    <a href="./page.html?chamber_name=bedroom">
         <p>Bedroom</p>
     </a>
 </div>
 </div>
 <div class="container">
-<img class="crockery" src="${queryString}/assets/images/Kids area/kids area 4.jpg"
+<img class="crockery" src="https://iili.io/JJuw8CB.jpg"
     alt="chandleir image"></img></a>
 <div class="overlay">
-    <a href="${queryString}/pages/product/page.html?chamber_name=kids_area">
+    <a href="./page.html?chamber_name=kids_area">
         <p>Kids Area</p>
     </a>
 </div>
 </div>
 <div class="container">
-<img class="crockery" src="${queryString}/assets/images/mobile/truck interior 7.jpeg" alt="chandleir image">
+<img class="crockery" src="https://iili.io/JJuNXMN.jpg" alt="chandleir image">
 <div class="overlay">
-    <a href="${queryString}/pages/product/page.html?chamber_name=mobile_house">
+    <a href="./page.html?chamber_name=mobile_house">
         <p>Turck House</p>
     </a>
 </div>

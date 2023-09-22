@@ -1,15 +1,16 @@
-const path = window.location.origin;
+const path =  window.location.origin+'/minimalweb';
 console.log(path);
 
 const product_crud = JSON.parse(localStorage.getItem("product_crud"));
 const added_products = JSON.parse(localStorage.getItem("added_products"));
-
+console.log(product_crud);
+console.log(added_products);
 //Url params
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const product_id = urlParams.get("product_id");
-
-const unique_id = product_crud.find((e) => e.product_uuid == product_id);
+console.log(product_id);
+const unique_id = product_crud.find((product) => product.product_uuid == product_id);
 
 console.log(unique_id);
 localStorage.setItem("product", JSON.stringify(unique_id.product_uuid));
@@ -56,8 +57,6 @@ img_details.setAttribute("alt", `${unique_id.product_name} image`);
 img_details.setAttribute("class", "description_img");
 img_details.setAttribute("src", unique_id.image_url);
 div_left.append(img_details);
-
-
 
 
 const div_middle = document.createElement("div");
@@ -291,10 +290,9 @@ document.querySelector(".btn_cart").addEventListener("click", function () {
     document.querySelector(".current-price").innerHTML.replace("Rs.", "")); // Added parseInt() to convert product_price to a number
   const cart_list = JSON.parse(localStorage.getItem("cart_list")) || [];
   const product_name = document.querySelector(".product_name").innerHTML; // Removed unnecessary || [] here
-  const image_url = document
-    .querySelector(".description_img")
-    .getAttribute("src");
+  const image_url = document.querySelector(".description_img").getAttribute("src");
   const profile_id = JSON.parse(localStorage.getItem("profile_id"));
+  console.log(profile_id);
   const exist =
     cart_list.length &&
     JSON.parse(localStorage.getItem("cart_list")).some(
@@ -309,7 +307,7 @@ document.querySelector(".btn_cart").addEventListener("click", function () {
   }
   if (!profile_id) {
     alert("Log In");
-    window.location.href = "../profile/login.html";
+    location.href = path + '/user/login';
     return;
   }
   if (!exist) {
@@ -323,7 +321,7 @@ document.querySelector(".btn_cart").addEventListener("click", function () {
     });
     localStorage.setItem("cart_list", JSON.stringify(cart_list));
     alert("Product Added to the Cart");
-    location.href = "./shop.html";
+    location.href = path + '/pages/product/shop.html';
   }
 });
 
@@ -335,7 +333,7 @@ function wish(e) {
   const condition = JSON.parse(localStorage.getItem("profile_id"));
   if (!condition) {
     alert("Log In");
-    window.location.href = "../profile/login.html";
+    window.location.href = "${path}/user/login";
     return;
   }
   const product_uuid = new URLSearchParams(window.location.search).get(
@@ -355,7 +353,7 @@ function wish(e) {
     wish_list.push(prod);
     localStorage.setItem("wish_list", JSON.stringify(wish_list));
     alert("Your product has been added to the wishlist");
-    window.location.href = "./shop.html";
+    window.location.href = "${path}/shop";
   }
 }
 

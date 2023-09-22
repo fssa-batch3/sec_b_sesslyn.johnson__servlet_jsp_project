@@ -154,7 +154,7 @@ body {
 									class="formbold-form-input" />
 							</div>
 							<div class="add-event-input">
-								<input type="text" name="status" id="status"
+								<input type="text" name="status" id="status" disabled
 									placeholder="Waiting List" value="waiting_list" title="Status"
 									class="formbold-form-input" />
 							</div>

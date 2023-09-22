@@ -40,7 +40,7 @@
 				</a>
 				</span>
 			<%}else{ %>
-				<span class="header"> <a href="<%=request.getContextPath()%>/shop"> 
+				<span class="header"> <a href="<%=request.getContextPath()%>/pages/product/shop.html"> 
 						<p class="header_para">SHOP</p>
 				</a>
 				</span>
@@ -59,12 +59,12 @@
 				</a>
 				</span>
 			<%} else if("seller".equals(role)){%>
-			  </span> <span class="header"> <a href="<%=request.getContextPath()%>/order">
+			  </span> <span class="header"> <a href="<%=request.getContextPath()%>/pages/order/order.html">
 						<p class="header_para">ORDERS</p>
 				</a>
 				</span>
 			<%}else{ %>
-				</span> <span class="header"> <a href="<%=request.getContextPath()%>/order">
+				</span> <span class="header"> <a href="<%=request.getContextPath()%>/pages/order/order.html">
 						<p class="header_para">ORDERS</p>
 				</a>
 				</span>
@@ -107,22 +107,23 @@
 			<%if("designer".equals(role)){ %>
 			  <a href="<%=request.getContextPath()%>/designer/design/create"> <img
 				src="https://iili.io/JHSyM9S.png" class="profile_img"
-				alt="profile picture" />
+				alt="plus icon" />
 
 			</a> 
 			<%} else if("seller".equals(role)){%>
 			 
 			<%}else{ %>
-				<a href="<%=request.getContextPath()%>/user/details"> <img
+			<a href="#"> <img src="https://iili.io/HyVDSHu.png"
+				class="cart_img" alt="profile picture" />
+			</a>
+				
+				<%} %> 
+			
+		<a href="<%=request.getContextPath()%>/user/details"> <img
 				src="https://iili.io/HyVDPVV.png" class="profile_img"
 				alt="profile picture" />
 
 			</a> 
-				<%} %> 
-			
-			<a href="#"> <img src="https://iili.io/HyVDSHu.png"
-				class="cart_img" alt="profile picture" />
-			</a>
 			
 		</div>
 	</div>
@@ -138,7 +139,7 @@
 			</a>
 			</span>
 			<div class="nav_header">
-				<span class="header"> <a href="<%=request.getContextPath()%>/shop"> 
+				<span class="header"> <a href="<%=request.getContextPath()%>/pages/product/shop.html"> 
 						<p class="header_para">SHOP</p>
 				</a>
 				</span> <span class="header"> <a href="<%=request.getContextPath()%>/about">
@@ -169,6 +170,11 @@
 	<%
 	}
 	%>
-	
+	<script>
+  document.getElementById("logOut").addEventListener("click", function () {
+    localStorage.removeItem("profile_id");
+  });
+
+</script>
 </body>
 </html>

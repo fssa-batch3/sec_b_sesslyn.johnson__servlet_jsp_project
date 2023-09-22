@@ -82,7 +82,7 @@ for (const product of user_cart) {
   row.appendChild(col5);
 
   const deleteIcon = document.createElement("img");
-  deleteIcon.src = "../assets/images/home_page/delete_icon.png";
+  deleteIcon.src = "https://iili.io/JJRqSN2.png";
   deleteIcon.setAttribute("data-remove", product.product_uuid);
   deleteIcon.setAttribute("id", "icon_remove");
   deleteIcon.classList.add("delete_icon");
@@ -133,6 +133,9 @@ product_quantity.forEach(function (add) {
   });
 });
 
+const path = window.location.origin + '/minimalweb';
+console.log(path);
+
 //buy now button
 let btnOrder = document.getElementById("btn_order");
 btnOrder.addEventListener("click", function () {
@@ -141,11 +144,11 @@ btnOrder.addEventListener("click", function () {
   let foundUser = addressList.find(e => e.user_email === user);
   console.log(foundUser);
   if (foundUser) {
-    window.location.href = "./order/order_address.html";
+    window.location.href = path + '/pages/order/order_address.html';
   } else if (addressList.length === 0) {
-    window.location.href = "./order/order_details.html";
+    window.location.href = path + '/pages/order/order_details.html';
   } else {
-    window.location.href = "./order/order_details.html";
+    window.location.href = path + '/pages/order/order_details.html';
   }
 });
 

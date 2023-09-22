@@ -9,15 +9,14 @@
     <link rel="stylesheet" href="../../assets/css/order/order_history.css">
     <link rel="stylesheet" href="../../assets/css/order/review.css">
     <link rel="stylesheet" href="../../assets/css/profile/header.css">
-    <link rel="stylesheet" href="../../assets/css/normalize.css">
+    <link rel="stylesheet" href="../../assets/css/profile/normalize.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300&display=swap" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
         rel="stylesheet">
 
 </head>
@@ -231,12 +230,12 @@
 
         document.getElementById("btnPost").addEventListener('click', function () {
             let product_id = unique_id.ordered_items.product_uuid;
-            let ratingValue = ''; // Initialize the ratingValue variable
+            let ratingValue = ''; 
 
             const starInputs = document.querySelectorAll('.star-widget input[name="rate"]');
             starInputs.forEach(input => {
                 if (input.checked) {
-                    ratingValue = input.value; // Assign the value of the checked input to ratingValue
+                    ratingValue = input.value; 
                 }
             });
             const about = document.getElementById("about").value.trim().split(/\s+/g).join(" ");
@@ -251,7 +250,7 @@
         });
 
     </script>
-    <script src="../../assets/comments/header.js"></script>
+    <script src="../../assets/js/profile/header.js"></script>
 </body>
 
 </html>

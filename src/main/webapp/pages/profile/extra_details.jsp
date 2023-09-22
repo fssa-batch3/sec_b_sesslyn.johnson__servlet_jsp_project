@@ -193,14 +193,14 @@ hr.new3 {
 					} else if (user.getRole() == "designer") {
 					%>
 					<div class="form_input">
-						<label for="experience">Experience</label> <input type="text"
-							name="experience" required pattern="^(?:\d+\smonths|\d+\syears)$"
+						<label for="experience">Experience</label> <input type="number"
+							name="experience" required 
 							title="It should be in months or years" id="designer_exper"
 							class="inputField" />
 					</div>
 					<hr class="new1">
 					<div class="form_input">
-						<label class="resume" for="file">Photo </label> <input type="file"
+						<label class="resume" for="url">Photo </label> <input type="url"
 							accept="image/*" name="image" required id="photo_image"
 							class="inputField" />
 					</div>

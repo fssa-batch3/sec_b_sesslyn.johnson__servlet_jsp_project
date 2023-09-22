@@ -83,7 +83,7 @@ const order_list = JSON.parse(localStorage.getItem("order_list")) || [];
             quantity.appendChild(quantityInput);
 
             const price = document.createElement("td");
-            price.textContent = "â¹" + order.ordered_items.product_price;
+            price.textContent = "₹" + order.ordered_items.product_price;
             row.appendChild(price);
 
 

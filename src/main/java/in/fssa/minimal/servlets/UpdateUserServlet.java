@@ -32,9 +32,10 @@ public class UpdateUserServlet extends HttpServlet {
 		User user = new User();
 		int userId = (Integer) request.getSession().getAttribute("userId");
 		User returnUser = null;
+		UserService userService = new UserService();
+		User user1 = null;
 		try {
-			UserService userService = new UserService();
-			User user1 = userService.findByUserId(userId);
+			user1 = userService.findByUserId(userId);
 			String role = user1.getRole();
 			if (role.equals("user")) {
 				user.setRole("user");
@@ -73,7 +74,7 @@ public class UpdateUserServlet extends HttpServlet {
 
 		} catch (ServiceException | ValidationException e) {
 			Logger.error(e);
-			request.setAttribute("userDetails", user);
+			request.setAttribute("userDetails", user1);
 			request.setAttribute("error", e.getMessage());
 			RequestDispatcher rd = request.getRequestDispatcher("/pages/profile/edit_user.jsp");
 			rd.forward(request, response);
