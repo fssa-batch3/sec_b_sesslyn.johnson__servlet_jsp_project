@@ -1,14 +1,62 @@
 <%@page import="in.fssa.minimal.model.User"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Update User</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/profile/header.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/profile/edit_profile.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/assets/css/profile/header.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/assets/css/profile/edit_profile.css">
 </head>
+<style>
+#emailDiv {
+	margin-top: -0.4rem;
+}
+.container_profile {
+	background: #FFFFFF;
+	width: 650px;
+	height: 600px;
+	margin: 0 auto;
+	position: relative;
+	margin-top: 5%;
+	box-shadow: 2px 5px 20px rgba(119, 119, 119, 0.5);
+}
+
+.formSubmit {
+	position: absolute;
+	top: 102%;
+	left: 68%;
+	width: 100px;
+	height: 40px;
+	border-radius: 10px;
+	background-color: #232323;
+	color: white;
+	border: none;
+}
+textarea {
+	border: none;
+	padding: 2px;
+	margin-top: -1.2rem;
+}
+
+#designDescription {
+	margin-top: 0.2rem;
+	width: 90%;
+}
+
+select {
+	padding-top: 1.4rem;
+}
+
+.delete {
+	position: absolute;
+	top: 20%;
+	right: 30%;
+}
+</style>
 <body>
 	<%
 	String errorMsg = (String) request.getAttribute("error");
@@ -47,8 +95,10 @@
 				</a>
 			</nav>
 		</div>
-
-		<form action="update" method="post">
+		<%
+		if ("user".equals(user.getRole())) {
+		%>
+		<form action="<%=request.getContextPath()%>/user/update" method="post">
 			<div class="rightbox">
 				<div class="profileId">
 					<h1>Personal Info</h1>
@@ -57,18 +107,15 @@
 							<label for="name" class="labelTag"><b>Name</b></label> <br>
 							<input type="text" name="name" value="<%=user.getName()%>"
 								required>
-
 							<hr class="new3">
 						</div>
-						<div class="form_details">
+						<div class="form_details" id="emailDiv">
 							<label for="email" class="labelTag"><b>Email</b></label> <br>
 							<input type="email" name="email" value="<%=user.getEmail()%>"
 								disabled>
 							<hr class="new3">
 						</div>
 					</div>
-
-
 					<div class="flexDiv">
 						<div class="form_details">
 							<label for="phone" class="labelTag"><b>Phone Number</b></label> <input
@@ -76,20 +123,7 @@
 								value="<%=user.getPhoneNumber()%>" required>
 							<hr class="new3">
 						</div>
-						<div class="form_details">
-							<label for="password" class="labelTag"><b>Password</b></label> <input
-								type="password" name="password" value="<%=user.getPassword()%>"
-								required>
-							<hr class="new3">
-						</div>
-					</div>
 
-					<label for="image" class="labelTag"><b>Image URL</b></label> <input
-						type="url" id="image" name="image"
-						value="<%=user.getImage() != null ? user.getImage() : " "%>">
-					<hr class="new3">
-
-					<div class="flexDiv">
 						<div class="form_details">
 							<label for="date_of_birth" class="labelTag"><b>D.O.B</b></label>
 							<input type="date" class="name" max="2005-08-31"
@@ -97,9 +131,16 @@
 								name="date_of_birth" id="user_dob">
 							<hr class="new3">
 						</div>
+					</div>
+					<label for="image" class="labelTag"><b>Image URL</b></label> <input
+						type="url" id="image" name="image"
+						value="<%=user.getImage() != null ? user.getImage() : " "%>">
+					<hr class="new3">
+					<div class="flexDiv">
+
 						<div class="form_details">
 							<label for="gender" class="labelTag"><b>Gender</b></label> <select
-								type="text" class="name" id="user_gender" name="user_gender">
+								type="text" class="name" id="user_gender" name="gender">
 								<option value="">Select</option>
 								<option value="Male"
 									<%=user.getGender() != null && user.getGender().equals("male") ? "selected" : ""%>>Male</option>
@@ -110,23 +151,152 @@
 							</select>
 						</div>
 					</div>
-
-					<div class="tw-toggle">
-						<input type="radio" name="toggle" value="false"
-							<%=user.getRole() != null && user.getRole().equals("user") ? "checked" : ""%>>
-						<label class="toggle toggle-yes">User</label> <input type="radio"
-							name="toggle" value="-1"
-							<%=user.getRole() != null && user.getRole().equals("seller") ? "checked" : ""%>>
-						<label class="toggle toggle-yes">Seller</label> <input
-							type="radio" name="toggle" value="true"
-							<%=user.getRole() != null && user.getRole().equals("designer") ? "checked" : ""%>>
-						<label class="toggle toggle-yes">Designer</label> <span></span>
+					
+					<button class="formSubmit">Submit</button>
+				</div>
+			</div>
+		</form>
+		<%
+		} else if ("seller".equals(user.getRole())) {
+		%>
+		<form action="<%=request.getContextPath()%>/user/update" method="post">
+			<div class="rightbox">
+				<div class="profileId">
+					<h1>Personal Info</h1>
+					<div class="flexDiv">
+						<div class="form_details">
+							<label for="name" class="labelTag"><b>Name</b></label> <br>
+							<input type="text" name="name" value="<%=user.getName()%>"
+								required>
+							<hr class="new3">
+						</div>
+						<div class="form_details" id="emailDiv">
+							<label for="email" class="labelTag"><b>Email</b></label> <br>
+							<input type="email" name="email" value="<%=user.getEmail()%>"
+								disabled>
+							<hr class="new3">
+						</div>
 					</div>
+					<div class="flexDiv">
+						<div class="form_details">
+							<label for="phone" class="labelTag"><b>Phone Number</b></label> <input
+								type="tel" name="phone_number"
+								value="<%=user.getPhoneNumber()%>" required>
+							<hr class="new3">
+						</div>
+						<div class="form_details">
+							<label for="image" class="labelTag"><b>Image URL</b></label> <input
+								type="url" id="image" name="image"
+								value="<%=user.getImage() != null ? user.getImage() : " "%>">
+							<hr class="new3">
+						</div>
+					</div>
+					<div class="flexDiv">
+						<div class="form_details">
+							<label for="date_of_birth" class="labelTag"><b>D.O.B</b></label>
+							<input type="date" class="name" max="2005-08-31"
+								value="<%=user.getDateOfBirth() != null ? user.getDateOfBirth() : " "%>"
+								name="date_of_birth" id="user_dob">
+							<hr class="new3">
+						</div>
+						<div class="form_details">
+							<label for="gstNumber" class="labelTag"><b>GST Number</b></label>
+							<input type="text" id="gstNumber" name="gstNumber" 
+							value="<%=user.getGst_number() != null ? user.getGst_number() : " "%>"
+								pattern="\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}"
+								title="Must contains 15 characters and alphanumeric is allowed."
+								required placeholder="GST Number">
+							<hr class="new3">
+						</div>
 
+					</div>
+					<div class="flexDiv">
+						<div class="form_details">
+							<label for="gender" class="labelTag"><b>Gender</b></label> <select
+								type="text" class="name" id="user_gender" name="gender">
+								<option value="">Select</option>
+								<option value="Male"
+									<%=user.getGender() != null && user.getGender().equals("male") ? "selected" : ""%>>Male</option>
+								<option value="Female"
+									<%=user.getGender() != null && user.getGender().equals("female") ? "selected" : ""%>>Female</option>
+								<option value="Transgender"
+									<%=user.getGender() != null && user.getGender().equals("other") ? "selected" : ""%>>Others</option>
+							</select>
+							<hr class="new3">
+						</div>
+						<div class="form_details">
+							<label for="shopAddress" class="labelTag"><b>Shop /
+									Home Address</b></label><br>
+							<textarea name="shopAddress" id="shopAddress"
+								pattern="^(?!.*\s{2})[^\s].*[^\s]$"
+								placeholder="Shop / Home Address" required minlength="10"
+								class="textareaField"><%=user.getShop_address() != null ? user.getShop_address() : " "%></textarea>
+							<hr class="new3">
+						</div>
+					</div>
 
 					<button class="formSubmit">Submit</button>
 				</div>
+			</div>
 		</form>
+		<%
+		} else if ("designer".equals(user.getRole())) {
+		%>
+		<form action="<%=request.getContextPath()%>/user/update" method="post">
+			<div class="rightbox">
+				<div class="profileId">
+					<h1>Personal Info</h1>
+					<div class="flexDiv">
+						<div class="form_details">
+							<label for="name" class="labelTag"><b>Name</b></label> <br>
+							<input type="text" name="name" value="<%=user.getName()%>"
+								required>
+							<hr class="new3">
+						</div>
+						<div class="form_details" id="emailDiv">
+							<label for="email" class="labelTag"><b>Email</b></label> <br>
+							<input type="email" name="email" value="<%=user.getEmail()%>"
+								disabled>
+							<hr class="new3">
+						</div>
+					</div>
+					<div class="flexDiv">
+						<div class="form_details">
+							<label for="phone" class="labelTag"><b>Phone Number</b></label> <input
+								type="tel" name="phone_number"
+								value="<%=user.getPhoneNumber()%>" required>
+							<hr class="new3">
+						</div>
+						<div class="form_details">
+							<label for="experience" class="labelTag"><b>Experience</b></label>
+							<input type="number"
+								value="<%=user.getExperience() > 0 ? user.getExperience() : " "%>"
+								name="experience" required 
+								title="It should be in months or years" id="designer_exper" />
+							<hr class="new3">
+						</div>
+					</div>
+					<label for="image" class="labelTag"><b>Image URL</b></label> <input
+						type="url" id="image" name="image"
+						value="<%=user.getImage() != null ? user.getImage() : " "%>">
+					<hr class="new3">
+
+
+					<label for="description" class="labelTag"><b>Description
+							:</b></label>
+					<textarea name="description" id="designDescription"
+						pattern="^(?!.*\s{2})[^\s].*[^\s]$"
+						placeholder="Design Description" required minlength="30"
+						class="textareaField"><%=user.getDesigner_description() != null ? user.getDesigner_description() : " "%></textarea>
+					<hr class="new3">
+
+					<button class="formSubmit">Submit</button>
+				</div>
+			</div>
+		</form>
+		<%
+		}
+		%>
 	</div>
 	<%
 	} else {

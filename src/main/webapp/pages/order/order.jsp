@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <%@page import="in.fssa.minimal.model.User"%>
 <html lang="en">
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Login</title>
  <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/profile/login.css">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -111,9 +111,9 @@
 					class="close_icon" alt="close icon" /></a>
 			</div>
 			<div class="circle">
-				<div class="dot" id="dot"></div>
-				<div class="double_circle"></div>
+				<a href="<%=request.getContextPath()%>/user/new"><div class="dot" id="dot"></div></a>
 				<div class="dot"></div>
+				<a href="<%=request.getContextPath()%>/user/login"><div class="double_circle"></div></a>
 			</div>
 			<div>
 				<h1 class="sign-up">Login</h1>

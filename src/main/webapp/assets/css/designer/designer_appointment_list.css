@@ -434,7 +434,10 @@ input, button, select {
 	background-color: dodgerblue;
 	color: white;
 }
-
+.status.completed {
+	background-color:#3b98d6;
+	color: white;
+}
 /* Status color classes */
 .status.approved {
 	background-color: #86e49d;

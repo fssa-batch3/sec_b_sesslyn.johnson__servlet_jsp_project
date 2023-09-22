@@ -1,7 +1,7 @@
 <%@page import="java.util.Set"%>
 <%@page import="in.fssa.minimal.model.Style"%>
-<%@page import="in.fssa.minimal.model.Asset"%>
 <%@page import="in.fssa.minimal.model.Design"%>
+<%@page import="in.fssa.minimal.model.Asset"%>
 <%@page import="in.fssa.minimal.model.User"%>
 <%@page import="in.fssa.minimal.util.StringUtil"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"

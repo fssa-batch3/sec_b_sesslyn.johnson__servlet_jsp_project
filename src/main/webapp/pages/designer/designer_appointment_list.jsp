@@ -1,3 +1,4 @@
+ <%@page import="java.time.LocalTime"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.sql.Date"%>
 <%@page import="java.time.LocalDate"%>
@@ -238,6 +239,22 @@
 								<%
 								int index = 1;
 								for (AppointmentRespondDTO appointment : appointmentList) {
+									
+			                            LocalTime currentTime = LocalTime.now();
+			                            String targetDate = appointment.getDate(); 
+			                            String targetTime = appointment.getTime();
+
+			                            LocalDate parsedDate = LocalDate.parse(targetDate);
+			                            LocalTime parsedTime = LocalTime.parse(targetTime);
+			                            boolean isExpired = currentDate.isAfter(parsedDate) || (currentDate.isEqual(parsedDate) && currentTime.isAfter(parsedTime));
+
+			                            // Check if the appointment is "waiting_list" and expired, then set it to "rejected"
+			                            if ("waiting_list".equals(appointment.getStatus()) && isExpired) {
+			                                appointment.setStatus("rejected");
+			                            } else if ("approved".equals(appointment.getStatus()) && isExpired) {
+			                                // Check if the appointment is "approved" and expired, then set it to "completed"
+			                                appointment.setStatus("completed");
+			                            }
 								%>
 								<tr>
 									<td name="id"><%=appointment.getId()%></td>
@@ -267,8 +284,7 @@
 
 											<div class="client-info">
 												<h4><%=appointment.getFromUser().getName()%></h4>
-												<small><%=appointment.getFromUser().getEmail()%></small><br>
-												<small><%=appointment.getFromUser().getPhoneNumber()%>
+												<small><%=appointment.getEmail()%>
 													<%
 													if (!active) {
 													%> (Inactive) <%
@@ -295,14 +311,18 @@
 													statusClass = "status approved";
 												} else if ("rejected".equals(appointmentStatus)) {
 													statusClass = "status rejected";
+												}else if("completed".equals(appointmentStatus)) {
+													statusClass = "status completed";
 												}
 												%>
 
 												<%
-												if (appointmentStatus.equals("approved") || appointmentStatus.equals("rejected")) {
+												if (appointmentStatus.equals("approved") || appointmentStatus.equals("rejected") || appointmentStatus.equals("completed")) {
 												%>
-												<button id="btn" value="<%=appointmentStatus%>"
+												<button  value="<%=appointmentStatus%>"
 													class="<%=statusClass%>" disabled><%=appointmentStatus%></button>
+													
+												
 												<%
 												} else if (appointmentStatus.equals("waiting_list")) {
 												%>

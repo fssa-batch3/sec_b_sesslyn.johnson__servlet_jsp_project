@@ -63,11 +63,6 @@ p.left_text {
 
 }
 
-.profile_right {
-    margin: 3rem 0rem;
-    overflow: hidden;
-}
-
 h3.user_name {
     font-size: 2rem;
     margin-left: 0.3rem;
@@ -247,11 +242,7 @@ h4 {
     margin: -1rem 0rem 0.5rem 0rem;
 }
 
-.addressDiv {
-    overflow-y: scroll;
-    height: 405px;
 
-}
 
 ::-webkit-scrollbar {
     display: none;

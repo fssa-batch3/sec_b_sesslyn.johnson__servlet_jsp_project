@@ -47,34 +47,7 @@ public class BookAppointmentServlet extends HttpServlet {
 			String inputTime = request.getParameter("time");
 			String formattedTime = inputTime + ":00";
 			appointment.setTime(formattedTime);
-
-			String area = request.getParameter("area");
-			String city = request.getParameter("city");
-			String state = request.getParameter("state");
-			String postCode = request.getParameter("post_code");
-
-			String address = "";
-			if (area != null && !area.isEmpty()) {
-				address += area + ", ";
-			}
-
-			if (city != null && !city.isEmpty()) {
-				address += city + ", ";
-			}
-
-			if (state != null && !state.isEmpty()) {
-				address += state + ", ";
-			}
-
-			if (postCode != null && !postCode.isEmpty()) {
-				address += postCode;
-			}
-
-			if (address.endsWith(", ")) {
-				address = address.substring(0, address.length() - 2);
-			}
-
-			appointment.setAddress(address);
+			appointment.setAddress(request.getParameter("address"));
 
 			System.out.println(appointment);
 			AppointmentService appointmentService = new AppointmentService();
@@ -85,7 +58,7 @@ public class BookAppointmentServlet extends HttpServlet {
 			request.setAttribute("userDetails", user);
 			request.setAttribute("designerDetails", designer);
 			request.setAttribute("error", e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("/pages/designer/book_appointment.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/pages/designer/calender.jsp");
 			rd.forward(request, response);
 		}
 

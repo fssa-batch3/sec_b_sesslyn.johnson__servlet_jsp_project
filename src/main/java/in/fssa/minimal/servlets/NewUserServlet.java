@@ -9,6 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
+import in.fssa.minimal.exception.ServiceException;
+import in.fssa.minimal.exception.ValidationException;
+import in.fssa.minimal.model.User;
+import in.fssa.minimal.service.UserService;
+import in.fssa.minimal.util.Logger;
+import model.ResponseEntity;
+
 /**
  * Servlet implementation class NewUser
  */
@@ -20,5 +29,6 @@ public class NewUserServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/pages/profile/register.jsp");
 		rd.forward(request, response);	
 	}
+	
 
 }

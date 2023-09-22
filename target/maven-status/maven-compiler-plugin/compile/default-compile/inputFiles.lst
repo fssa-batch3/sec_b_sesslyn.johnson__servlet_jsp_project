@@ -14,6 +14,7 @@ C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servl
 C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servlets\NewUserServlet.java
 C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servlets\DesignInfoServlet.java
 C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servlets\ShopServlet.java
+C:\software\eclipse_ide_workspace\minimalweb\src\main\java\model\HttpMethodRequestWrapper.java
 C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servlets\DeleteUserServlet.java
 C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servlets\FindDesignerByIdServlet.java
 C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servlets\HomePageServlet.java
@@ -23,6 +24,7 @@ C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servl
 C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servlets\HeaderServlet.java
 C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servlets\DesignListServlet.java
 C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servlets\DesignerListServlet.java
+C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servlets\ExtraUserDetailsServlet.java
 C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servlets\RegisterServlet.java
 C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servlets\UserAppointmentListServlet.java
 C:\software\eclipse_ide_workspace\minimalweb\src\main\java\in\fssa\minimal\servlets\AboutServlet.java

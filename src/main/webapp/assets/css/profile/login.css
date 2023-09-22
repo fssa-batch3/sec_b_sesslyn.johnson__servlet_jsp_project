@@ -377,3 +377,13 @@ input {
 .fa-eye {
 	color: #3498db;
 }
+
+.textareaField {
+	font-family: "Roboto Condensed", sans-serif;
+	height: 99px;
+	width: 90%;
+	padding: 8px;
+	margin-bottom: 10px;
+	margin: 0.7rem 0rem 0.2rem 0rem;
+	border: 1px solid #000;
+}

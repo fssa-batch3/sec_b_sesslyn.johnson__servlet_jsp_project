@@ -1,8 +1,8 @@
 <%@page import="in.fssa.minimal.util.StringUtil"%>
-<%@page import="in.fssa.minimal.model.Asset"%>
-<%@page import="in.fssa.minimal.model.Design"%>
 <%@page import="in.fssa.minimal.dto.DesignAssetRespondDTO"%>
 <%@page import="java.util.Set"%>
+<%@page import="in.fssa.minimal.model.Design"%>
+<%@page import="in.fssa.minimal.model.Asset"%>
 <%@page import="in.fssa.minimal.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -13,6 +13,7 @@
 <title>Designer Profile</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/designer/designer_details.css">
+	  <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/designer/design_list.css">
 </head>
 <style>
 div.cardsNew {
@@ -21,10 +22,32 @@ div.cardsNew {
 	text-align: center;
 	margin-left: 18rem;
 	flex-wrap: wrap;
+	margin-bottom: 5rem;
 }
-#new1{
-margin-left:0rem;
-}</style>
+.video-popup-container {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  margin:2rem;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  height: 540px;
+  width: 750px;
+  padding: 20px 15px 5px 22px;
+}
+#new1 {
+	margin-left: 1rem;
+}
+.play-button{
+  background-color: black;
+  color: white;
+  border:none;
+  padding:0.2rem 2rem;
+ margin: 0rem 0rem 0rem 7rem;
+}
+</style>
 <body>
 	<%
 	String headerJSP = "/pages/profile/header.jsp";
@@ -76,22 +99,20 @@ margin-left:0rem;
 						<hr>
 						<div class="info">
 							<a href="designer_link">
-								<p class="product-price">Email :</p>
+								<p class="product-price">Experience :</p>
 							</a>
-							<p class="product-price"><%=designer.getEmail()%></p>
+							<p class="product-price"><%=designer.getExperience()%>
+								months
+							</p>
 						</div>
 						<hr>
 						<p class="product-title mt-4 mb-1">About the Designer</p>
-						<p class="product-description mb-4">Skilled in conceptualizing
-							and executing innovative designs that align with clients' visions
-							and functional requirements. Proficient in utilizing design
-							software, such as AutoCAD and 3D modeling tools, to develop
-							detailed plans and visualizations. Completed more than 20
-							projects all over India and completed 1 project in Minimalistic.</p>
+						<p class="product-description mb-4"><%=designer.getDesigner_description()%>
+						</p>
 						<hr>
 						<div class="eduInfo">
-							<h3 class="edutext">Education :</h3>
-							<p class="degreetext">B.E Interior Designer</p>
+							<h3 class="edutext">Grab the opportunity to make your home
+								wonderful !</h3>
 						</div>
 						<div class="buttonInfo">
 							<%
@@ -133,15 +154,18 @@ margin-left:0rem;
 	%>
 	<%
 	Set<DesignAssetRespondDTO> designAssets = (Set<DesignAssetRespondDTO>) request.getAttribute("designAssetList");
+	System.out.println(designAssets);
 	if (designAssets != null) {
-		
 	%>
 	<h2>Projects</h2>
 	<div class="cardsNew">
-	<%for (DesignAssetRespondDTO designAsset : designAssets) {
-		Design design = designAsset.getDesignId();
-		Asset asset = designAsset.getAssetsId(); %>
-	
+		<%
+		for (DesignAssetRespondDTO designAsset : designAssets) {
+			Design design = designAsset.getDesignId();
+			Asset asset = designAsset.getAssetsId();
+			String videoUrl = designAsset.getAssetsId().getAssetsUrl();
+		%>
+
 		<div class="cardNew" id="new1">
 			<div class="card__image-holderNew">
 				<iframe width="300" height="280" src="<%=asset.getAssetsUrl()%>"
@@ -156,7 +180,10 @@ margin-left:0rem;
 					<%=design.getName()%>
 					<small><%=design.getLocation()%></small>
 				</h2>
+				<button class="play-button"
+					onclick="showVideoPopup('<%=videoUrl%>')">Play</button>
 			</div>
+			
 			<div class="card-flap flap1">
 				<div class="card-descriptionNew">
 					<ul>
@@ -164,19 +191,31 @@ margin-left:0rem;
 						<li>Property Name: <%=(design != null) ? StringUtil.extractValue("Property Name", design.getDescription()) : ""%></li>
 						<li>Apartment Size: <%=(design != null) ? StringUtil.extractValue("Apartment Size", design.getDescription()) : ""%></li>
 						<li>Project Value: <%=(design != null) ? StringUtil.extractValue("Project Value", design.getDescription()) : ""%></li>
-						<li>Designer: <%=designer.getName()%></li>
+						<li>Designer: <%=(design != null && designer != null) ? designer.getName() : ""%></li>
 					</ul>
 					<p><%=(design != null) ? StringUtil.extractValue("Design Description", design.getDescription()) : ""%></p>
 				</div>
 				<div class="card-flap flap2"></div>
 			</div>
 		</div>
-	
+		<%
+		}
+		%>
+
+	</div>
 	<%
 	}
-	}
 	%>
-	</div>
+	<div class="video-popup-overlay" id="videoPopupOverlay">
+				<div class="video-popup-container" >
+					<iframe width="700" height="500" id="videoFrame" frameborder="0"
+						allowfullscreen></iframe>
+					<button class="close_icon" onclick="closeVideoPopup()">
+						<img src="https://iili.io/Hy19PWB.png" class="x_icon"
+							alt="close icon" />
+					</button>
+				</div>
+			</div>
 	<script>
     function confirmBooking(e) {
         if (confirm("Please login to book an appointment.")) {
@@ -198,6 +237,25 @@ margin-left:0rem;
             });
         });
     });
+    
+    // Function to show the video popup
+    function showVideoPopup(videoUrl) {
+      var videoFrame = document.getElementById('videoFrame');
+      videoFrame.src = videoUrl;
+
+      var videoPopupOverlay = document.getElementById('videoPopupOverlay');
+      videoPopupOverlay.style.display = 'block';
+    }
+
+    // Function to close the video popup
+    function closeVideoPopup() {
+      var videoFrame = document.getElementById('videoFrame');
+      videoFrame.src = '';
+
+      var videoPopupOverlay = document.getElementById('videoPopupOverlay');
+      videoPopupOverlay.style.display = 'none';
+    }
+  
 	</script>
 
 </body>

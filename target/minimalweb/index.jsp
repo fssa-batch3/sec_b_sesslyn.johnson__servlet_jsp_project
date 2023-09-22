@@ -18,6 +18,11 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/index.css">
  <script src="<%=request.getContextPath()%>/assets/js/profile/main.js"></script>
+ <style>
+#btn{
+margin: 1.5rem 6rem 2rem 1rem;
+}
+</style>
 </head> 
 <body>
 	<div id="index_main">
@@ -78,9 +83,7 @@
 					</div>
 					<div>
 						<hr class="new1">
-						<p class="para_right">
-							Are you a <a href="#">seller</a>?
-						</p>
+						
 						<p class="right_para">
 							A Unique structure combined with a cushion <br>and a
 							greenish plants.

@@ -20,17 +20,173 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap"
 	rel="stylesheet">
+<style>
+.tw-toggle {
+	display: flex;
+	align-items: center;
+	height: 40px;
+	padding: 2px 3px;
+	border-radius: 50px;
+	position: relative;
+	border: 1px solid #777;
+	margin: 0rem 0rem 1rem 4rem;
+	flex-flow: wrap;
+	width: 300px
+}
+
+.tw-toggle label {
+	text-align: center;
+	font-family: sans-serif;
+	display: inline-block;
+	color: #777;
+	position: relative;
+	z-index: 2;
+	margin: 0;
+	text-align: center;
+	padding: 2px 0;
+	font-size: 15px;
+	width: 100px
+}
+
+.tw-toggle input {
+	height: 40px;
+	margin: 0;
+	position: absolute;
+	z-index: 3;
+	opacity: 0;
+	cursor: pointer;
+	width: 100px
+}
+
+.tw-toggle span {
+	height: 40px;
+	width: 100px;
+	line-height: 40px;
+	border-radius: 50px;
+	background: #fff;
+	display: block;
+	position: absolute;
+	left: 22px;
+	top: 2px;
+	transition: all 0.3s ease-in-out;
+}
+
+.tw-toggle input[value="false"] {
+	left: 3px;
+}
+
+.tw-toggle input[value="-1"] {
+	left: 103px;
+}
+
+.tw-toggle input[value="true"] {
+	left: 203px;
+}
+
+.tw-toggle input[value="false"]:checked ~ span {
+	background: #664326;
+	left: 3px;
+	color: #fff;
+}
+
+.tw-toggle input[value="true"]:checked ~ span {
+	background: #E4A83A;
+	left: 203px;
+}
+
+.tw-toggle input[value="-1"]:checked ~ span {
+	background: #444;
+	left: 103px;
+}
+
+.tw-toggle input[value="false"]:checked+label, .tw-toggle input[value="true"]:checked+label
+	{
+	color: #fff;
+}
+
+.tw-toggle input[value="-1"]:checked+label {
+	color: #fff;
+}
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.7);
+}
+
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+
+.popup {
+	margin: 70px auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 5px;
+	width: 30%;
+	position: relative;
+	transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+	margin-top: 0;
+	color: #333;
+	font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
+}
+
+.popup .close:hover {
+	color: #06D85F;
+}
+
+.popup .content {
+	max-height: 30%;
+	overflow: auto;
+}
+
+#alert {
+	padding: 0.4rem 2rem 0.2rem 2rem;
+	margin: 1rem 0rem 0rem 8rem;
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 10px;
+}@media screen and (max-width: 700px) {
+	.box {
+		width: 70%;
+	}
+	.popup {
+		width: 70%;
+	}
+}
+a{
+text-decoration:none;
+color:black;
+}
+</style>
 </head>
 <body onload="register()">
-	<div id="overlay" class="overlay"></div>
 	<%
 	String errorMsg = (String) request.getAttribute("error");
 	%>
 	<%
 	if (errorMsg != null && !errorMsg.isEmpty()) {
 	%>
-	<div id="popup1" class="popupOverlay">
-		<div class="popupAlert">
+	<div id="popup1" class="overlay">
+		<div class="popup">
 			<h2>Alert !</h2>
 			<a class="close" href="#">&times;</a>
 			<div class="content">
@@ -47,8 +203,7 @@
 		<div id="main_page">
 			<div class="main_left" id="left-div">
 				<div class="main_header">
-					<span class="header"> <a
-						href="<%=request.getContextPath()%>/index"> <img
+					<span class="header"> <a href="<%=request.getContextPath()%>/index"> <img
 							class="main_logo" src="https://iili.io/Hy0p6kx.jpg"
 							alt="logo of minimalistic m"></span></a> <span class="header">
 						<a href="<%=request.getContextPath()%>/shop">
@@ -103,7 +258,9 @@
 					</div>
 					<div>
 						<hr class="new1">
-
+						<p class="para_right">
+							Are you a <a href="#">seller</a>?
+						</p>
 						<p class="right_para">
 							A Unique structure combined with a cushion <br>and a
 							greenish plants.
@@ -119,9 +276,9 @@
 					alt="close icon" /></a>
 			</div>
 			<div class="circle">
-				<div class="double_circle"></div>
+				<a href="<%=request.getContextPath()%>/user/new"><div class="double_circle"></div></a>
 				<div class="dot"></div>
-				<div class="dot"></div>
+				<a href="<%=request.getContextPath()%>/user/login"><div class="dot"></div></a>
 			</div>
 			<div>
 				<h1 class="sign-up">Sign up</h1>
@@ -191,14 +348,15 @@
 					<div class="input-container">
 						<div class="tw-toggle">
 							<input type="radio" name="toggle" value="false"> <label
-								class="toggle toggle-yes">Seller</label> <input checked
-								type="radio" name="toggle" value="-1"> <label
-								class="toggle toggle-yes">User</label> <input type="radio"
-								name="toggle" value="true"> <label
+								checked class="toggle toggle-yes">User</label>
+								
+							<input type="radio" name="toggle" value="-1"> <label
+								class="toggle toggle-yes">Seller</label> 
+								
+						   <input type="radio" name="toggle" value="true"> <label
 								class="toggle toggle-yes">Designer</label> <span></span>
 						</div>
 					</div>
-
 
 					<small>* Password must have 8 characters, uppercase,</small> <small
 						id="small"> lowercase, and special case.</small>
@@ -209,69 +367,11 @@
 							onclick="return checkPassword()">Sign Up</button>
 					</div>
 
-					<div id="popup" class="popup">
-						<h2>To Know More About You</h2>
-
-						<div id="sellerFields" style="display: none;">
-							<div class="popupDiv">
-								<label for="gstNumber">GST Number :</label> <input type="text"
-									class="inputField" id="gstNumber"
-									pattern="\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}"
-									title="Only contain Alphabets" required="true"
-									placeholder="GST Number">
-							</div>
-							<div class="popupDiv">
-								<label for="aadharNumber">Aadhar Number :</label> <input
-									type="text" class="inputField" id="aadharNumber"
-									pattern="[2-9][0-9]{11}"
-									title="Aadhar Number must start with a digit from 2 to 9 and be 12 digits long"
-									required="true" placeholder="Aadhar Number">
-							</div>
-							<div class="popupDiv">
-								<label for="shopAddress">Shop / Home Address :</label>
-								<textarea name="shopAddress" id="shopAddress"
-									pattern="^(?!.*\s{2})[^\s].*[^\s]$"
-									placeholder="Shop / Home Address" required minlength="10"
-									class="textareaField"></textarea>
-							</div>
-						</div>
-
-						<div id="designerFields" style="display: none;">
-							<div class="popupDiv">
-								<label for="experience">Experience</label> <input type="text"
-									name="experience" required
-									pattern="^(?:\d+\smonths|\d+\syears)$"
-									title="It should be in months or years" id="designer_exper"
-									class="inputField" />
-							</div>
-							<div class="popupDiv">
-								<label class="resume" for="file">Photo </label> <input
-									type="file" accept="image/*" name="image" required
-									id="photo_image" class="inputField" />
-							</div>
-							<div class="popupDiv">
-								<label for="description">Description :</label>
-								<textarea name="description" id="designDescription"
-									pattern="^(?!.*\s{2})[^\s].*[^\s]$"
-									placeholder="Design Description" required minlength="30"
-									class="textareaField"></textarea>
-							</div>
-						</div>
-
-						<button id="popupSubmit" class="popupBtn">Submit</button>
-						<button id="popupClose" class="popupBtn">
-							<img src="https://iili.io/Hy19PWB.png" class="close_icon"
-								alt="close icon" />
-						</button>
-					</div>
-
 				</form>
 			</div>
 		</div>
 	</div>
+	<script src="<%=request.getContextPath()%>/assets/js/profile/whatsappChat.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/profile/index.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/profile/whatsappChat.js"></script>
-
 </body>
 </html>

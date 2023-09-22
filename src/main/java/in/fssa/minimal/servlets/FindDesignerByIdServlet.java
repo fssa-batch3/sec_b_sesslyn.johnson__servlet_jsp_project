@@ -28,6 +28,7 @@ public class FindDesignerByIdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String idParam = request.getParameter("id");
+		System.out.println("designer:"+ idParam);
 		int designerId = Integer.parseInt(idParam);
 		Integer userIdObject = (Integer) request.getSession().getAttribute("userId");
 		DesignAssetService designAssetService = new DesignAssetService();
@@ -37,6 +38,7 @@ public class FindDesignerByIdServlet extends HttpServlet {
 				UserService userService = new UserService();
 				request.setAttribute("userDetails", null);
 				User designer = userService.findByDesignerId(designerId);
+				System.out.println("Objc: " +designer);
 				request.setAttribute("designerDetails", designer);
 				Set<DesignAssetRespondDTO> designAsset = designAssetService.getAllActiveDesignAssetByDesignerId(designerId);
 				request.setAttribute("designAssetList", designAsset);

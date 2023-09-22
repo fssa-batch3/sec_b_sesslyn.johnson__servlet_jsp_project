@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import in.fssa.minimal.dto.DesignAssetRespondDTO;
 import in.fssa.minimal.exception.ServiceException;
 import in.fssa.minimal.exception.ValidationException;
+import in.fssa.minimal.model.Asset;
 import in.fssa.minimal.model.Design;
 import in.fssa.minimal.model.DesignAsset;
 import in.fssa.minimal.model.Style;
@@ -62,6 +63,7 @@ public class EditDesignServlet extends HttpServlet {
 		String designIdStr = (String) request.getSession().getAttribute("designId");
 		int designId = Integer.parseInt(designIdStr);
 		Design design = new Design();
+		Asset asset = new Asset();
 		DesignAsset designAsset = new DesignAsset();
 		int styleId = 0;
 		User user = new User();
@@ -84,8 +86,10 @@ public class EditDesignServlet extends HttpServlet {
 			design.setDescription("Customer Name: " + customerName + "\n" + "Project Value: " + projectValue + "\n"
 					+ "Apartment Size: " + apartmentSize + "\n" + "Design Description: " + description);
 
+			asset.setAssetsUrl(request.getParameter("asset_url"));
 			DesignAssetService designAssetService = new DesignAssetService();
-			designAssetService.updateDesignAsset(designId,design, userId);
+			
+			designAssetService.updateDesignAsset(designId,design,asset);
 
 			response.sendRedirect(request.getContextPath() + "/designer/design");
 		} catch (ServiceException | ValidationException e) {

@@ -6,7 +6,7 @@ body {
 .container_profile {
 	background: #FFFFFF;
 	width: 650px;
-	height: 650px;
+	height: 600px;
 	margin: 0 auto;
 	position: relative;
 	margin-top: 5%;
@@ -16,7 +16,7 @@ body {
 .formSubmit {
 	position: absolute;
 	top: 102%;
-	left: 74%;
+	left: 68%;
 	width: 100px;
 	height: 40px;
 	border-radius: 10px;
@@ -141,11 +141,6 @@ hr.new3 {
 	margin-left: 0.8rem;
 }
 
-.delete {
-	position: absolute;
-	top: 4%;
-	right: 10%;
-}
 
 .deleteIcon {
 	width: 45px;
@@ -247,7 +242,6 @@ hr.new3 {
 
 select {
 	width: 90%;
-	padding-top: 0.2rem;
 }
 
 .tw-toggle {
