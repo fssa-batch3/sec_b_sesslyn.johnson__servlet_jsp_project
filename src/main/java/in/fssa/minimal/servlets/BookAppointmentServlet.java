@@ -27,8 +27,11 @@ public class BookAppointmentServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int userId = (Integer) request.getSession().getAttribute("userId");
-		String designerIdParam = request.getParameter("id");
+		System.out.println(userId);
+		String designerIdParam = request.getParameter("designer_id");
+		System.out.println(designerIdParam);
 		int designerId = Integer.parseInt(designerIdParam);
+		System.out.println(designerIdParam);
 		UserService userService = new UserService();
 		User user = null;
 		User designer = null;
@@ -60,10 +63,8 @@ public class BookAppointmentServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/user/appointment_list");
 		} catch (ServiceException | ValidationException e) {
 			Logger.error(e);
-			request.setAttribute("userDetails", user);
-			request.setAttribute("designerDetails", designer);
 			request.setAttribute("error", e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("/pages/designer/calender.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/pages/designer/calender.jsp?id="+designerId);
 			rd.forward(request, response);
 		}
 

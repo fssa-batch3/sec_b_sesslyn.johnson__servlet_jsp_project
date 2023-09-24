@@ -6,11 +6,56 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  	font-family: "Roboto Condensed", sans-serif;
 }
-/* nice scroll bar */
+
 ::-webkit-scrollbar {
   width: 5px;
+}
+div.cardsNew {
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+	margin-left: 18rem;
+	flex-wrap: wrap;
+	margin-bottom: 5rem;
+}
+.video-popup-container {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  margin:2rem;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  height: 540px;
+  width: 750px;
+  padding: 20px 15px 5px 22px;
+}
+#new1 {
+	margin-left: 1rem;
+}
+.play-button{
+  background-color: black;
+  color: white;
+  border:none;
+  padding:0.2rem 2rem;
+ margin: 0rem 0rem 0rem 7rem;
+}
+
+
+.head {
+	margin: 0px;
+	width: 100%;
+}
+
+.container {
+	margin: 2rem auto;
+}
+
+.popup {
+	z-index: 1000;
 }
 ::-webkit-scrollbar-track {
   background: #f5f5f5;
@@ -20,17 +65,19 @@
   background: var(--primary-clr);
   border-radius: 50px;
 }
-
 body {
+	
 	display: flex;
-    flex-direction: column;
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 30px;
- 
+	flex-direction: column;
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 30px;
+	background-color: white;
+	margin: 0px;
+	padding: 0px;
 }
 .container {
   position: relative;
@@ -60,7 +107,6 @@ body {
   border-radius: 5px;
   background-color: #fff;
 }
-/* set after behind the main element */
 .calendar::before,
 .calendar::after {
   content: "";
@@ -576,6 +622,7 @@ body {
 	bottom: 0;
 	left: 0;
 	right: 0;
+	z-index:1;
 	background: rgba(0, 0, 0, 0.7);
 }
 

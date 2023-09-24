@@ -23,40 +23,6 @@
 	href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
 	rel="stylesheet">
 </head>
-<style>
-.addressDiv {
-	overflow-y: scroll;
-	height: 405px;
-	margin-top: 2rem;
-	width: 320px;
-}
-
-ul {
-	margin-top: 2rem;
-}
-
-.profile_right {
-	margin: 3rem 0rem 3rem -4rem;
-	overflow: hidden;
-}
-
-.quotes {
-	font-size: 1.2rem;
-	margin-right: 4rem;
-	margin-left: 2rem;
-}
-
-.seller {
-	background-color: rgb(218, 216, 216);
-	margin: 0rem 3rem 0rem 0rem;
-	padding: 0.5rem 0.5rem;
-}
-
-small {
-	display: block;
-	margin: 2.5rem 0rem 0rem -5.9rem;
-}
-</style>
 <body>
 	<%
 	String headerJSP = "/pages/profile/header.jsp";

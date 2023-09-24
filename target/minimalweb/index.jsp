@@ -32,7 +32,7 @@ margin: 1.5rem 6rem 2rem 1rem;
 					<span class="header"> <a href="<%=request.getContextPath()%>/index"> <img
 							class="main_logo" src="https://iili.io/Hy0p6kx.jpg"
 							alt="logo of minimalistic m"></span></a> <span class="header">
-						<a href="<%=request.getContextPath()%>/shop">
+						<a href="<%=request.getContextPath()%>/pages/product/shop.html">
 							<p class="header_para">SHOP</p>
 					</a>
 					</span> <span class="header"> <a href="<%=request.getContextPath()%>/about">

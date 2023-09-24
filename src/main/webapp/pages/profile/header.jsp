@@ -23,7 +23,7 @@
 	<div class="head">
 		<div class="main_header">
 			<span class="header" id="header_shop"> <a
-				href="<%=request.getContextPath()%>/home_page"> <img
+				href="<%=request.getContextPath()%>/pages/profile/home_page.html"> <img
 					class="main_logo" id="main_logo" src="https://iili.io/Hy0p6kx.jpg"
 					alt="logo of minimalistic" />
 			</a>

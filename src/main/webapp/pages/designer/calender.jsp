@@ -19,39 +19,21 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/designer/calender.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/assets/css/profile/header.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>Book Appointment</title>
 </head>
-<style>
-body {
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	min-height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding-bottom: 30px;
-	background-color: white;
-	margin: 0px;
-	padding: 0px;
-}
-
-.head {
-	margin: 0px;
-	width: 100%;
-}
-
-.container {
-	margin: 2rem auto;
-}
-
-.popup {
-	z-index: 1000;
-}
-</style>
 <body>
 	<%
 	String errorMsg = (String) request.getAttribute("error");
@@ -73,16 +55,8 @@ body {
 	}
 	%>
 
-	<%
-	String headerJSP = "/pages/profile/header.jsp";
-	%>
 
-	<jsp:include page="<%=headerJSP%>" />
 
-	<%
-	User user = (User) request.getAttribute("userDetails");
-	System.out.println(user);
-	%>
 
 	<div>
 		<div class="container">
@@ -120,19 +94,10 @@ body {
 
 
 
-
-				<%
-				Set<AppointmentRespondDTO> appointmentList = (Set<AppointmentRespondDTO>) request.getAttribute("appointmentDetails");
-				%>
-
-
-				<%
-				User designer = (User) request.getAttribute("designerDetails");
-				System.out.println(designer);
-				if (designer != null) { %>
 				<form id="formDiv"
-					action="<%=request.getContextPath()%>/designer/appointment/create?id=<%=designer.getId()%>"
+					action="<%=request.getContextPath()%>/designer/appointment/create"
 					method="post">
+
 					<div class="events"></div>
 					<div class="add-event-wrapper">
 						<div class="add-event-header">
@@ -142,13 +107,11 @@ body {
 						<div class="add-event-body">
 							<div class="add-event-input">
 								<input type="email" name="email" id="user_email"
-									title="Must be a valid email address"
-									value="<%=user.getEmail()%>" required
+									title="Must be a valid email address" required
 									placeholder="Enter your email" class="formbold-form-input" />
 							</div>
 							<div class="add-event-input">
 								<input type="tel" name="phone_number" id="user_phone"
-									value="<%=user.getPhoneNumber()%>"
 									title="Must be a valid phone number" pattern="[0-9]{10}"
 									required placeholder="Enter your phone number"
 									class="formbold-form-input" />
@@ -164,6 +127,7 @@ body {
 									max="20:00" required class="formbold-form-input"
 									title="Select a time for the appointment" />
 							</div>
+
 							<div class="add-event-input">
 								(Optional)
 								<textarea name="address" id="designDescription"
@@ -172,24 +136,23 @@ body {
 
 							<input type="hidden" name="date" id="user_date" required
 								title="Select a date for the appointment"
-								class="formbold-form-input" />
-
+								class="formbold-form-input" /> <input type="hidden"
+								name="designer_id" id="designer_id">
 						</div>
 						<div class="add-event-footer">
-							<button type="submit" id="bookNow" class="add-event-btn">Add
+							<button type="submit" class="add-event-btn" id="bookNow">Add
 								Event</button>
 						</div>
 					</div>
 				</form>
-				<%
-				}
-				%>
+
 			</div>
 			<button class="add-event">
 				<i class="fas fa-plus"></i>
 			</button>
 		</div>
 	</div>
+	<script src="<%=request.getContextPath()%>/assets/js/profile/header.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/assets/js/designer/calender.js"></script>
 </body>

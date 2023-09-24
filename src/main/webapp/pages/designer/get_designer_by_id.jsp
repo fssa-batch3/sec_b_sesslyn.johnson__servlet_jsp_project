@@ -119,7 +119,7 @@ div.cardsNew {
 							if (user != null && !designerId) {
 							%>
 							<a
-								href="<%=request.getContextPath()%>/designer/appointment/new?id=<%=designer.getId()%>"
+								href="<%=request.getContextPath()%>/pages/designer/calender.jsp?id=<%=designer.getId()%>"
 								onclick="return true;">
 								<button class="btnDelete" type="button">Book Now</button>
 							</a>
