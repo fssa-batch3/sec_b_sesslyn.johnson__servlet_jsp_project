@@ -41,7 +41,7 @@ main.table {
     background-color: #fffb;
     margin: .8rem auto;
     border-radius: .6rem;
-    overflow: auto;
+    height:100vh;
     overflow: overlay;
 }
 
@@ -317,3 +317,4 @@ thead th.active,
 tbody td.active {
     color: #dbf1df;
 }
+

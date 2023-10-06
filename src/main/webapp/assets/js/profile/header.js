@@ -37,7 +37,7 @@ const beforeLogin = `
 const AfterLogin = ` 
 <div class="head">
         <div class="main_header">
-            <span class="header" id="header_shop"><a href="${rootPath}/home_page"><img class="main_logo" id="main_logo"
+            <span class="header" id="header_shop"><a href="${rootPath}/pages/profile/home_page.html"><img class="main_logo" id="main_logo"
                         src="https://iili.io/Hy0p6kx.jpg" alt="logo of minimalistic" /></a></span>
             <div class="nav_header">
                 <span class="header"><a href="${rootPath}/pages/product/shop.html">
@@ -65,7 +65,6 @@ const AfterLogin = `
              <a href="${rootPath}/user/details">
                 <img src="https://iili.io/HyVDPVV.png" class="profile_img" alt="profile picture" />
             </a>
-        </a>
         </div>
         </div>
 `;

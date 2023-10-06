@@ -1,3 +1,4 @@
+<%@page import="in.fssa.minimal.model.Review"%>
 <%@page import="in.fssa.minimal.util.StringUtil"%>
 <%@page import="in.fssa.minimal.dto.DesignAssetRespondDTO"%>
 <%@page import="java.util.Set"%>
@@ -13,9 +14,22 @@
 <title>Designer Profile</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/designer/designer_details.css">
-	  <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/designer/design_list.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/assets/css/designer/design_list.css">
 </head>
 <style>
+.flex {
+	display: flex;
+	flex-direction: row;
+}
+
+.starIcon {
+	margin-top: 4rem;
+	color: #ffbc43;
+}
+#starGreyIcon {
+	color: grey;
+}
 div.cardsNew {
 	display: flex;
 	flex-direction: row;
@@ -24,28 +38,41 @@ div.cardsNew {
 	flex-wrap: wrap;
 	margin-bottom: 5rem;
 }
+
 .video-popup-container {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  margin:2rem;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  height: 540px;
-  width: 750px;
-  padding: 20px 15px 5px 22px;
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	margin: 2rem;
+	transform: translate(-50%, -50%);
+	background: #fff;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	padding: 20px;
+	height: 540px;
+	width: 750px;
+	padding: 20px 15px 5px 22px;
 }
+
 #new1 {
 	margin-left: 1rem;
 }
-.play-button{
-  background-color: black;
-  color: white;
-  border:none;
-  padding:0.2rem 2rem;
- margin: 0rem 0rem 0rem 7rem;
+
+.play-button {
+	background-color: black;
+	color: white;
+	border: none;
+	padding: 0.2rem 2rem;
+	margin: 0rem 0rem 0rem 7rem;
+}
+
+.star_icon {
+	position:absolute;
+	left:75%;
+}
+
+#fastarIcon {
+	font-size: 18px;
+	color: rgb(199, 198, 197);
 }
 </style>
 <body>
@@ -94,8 +121,34 @@ div.cardsNew {
 				</div>
 				<div class="col-md-6 col-sm-12 description-container p-5">
 					<div class="main-description">
-						<p class="product-category mb-0">Interior Designer</p>
-						<h3><%=designer.getName()%></h3>
+						<div class="flex">
+							<div>
+								<p class="product-category mb-0">Interior Designer</p>
+								<h3><%=designer.getName()%></h3>
+							</div>
+							<%Set<Review> reviewList = (Set<Review>) request.getAttribute("reviewList");%>
+                              <div class="starIcon">
+                                  <span class="star_icon">
+                                  <%
+                                    if (reviewList != null && !reviewList.isEmpty()) {
+                                    int starValue = 0;
+                                    for (Review review : reviewList) {
+                                            starValue += review.getRatings();
+                                      }
+                                     int averageRating = starValue / reviewList.size();
+                                     int roundedAverageRating = Math.round(averageRating);
+                                     for (int i = 0; i < 5; i++) {
+                                         if (i < roundedAverageRating) { %>
+                                            <i class="fa fa-star" id="starIcon"></i>
+                                    <%  } else { %>
+                                            <i class="fa fa-star" id="starGreyIcon"></i>
+                                     <% }   }  } else {
+                                     for (int i = 0; i < 5; i++) { %>
+                                            <i class="fa fa-star" id="starGreyIcon"></i>
+                                     <%  }  } %>
+                                    </span>
+                               </div>
+						</div>
 						<hr>
 						<div class="info">
 							<a href="designer_link">
@@ -183,7 +236,7 @@ div.cardsNew {
 				<button class="play-button"
 					onclick="showVideoPopup('<%=videoUrl%>')">Play</button>
 			</div>
-			
+
 			<div class="card-flap flap1">
 				<div class="card-descriptionNew">
 					<ul>
@@ -207,15 +260,15 @@ div.cardsNew {
 	}
 	%>
 	<div class="video-popup-overlay" id="videoPopupOverlay">
-				<div class="video-popup-container" >
-					<iframe width="700" height="500" id="videoFrame" frameborder="0"
-						allowfullscreen></iframe>
-					<button class="close_icon" onclick="closeVideoPopup()">
-						<img src="https://iili.io/Hy19PWB.png" class="x_icon"
-							alt="close icon" />
-					</button>
-				</div>
-			</div>
+		<div class="video-popup-container">
+			<iframe width="700" height="500" id="videoFrame" frameborder="0"
+				allowfullscreen></iframe>
+			<button class="close_icon" onclick="closeVideoPopup()">
+				<img src="https://iili.io/Hy19PWB.png" class="x_icon"
+					alt="close icon" />
+			</button>
+		</div>
+	</div>
 	<script>
     function confirmBooking(e) {
         if (confirm("Please login to book an appointment.")) {

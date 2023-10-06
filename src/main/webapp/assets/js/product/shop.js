@@ -171,7 +171,7 @@ for (const roomDetail of room_details) {
   tooltipDiv1.append(tooltip1);
 
   const a_link = document.createElement("a");
-  a_link.setAttribute("href", "./page.html?chamber_name=${roomDetail.page_id}");
+  a_link.setAttribute("href", `./page.html?chamber_name=${roomDetail.page_id}`);
   tooltip1.append(a_link);
 
   // create a new image element for the icon
@@ -250,7 +250,7 @@ add.forEach(function (findId) {
     const condition = JSON.parse(localStorage.getItem("profile_id"));
     if (!condition) {
       alert("Log In");
-      window.location.href = "${queryString}/user/login";
+      window.location.href = queryString+"/user/login";
       return;
     }
     const prod_data = wish_list.find(

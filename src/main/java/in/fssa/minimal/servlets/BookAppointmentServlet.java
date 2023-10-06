@@ -27,11 +27,8 @@ public class BookAppointmentServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int userId = (Integer) request.getSession().getAttribute("userId");
-		System.out.println(userId);
 		String designerIdParam = request.getParameter("designer_id");
-		System.out.println(designerIdParam);
 		int designerId = Integer.parseInt(designerIdParam);
-		System.out.println(designerIdParam);
 		UserService userService = new UserService();
 		User user = null;
 		User designer = null;

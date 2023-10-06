@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Seller Order</title>
+	<!-- plugins:css -->
+	<link rel="stylesheet" href="../../assets/css/seller/seller_order.css">
+
+</head>
+
+<body>
+
+	<!-- partial:partials/_navbar.html -->
+	<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+		<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+			<a class="navbar-brand brand-logo" href="../../pages/profile/home_page.html"><img src="../../assets/images/home_page/Logo.jpg"
+					alt="logo" />Minimal</a>
+		</div>
+		<div class="navbar-menu-wrapper d-flex align-items-stretch">
+			<ul class="navbar-nav navbar-nav-right">
+				<li class="nav-item nav-profile dropdown">
+					<a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<div class="nav-profile-img">
+							<img src="../../assets/images/home_page/face1.jpg" alt="image">
+						</div>
+						<div class="nav-profile-text">
+							<p class="mb-1 text-black">David Greymaax</p>
+						</div>
+					</a>
+
+				</li>
+			</ul>
+
+		</div>
+	</nav>
+	<!-- partial -->
+	<div class="container-fluid page-body-wrapper">
+		<!-- partial:partials/_sidebar.html -->
+		<nav class="sidebar sidebar-offcanvas" id="sidebar">
+			<ul class="nav">
+				<li class="nav-item nav-profile">
+					<a href="#" class="nav-link">
+						<div class="nav-profile-image">
+							<img src="../../assets/images/home_page/face1.jpg" alt="profile">
+							<span class="login-status online"></span>
+							<!--change to offline or busy as needed-->
+						</div>
+						<div class="nav-profile-text d-flex flex-column">
+							<span class="font-weight-bold mb-2">David Grey. H</span>
+							<span class="text-secondary text-small">Project Manager</span>
+						</div>
+						<i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../../pages/profile/home_page.html">
+						<span class="menu-title">Dashboard</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="./product_form.html">
+						<span class="menu-title">Add Product</span>
+
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="./product_list.html">
+						<span class="menu-title">Products</span>
+
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="./seller_order.html">
+						<span class="menu-title">
+							<Obj>Orders</Obj>
+						</span>
+
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="profileTag" href="#">
+						<span class="menu-title">Profile</span>
+
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- partial -->
+		<div class="main-panel">
+			<div class="content-wrapper">
+				<div class="page-header">
+					<h3 class="page-title">
+						Dashboard
+					</h3>
+				</div>
+				<div class="row">
+					<div class="col-md-4 stretch-card grid-margin">
+						<div class="card bg-gradient-danger card-img-holder text-white">
+							<div class="card-body">
+								<img src="../../assets/images/home_page/circle.svg" class="card-img-absolute"
+									alt="circle-image" />
+								<h4 class="font-weight-normal mb-3">Weekly Sales <i
+										class="mdi mdi-chart-line mdi-24px float-right"></i>
+								</h4>
+								<h2 class="mb-5">$ 15,0000</h2>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 stretch-card grid-margin">
+						<div class="card bg-gradient-info card-img-holder text-white">
+							<div class="card-body">
+								<img src="../../assets/images/home_page/circle.svg" class="card-img-absolute"
+									alt="circle-image" />
+								<h4 class="font-weight-normal mb-3">Weekly Orders <i
+										class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+								</h4>
+								<h2 class="mb-5">45,6334</h2>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 stretch-card grid-margin">
+						<div class="card bg-gradient-success card-img-holder text-white">
+							<div class="card-body">
+								<img src="../../assets/images/home_page/circle.svg" class="card-img-absolute"
+									alt="circle-image" />
+								<h4 class="font-weight-normal mb-3">Visitors Online <i
+										class="mdi mdi-diamond mdi-24px float-right"></i>
+								</h4>
+								<h2 class="mb-5">95,5741</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-12 grid-margin">
+						<div class="card">
+							<div class="card-body">
+								<h4 class="card-title">Recent Tickets</h4>
+								<div class="table-responsive">
+									<table class="table">
+										<thead>
+											<tr>
+												<th> Product </th>
+												<th> Consumer </th>
+												<th> Quantity </th>
+												<th> Price </th>
+												<th> Status </th>
+											</tr>
+										</thead>
+										<tbody id="tBodyId">
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+			</div>
+
+		</div>
+	</div>
+	</div>
+	<script>
+		const path = window.location.origin + '/minimalweb';
+		console.log(path);
+
+	   document.getElementById("profileTag").href = path + '/user/details';
+	
+		const order_list = JSON.parse(localStorage.getItem("order_list"));
+		const user = JSON.parse(localStorage.getItem("profile_id"));
+		const table = document.getElementById("tBodyId");
+
+		if (order_list && order_list.length !== 0) {
+			const product_list = JSON.parse(localStorage.getItem("product_crud"));
+			const user_product = product_list.filter(e => e.sellerId == user);
+
+			if (!user_product || user_product.length === 0) {
+				const row = document.createElement("tr");
+				const cell = document.createElement("td");
+				cell.colSpan = 6;
+				cell.textContent = "You have no products listed";
+				row.appendChild(cell);
+				table.appendChild(row);
+			} else {
+				for (const item of order_list) {
+					const row = document.createElement("tr");
+
+					const cell1 = document.createElement("td");
+					const img1 = document.createElement("img");
+					img1.src = item.ordered_items.image_url;
+					img1.classList.add("me-2");
+					img1.alt = "product image";
+					cell1.appendChild(img1);
+					cell1.appendChild(document.createTextNode(item.ordered_items.product_name));
+					row.appendChild(cell1);
+
+					const cell2 = document.createElement("td");
+					const img2 = document.createElement("img");
+					img2.src = "../../assets/images/home_page/face1.jpg";
+					img2.classList.add("me-2");
+					img2.alt = "profile image";
+					cell2.appendChild(img2);
+					cell2.appendChild(document.createTextNode(item.selectedArray.user_name)); // Use 'item' instead of 'user_order'
+					const span = document.createElement("span");
+					span.textContent = item.address;
+					cell2.appendChild(span);
+					row.appendChild(cell2);
+
+					const cell3 = document.createElement("td");
+					cell3.style.paddingLeft = "2rem";
+					cell3.textContent = item.ordered_items.product_quantity; // Use 'item' instead of 'user_order'
+					row.appendChild(cell3);
+
+					const cell4 = document.createElement("td");
+					cell4.textContent = `₹ ${item.ordered_items.product_price}`; // Use 'item' instead of 'user_order'
+					row.appendChild(cell4);
+
+					const cell5 = document.createElement("td");
+					const label = document.createElement("label");
+					label.classList.add("badge", "badge-gradient-info");
+					label.textContent = "ACCEPTED";
+					cell5.appendChild(label);
+					row.appendChild(cell5);
+
+					table.appendChild(row);
+				}
+			}
+		} else {
+			console.log("Either order_list is not available in localStorage or it is empty.");
+		}
+
+	</script>
+	<script src="../../assets/js/order/order_dashboard.js"></script>
+</body>
+
+</html>

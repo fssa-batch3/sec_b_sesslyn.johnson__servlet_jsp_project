@@ -55,7 +55,7 @@
         <h1 id="headingBig">D</h1>
         <div class="banner-text">
           <h2 id="headingSmall">Design a Space <br> You Love.</h2>
-          <h3 id="headingText">Let’s bring your creative <br> immagination to reality.</h3>
+          <h3 id="headingText">Let's bring your creative <br> immagination to reality.</h3>
         </div>
         <div class="row gx-0">
           <div class="col-md-6 col-xxl-7 ms-auto">
@@ -77,8 +77,8 @@
         <div class="col-md-6 align-self-center pb-4 pb-md-5 pb-lg-0">
           <div class="py-lg-5" id="compDescription">
             <div class="pb-md-3 paragraph">
-              <p>At Minimalistic, we bring together functionality and aesthetics to provide homeowners with customised and efficient home designs. Our designers specialise in home interior designs and home décor, and help you create a personalized home to suit your lifestyle. </p>
-              <p>From sophisticated living room designs to space-saving and clutter-free interior designs, we are here to help you find the best home decor and home design to match your needs and style. All our products come with up to 10-year warranty along with unwavering support and maintenance services. Explore thousands of inspiring interior designs or get a free estimate – it's all here on HomeLane.com, your one stop for complete home interiors.</p>
+              <p>At Minimalistic, we bring together functionality and aesthetics to provide homeowners with customised and efficient home designs. Our designers specialise in home interior designs and home decor, and help you create a personalized home to suit your lifestyle. </p>
+              <p>From sophisticated living room designs to space-saving and clutter-free interior designs, we are here to help you find the best home decor and home design to match your needs and style. All our products come with up to 10-year warranty along with unwavering support and maintenance services. Explore thousands of inspiring interior designs or get a free estimate. it's all here on HomeLane.com, your one stop for complete home interiors.</p>
             </p>
             </div>
             <a href="javascript:void(0)" class="common-btn">read more <img src="https://www.yudiz.com/codepen/interior-design/arrow-right.svg" class="img-fluid" alt="Arrow"></a>
@@ -186,7 +186,7 @@
         <div class="col-md-6">
           <div class="content border-end-0">
             <h3>Albert Hadley</h3>
-            <p>"The essence of interior design will always be about people and how they live. It is about the realities of what makes for an attractive, civilized, meaningful environment, not about fashion or what’s in or what’s out. This is not an easy job."</p>
+            <p>"The essence of interior design will always be about people and how they live. It is about the realities of what makes for an attractive, civilized, meaningful environment, not about fashion or what's in or what's out. This is not an easy job."</p>
           </div>
         </div>
         <div class="col-md-6">
@@ -205,7 +205,7 @@
         <div class="col-md-6">
           <div class="content border-start-0">
             <h3>Jean-Louis Deniot</h3>
-            <p>"Luxury is when it seems flawless, when you reach the right balance between all elements. Understated theatricality – that is what my luxury is all about."</p>
+            <p>"Luxury is when it seems flawless, when you reach the right balance between all elements. Understated theatricality, that is what my luxury is all about."</p>
           </div>
         </div>
       </div>
@@ -245,7 +245,7 @@
             <div class="contact-border"></div>
             <h3>Follow Us !</h3>
             <p>Thank You for visiting us. Grab a opportunity to meet a designer.</p>
-            <a href="https://www.instagram.com/" class="common-btn">Follow <img src="https://www.yudiz.com/codepen/interior-design/arrow-right.svg" class="img-fluid" alt="Arrow"></a>
+            <a href="https://www.linkedin.com/in/sesslyn-j-989b18250/" class="common-btn">Follow <img src="https://www.yudiz.com/codepen/interior-design/arrow-right.svg" class="img-fluid" alt="Arrow"></a>
           </div>
         </div>
       </div>

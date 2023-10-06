@@ -58,7 +58,7 @@
 						href="<%=request.getContextPath()%>/about">
 							<p class="header_para">ABOUT</p>
 					</a></span> <span class="header"> <a
-						href="<%=request.getContextPath()%>/order">
+						href="<%=request.getContextPath()%>/pages/order/order.html">
 							<p class="header_para">ORDERS</p>
 					</a></span> <span class="header"> <a
 						href="<%=request.getContextPath()%>/user/appointment_list">

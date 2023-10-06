@@ -112,6 +112,11 @@ const order_list = JSON.parse(localStorage.getItem("order_list")) || [];
                 deliveryButton.textContent = "On the Way";
                 deliveryStatus.appendChild(deliveryButton);
             } else {
+				 const deliveryButton = document.createElement("button");
+                deliveryButton.setAttribute("class", "btn btn_primary");
+                deliveryButton.textContent = "Delivered";
+                deliveryStatus.appendChild(deliveryButton);
+                
                 const order_list = JSON.parse(localStorage.getItem("order_list"));
                 order.order_status = "Delivered";
                 localStorage.setItem("order_list", JSON.stringify(order_list));

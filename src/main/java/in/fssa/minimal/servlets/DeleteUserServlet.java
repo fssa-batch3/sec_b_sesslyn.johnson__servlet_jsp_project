@@ -25,7 +25,6 @@ public class DeleteUserServlet extends HttpServlet {
 			throws ServletException, IOException {
 		User user = new User();
 		int userId = (Integer) request.getSession().getAttribute("userId");
-		System.out.println(userId);
 		try {
 			UserService userService = new UserService();
 			HttpSession session = request.getSession(false);

@@ -41,7 +41,6 @@ public class ExtraUserDetailsServlet extends HttpServlet {
 	        user.setPhoneNumber(user1.getPhoneNumber());
 
 	       String role = user1.getRole();
-	       System.out.println(role);
 	        if (role.equals("designer")) 
 	        {
 	        	user.setRole("designer");

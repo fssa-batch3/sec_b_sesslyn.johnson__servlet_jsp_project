@@ -39,13 +39,13 @@ public class LoginServlet extends HttpServlet {
 		try {
 
 			UserService userService = new UserService();
-			User user = userService.Login(email);
+			User user = userService.findByEmail(email);
 			String pwd = user.getPassword();
 			BCrypt.checkpw(password, pwd);
 
 			if (!BCrypt.checkpw(password, pwd)) {
 				throw new ValidationException("Incorrect Password");
-			} else {
+			} else { 
 				Logger.info("You have been logged in successfully");
 				Integer id = user.getId();
 				if (id != null) {

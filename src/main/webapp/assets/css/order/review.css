@@ -25,6 +25,10 @@ main{
     flex-direction: column;
     margin: 14rem 0rem 5rem 34rem;
 }
+.blur-background {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
 .containerDiv .text{
     font-size:25px;
     color:#eee;

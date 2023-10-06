@@ -2,8 +2,8 @@ body {
     margin: 0rem;
     padding: 0rem;
     font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
-    /* overflow-x: hidden;
-    overflow-y: hidden; */
+    overflow-x: hidden;
+    overflow-y: hidden; 
     cursor: pointer;
 }
 
@@ -236,6 +236,7 @@ h3 {
     margin: 2rem 0rem;
     padding: 0rem 2rem;
     background-color: rgb(218, 216, 216);
+    width: 80%;
 }
 
 h4 {
@@ -266,7 +267,7 @@ h4 {
 }
 
 .edit_icon {
-    margin: 0.8rem 0rem 0rem 19rem;
+    margin: 0.8rem 0rem 0rem 15rem;
     width: 10px;
     height: 10px;
     padding-right: 0.5rem;
@@ -304,7 +305,7 @@ h4 {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
-addressDiv {
+.addressDiv {
 	overflow-y: scroll;
 	height: 405px;
 	margin-top: 2rem;

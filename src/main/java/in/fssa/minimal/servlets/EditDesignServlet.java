@@ -33,7 +33,6 @@ public class EditDesignServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int userId = (Integer) request.getSession().getAttribute("userId");
-		System.out.println("Us " +userId);
 		String designIdStr = (String) request.getSession().getAttribute("designId");
 		int designId = Integer.parseInt(designIdStr);
 		System.out.println("Ds " +designId);

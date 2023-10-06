@@ -35,7 +35,6 @@ public class DesignerAppointmentServlet extends HttpServlet {
 				AppointmentService appointmentService = new AppointmentService();
 				Set<AppointmentRespondDTO> totalApp = appointmentService.getAllAppointment();
 				int numberOfAppointments = totalApp.size();
-				System.out.println(numberOfAppointments);
 				Set<AppointmentRespondDTO> appointment = appointmentService.getAllAppointmentByToUserId(userId);
 				UserService userService = new UserService();
 				User user = userService.findByUserId(userId);

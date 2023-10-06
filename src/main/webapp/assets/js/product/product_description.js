@@ -333,7 +333,7 @@ function wish(e) {
   const condition = JSON.parse(localStorage.getItem("profile_id"));
   if (!condition) {
     alert("Log In");
-    window.location.href = "${path}/user/login";
+    window.location.href = path +"/user/login";
     return;
   }
   const product_uuid = new URLSearchParams(window.location.search).get(
@@ -353,7 +353,7 @@ function wish(e) {
     wish_list.push(prod);
     localStorage.setItem("wish_list", JSON.stringify(wish_list));
     alert("Your product has been added to the wishlist");
-    window.location.href = "${path}/shop";
+    window.location.href = path +  "/pages/product/shop.html";
   }
 }
 
