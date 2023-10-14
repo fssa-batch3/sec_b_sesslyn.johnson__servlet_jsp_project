@@ -1,3 +1,4 @@
+<%@page import="com.google.gson.Gson"%>
 <%@page import="in.fssa.minimal.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -217,6 +218,9 @@
 	}
 	%>
 	<script>
+	  let user = <%= new Gson().toJson(user) %>;
+	    localStorage.setItem("user", JSON.stringify(user));
+	    
 	 const profile_id = JSON.parse(localStorage.getItem("profile_id"));
 	let addressList = JSON.parse(localStorage.getItem("addressList"));
     let addressArray = addressList.filter((e) => e.user_email == profile_id);

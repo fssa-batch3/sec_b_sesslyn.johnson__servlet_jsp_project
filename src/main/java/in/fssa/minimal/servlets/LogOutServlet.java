@@ -33,7 +33,9 @@ public class LogOutServlet extends HttpServlet {
                 session.invalidate();
             }
         }
-        
+        String removeProfileIdScript = "<script>localStorage.removeItem('profile_id'); localStorage.removeItem('user');</script>";
+        response.getWriter().println(removeProfileIdScript);
+
         response.sendRedirect(request.getContextPath() + "/index");
     }
 }

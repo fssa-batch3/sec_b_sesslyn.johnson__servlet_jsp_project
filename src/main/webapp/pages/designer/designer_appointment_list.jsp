@@ -56,7 +56,7 @@
 	<div class="sidebar">
 		<div class="side-header">
 			<h3>
-				<a href="<%=request.getContextPath()%>/pages/profile/home_page.html"> <img
+				<a href="<%=request.getContextPath()%>/homepage"> <img
 					src="https://iili.io/Hy0p6kx.jpg" class="logo"></a>
 			</h3>
 		</div>
@@ -86,7 +86,7 @@
 
 			<div class="side-menu">
 				<ul>
-					<li><a href="<%=request.getContextPath()%>/pages/profile/home_page.html"
+					<li><a href="<%=request.getContextPath()%>/homepage"
 						class="active"> <span class="las la-home"></span> <small>Dashboard</small>
 					</a></li>
 					<li><a href="<%=request.getContextPath()%>/user/details">

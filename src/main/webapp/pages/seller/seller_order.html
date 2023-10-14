@@ -16,8 +16,8 @@
 	<!-- partial:partials/_navbar.html -->
 	<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 		<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-			<a class="navbar-brand brand-logo" href="../../pages/profile/home_page.html"><img src="../../assets/images/home_page/Logo.jpg"
-					alt="logo" />Minimal</a>
+			<a class="navbar-brand brand-logo" id="profileId" href="">
+				<img src="../../assets/images/home_page/Logo.jpg" alt="logo" />Minimal</a>
 		</div>
 		<div class="navbar-menu-wrapper d-flex align-items-stretch">
 			<ul class="navbar-nav navbar-nav-right">
@@ -25,10 +25,10 @@
 					<a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
 						aria-expanded="false">
 						<div class="nav-profile-img">
-							<img src="../../assets/images/home_page/face1.jpg" alt="image">
+							<img src="../../assets/images/home_page/face1.jpg" id="imageUser" alt="image">
 						</div>
 						<div class="nav-profile-text">
-							<p class="mb-1 text-black">David Greymaax</p>
+							<p class="mb-1 text-black" id="name"></p>
 						</div>
 					</a>
 
@@ -45,19 +45,19 @@
 				<li class="nav-item nav-profile">
 					<a href="#" class="nav-link">
 						<div class="nav-profile-image">
-							<img src="../../assets/images/home_page/face1.jpg" alt="profile">
+							<img src="" id="userImage" alt="profile">
 							<span class="login-status online"></span>
 							<!--change to offline or busy as needed-->
 						</div>
 						<div class="nav-profile-text d-flex flex-column">
-							<span class="font-weight-bold mb-2">David Grey. H</span>
-							<span class="text-secondary text-small">Project Manager</span>
+							<span class="font-weight-bold mb-2" id="user_name"></span>
+							<span class="text-secondary text-small">Seller</span>
 						</div>
 						<i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="../../pages/profile/home_page.html">
+					<a class="nav-link" id="profileHomeId" href="">
 						<span class="menu-title">Dashboard</span>
 					</a>
 				</li>
@@ -87,6 +87,13 @@
 
 					</a>
 				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" id="logOut" onclick="handleLogout()">
+						<span class="menu-title">LogOut</span>
+
+					</a>
+				</li>
 			</ul>
 		</nav>
 		<!-- partial -->
@@ -103,22 +110,10 @@
 							<div class="card-body">
 								<img src="../../assets/images/home_page/circle.svg" class="card-img-absolute"
 									alt="circle-image" />
-								<h4 class="font-weight-normal mb-3">Weekly Sales <i
+								<h4 class="font-weight-normal mb-3">Your Orders<i
 										class="mdi mdi-chart-line mdi-24px float-right"></i>
 								</h4>
-								<h2 class="mb-5">$ 15,0000</h2>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 stretch-card grid-margin">
-						<div class="card bg-gradient-info card-img-holder text-white">
-							<div class="card-body">
-								<img src="../../assets/images/home_page/circle.svg" class="card-img-absolute"
-									alt="circle-image" />
-								<h4 class="font-weight-normal mb-3">Weekly Orders <i
-										class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
-								</h4>
-								<h2 class="mb-5">45,6334</h2>
+								<h2 class="mb-5" id="yourOrders"></h2>
 							</div>
 						</div>
 					</div>
@@ -127,15 +122,26 @@
 							<div class="card-body">
 								<img src="../../assets/images/home_page/circle.svg" class="card-img-absolute"
 									alt="circle-image" />
-								<h4 class="font-weight-normal mb-3">Visitors Online <i
+								<h4 class="font-weight-normal mb-3">Delivered Orders<i
+										class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+								</h4>
+								<h2 class="mb-5" id="deliveredOrders"></h2>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 stretch-card grid-margin">
+						<div class="card bg-gradient-info card-img-holder text-white">
+							<div class="card-body">
+								<img src="../../assets/images/home_page/circle.svg" class="card-img-absolute"
+									alt="circle-image" />
+								<h4 class="font-weight-normal mb-3">Upcoming Orders<i
 										class="mdi mdi-diamond mdi-24px float-right"></i>
 								</h4>
-								<h2 class="mb-5">95,5741</h2>
+								<h2 class="mb-5" id="upcomingOrders"></h2>
 							</div>
 						</div>
 					</div>
 				</div>
-
 
 				<div class="row">
 					<div class="col-12 grid-margin">
@@ -148,9 +154,10 @@
 											<tr>
 												<th> Product </th>
 												<th> Consumer </th>
+												<th style="padding-left: 2rem;"> Address </th>
 												<th> Quantity </th>
-												<th> Price </th>
-												<th> Status </th>
+												<th style="padding-left: 2rem;"> Price </th>
+												<th style="padding-left: 2rem;"> Status </th>
 											</tr>
 										</thead>
 										<tbody id="tBodyId">
@@ -171,13 +178,26 @@
 	</div>
 	</div>
 	<script>
+		const homepagePath = window.location.origin + '/minimalweb';
+		document.getElementById("profileId").href = homepagePath + '/homepage';
+		document.getElementById("profileHomeId").href = homepagePath + '/homepage';
+
 		const path = window.location.origin + '/minimalweb';
 		console.log(path);
 
-	   document.getElementById("profileTag").href = path + '/user/details';
-	
+		document.getElementById("profileTag").href = path + '/user/details';
+
+		const userObject = JSON.parse(localStorage.getItem("user"));
+
+		document.getElementById("user_name").innerText = userObject.name;
+		document.getElementById("name").innerText = userObject.name;
+		document.getElementById("userImage").src = userObject.image;
+		document.getElementById("imageUser").src = userObject.image;
+
 		const order_list = JSON.parse(localStorage.getItem("order_list"));
 		const user = JSON.parse(localStorage.getItem("profile_id"));
+		const updated_order = JSON.parse(localStorage.getItem("updated_order")) || [];
+
 		const table = document.getElementById("tBodyId");
 
 		if (order_list && order_list.length !== 0) {
@@ -191,55 +211,206 @@
 				cell.textContent = "You have no products listed";
 				row.appendChild(cell);
 				table.appendChild(row);
+				document.getElementById("yourOrders").innerText = "0";
+				document.getElementById("deliveredOrders").innerText = "0";
+				document.getElementById("upcomingOrders").innerText = "0";
 			} else {
-				for (const item of order_list) {
-					const row = document.createElement("tr");
+				let totalOrders = 0;
+				let deliveredOrders = 0;
+				let upcomingOrders = 0;
 
-					const cell1 = document.createElement("td");
-					const img1 = document.createElement("img");
-					img1.src = item.ordered_items.image_url;
-					img1.classList.add("me-2");
-					img1.alt = "product image";
-					cell1.appendChild(img1);
-					cell1.appendChild(document.createTextNode(item.ordered_items.product_name));
-					row.appendChild(cell1);
+				for (const order of order_list) {
+					if (order.ordered_items.seller_id === user) {
+						totalOrders++;
+						const row = document.createElement("tr");
+						const cell1 = document.createElement("td");
+						const img1 = document.createElement("img");
 
-					const cell2 = document.createElement("td");
-					const img2 = document.createElement("img");
-					img2.src = "../../assets/images/home_page/face1.jpg";
-					img2.classList.add("me-2");
-					img2.alt = "profile image";
-					cell2.appendChild(img2);
-					cell2.appendChild(document.createTextNode(item.selectedArray.user_name)); // Use 'item' instead of 'user_order'
-					const span = document.createElement("span");
-					span.textContent = item.address;
-					cell2.appendChild(span);
-					row.appendChild(cell2);
+						img1.src = order.ordered_items.image_url;
+						img1.classList.add("me-2");
+						img1.alt = "product";
+						cell1.appendChild(img1);
+						cell1.appendChild(document.createTextNode(order.ordered_items.product_name));
+						row.appendChild(cell1);
 
-					const cell3 = document.createElement("td");
-					cell3.style.paddingLeft = "2rem";
-					cell3.textContent = item.ordered_items.product_quantity; // Use 'item' instead of 'user_order'
-					row.appendChild(cell3);
+						const cell2 = document.createElement("td");
+						cell2.appendChild(document.createTextNode(order.selectedArray.user_name));
+						row.appendChild(cell2);
 
-					const cell4 = document.createElement("td");
-					cell4.textContent = `₹ ${item.ordered_items.product_price}`; // Use 'item' instead of 'user_order'
-					row.appendChild(cell4);
+						const cell6 = document.createElement("td");
+						const span = document.createElement("span");
+						span.id = "addressId";
+						span.textContent = order.selectedArray.user_address + ", " + order.selectedArray.user_city + ", " + order.selectedArray.user_country + ", " + order.selectedArray.user_code;
+						span.appendChild(document.createElement("br"));
+						span.textContent += "  Ph: " + order.selectedArray.user_no;
+						cell6.appendChild(span);
+						row.appendChild(cell6);
 
-					const cell5 = document.createElement("td");
-					const label = document.createElement("label");
-					label.classList.add("badge", "badge-gradient-info");
-					label.textContent = "ACCEPTED";
-					cell5.appendChild(label);
-					row.appendChild(cell5);
+						const cell3 = document.createElement("td");
+						cell3.style.paddingLeft = "2rem";
+						cell3.textContent = order.ordered_items.product_quantity;
+						row.appendChild(cell3);
 
-					table.appendChild(row);
+						const cell4 = document.createElement("td");
+						cell4.textContent = `₹ ${order.ordered_items.product_price}`;
+						row.appendChild(cell4);
+
+						const cell5 = document.createElement("td");
+
+						const order_id = order.order_uuid;
+
+						if (updated_order.length !== 0) {
+							const updated_user_order = updated_order.find(e => e.order_uuid === order_id);
+							console.log(updated_user_order);
+
+							if (updated_user_order) {
+								const button = document.createElement("button");
+								const selectedValue = updated_user_order.updated_status;
+								console.log(selectedValue);
+								if (selectedValue === "Accepted") {
+									button.className = "custom-select";
+									button.innerText = "Accepted";
+								} else if (selectedValue === "Delivered") {
+									button.className = "badge-success";
+									button.innerText = "Delivered";
+								} else if (selectedValue === "Rejected") {
+									button.className = "badge-danger";
+									button.innerText = "Rejected";
+								}
+
+								if (updated_user_order.updated_status === "Delivered") {
+									deliveredOrders++;
+								} else if (updated_user_order.updated_status === "On the way") {
+									upcomingOrders++;
+								}
+								cell5.appendChild(button);
+							} else {
+								const select = document.createElement("select");
+								select.addEventListener('change', function () {
+									const selectedValue = select.value;
+									if (selectedValue === "Accepted") {
+										select.className = "custom-select";
+										select.disabled = false;
+									} else if (selectedValue === "Delivered") {
+										select.className = "badge-success";
+										select.disabled = true;
+										updated_order.push({
+											"order_uuid": order_id,
+											"updated_time": new Date(),
+											"updated_status": "Delivered",
+										});
+										localStorage.setItem('updated_order', JSON.stringify(updated_order));
+									} else if (selectedValue === "Rejected") {
+										select.className = "badge-danger";
+										select.disabled = true;
+										updated_order.push({
+											"order_uuid": order_id,
+											"updated_time": new Date(),
+											"updated_status": "Rejected",
+										});
+										localStorage.setItem('updated_order', JSON.stringify(updated_order));
+									}
+								});
+
+								const option1 = document.createElement("option");
+								option1.value = "Accepted";
+								option1.textContent = "Accepted";
+
+								const option2 = document.createElement("option");
+								option2.value = "Delivered";
+								option2.textContent = "Delivered";
+
+								const option3 = document.createElement("option");
+								option3.value = "Rejected";
+								option3.textContent = "Rejected";
+
+								select.appendChild(option1);
+								select.appendChild(option2);
+								select.appendChild(option3);
+
+
+								if (order.order_status === "Delivered") {
+									deliveredOrders++;
+								} else if (order.order_status === "On the way") {
+									upcomingOrders++;
+								}
+								cell5.appendChild(select);
+							}
+						}
+
+						else {
+							const select = document.createElement("select");
+							select.addEventListener('change', function () {
+								const selectedValue = select.value;
+								if (selectedValue === "Accepted") {
+									select.className = "custom-select";
+									select.disabled = false;
+								} else if (selectedValue === "Delivered") {
+									select.className = "badge-success";
+									select.disabled = true;
+									updated_order.push({
+										"order_uuid": order_id,
+										"updated_time": new Date(),
+										"updated_status": "Delivered",
+									});
+									localStorage.setItem('updated_order', JSON.stringify(updated_order));
+								} else if (selectedValue === "Rejected") {
+									select.className = "badge-danger";
+									select.disabled = true;
+									updated_order.push({
+										"order_uuid": order_id,
+										"updated_time": new Date(),
+										"updated_status": "Rejected",
+									});
+									localStorage.setItem('updated_order', JSON.stringify(updated_order));
+								}
+							});
+
+							const option1 = document.createElement("option");
+							option1.value = "Accepted";
+							option1.textContent = "Accepted";
+
+							const option2 = document.createElement("option");
+							option2.value = "Delivered";
+							option2.textContent = "Delivered";
+
+							const option3 = document.createElement("option");
+							option3.value = "Rejected";
+							option3.textContent = "Rejected";
+
+							select.appendChild(option1);
+							select.appendChild(option2);
+							select.appendChild(option3);
+
+
+							if (order.order_status === "Delivered") {
+								deliveredOrders++;
+							} else if (order.order_status === "On the way") {
+								upcomingOrders++;
+							}
+							cell5.appendChild(select);
+						}
+
+
+						row.appendChild(cell5);
+						table.appendChild(row);
+
+						document.getElementById("yourOrders").innerText = totalOrders;
+						document.getElementById("deliveredOrders").innerText = deliveredOrders;
+						document.getElementById("upcomingOrders").innerText = upcomingOrders;
+					}
 				}
 			}
-		} else {
-			console.log("Either order_list is not available in localStorage or it is empty.");
+		}
+	
+		function handleLogout() {
+			window.location.href = path+"/user/logout";
+			localStorage.removeItem("profile_id");
+			localStorage.removeItem("user");
 		}
 
 	</script>
+
 	<script src="../../assets/js/order/order_dashboard.js"></script>
 </body>
 

@@ -73,9 +73,10 @@ table#table_product {
 	background-color: white;
 }
 
-.btn {
+.btnButton{
+	width:52%;
 	color: black;
-	margin: 0rem 2rem 0rem 4rem;
+	margin: 0rem 2rem 0rem 2rem;
 	border-color: transparent;
 }
 
@@ -128,12 +129,13 @@ td {
 }
 
 td:nth-child(2) {
+	width: 40%;
 	padding: 0rem 2rem 0rem 1rem;
 }
 
 h3 {
 	margin: 2rem 0rem 0rem 4rem;
-	width: 100%;
+	 text-overflow: ellipsis;
 }
 
 #table_product input {
@@ -145,13 +147,12 @@ h3 {
 }
 
 td:nth-child(3) {
-
 	text-align: center;
-	padding-right: 8rem;
+	width:20%;
 }
 
 td:nth-child(4) {
-	padding: 0rem 4rem 0rem 0rem;
+	padding: 0rem 0rem 0rem 2rem;
 }
 
 td:nth-child(5) {

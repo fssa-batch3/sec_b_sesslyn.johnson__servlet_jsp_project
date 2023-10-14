@@ -183,7 +183,7 @@
         localStorage.setItem("profile_id", JSON.stringify(email)); 
         document.getElementById("form1").submit();
     });
-</script>
+   </script>
 		<script src="<%=request.getContextPath()%>/assets/js/profile/login.js"></script>
 		<script
 			src="<%=request.getContextPath()%>/assets/js/profile/whatsappChat.js"></script>

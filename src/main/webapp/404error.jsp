@@ -64,7 +64,7 @@ a {
 						<div class="contant_box_404">
 							<h3 class="h2">Look like you're lost</h3>
 							<p>the page you are looking for not avaible!</p>
-							<a href="<%=request.getContextPath()%>/index" class="link_404">Go
+							<a href="<%=request.getContextPath()%>/homepage" class="link_404">Go
 								to Home</a>
 						</div>
 					</div>

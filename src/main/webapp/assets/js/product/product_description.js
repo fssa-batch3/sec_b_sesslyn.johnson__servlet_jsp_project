@@ -3,15 +3,12 @@ console.log(path);
 
 const product_crud = JSON.parse(localStorage.getItem("product_crud"));
 const added_products = JSON.parse(localStorage.getItem("added_products"));
-console.log(product_crud);
-console.log(added_products);
+
 //Url params
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const product_id = urlParams.get("product_id");
-console.log(product_id);
 const unique_id = product_crud.find((product) => product.product_uuid == product_id);
-
 console.log(unique_id);
 localStorage.setItem("product", JSON.stringify(unique_id.product_uuid));
 let roundedAverageRating
@@ -169,6 +166,11 @@ const p_warrant = document.createElement("p");
 p_warrant.innerHTML = unique_id.product_warranty;
 div_description.append(p_warrant);
 
+const span_warrant = document.createElement("span");
+span_warrant.setAttribute("id", "seller");
+span_warrant.innerHTML = unique_id.sellerId;
+div_description.append(span_warrant);
+
 const button_primary = document.createElement("button");
 button_primary.setAttribute("class", "btn_cart");
 button_primary.setAttribute("type", "submit");
@@ -287,12 +289,13 @@ document.querySelector("div.container").append(div_right);
 document.querySelector(".btn_cart").addEventListener("click", function () {
   const id_cart = this.dataset.id;
   const product_price = parseInt(
-    document.querySelector(".current-price").innerHTML.replace("Rs.", "")); // Added parseInt() to convert product_price to a number
+    document.querySelector(".current-price").innerHTML.replace("Rs.", "")); 
   const cart_list = JSON.parse(localStorage.getItem("cart_list")) || [];
-  const product_name = document.querySelector(".product_name").innerHTML; // Removed unnecessary || [] here
+  const product_name = document.querySelector(".product_name").innerHTML; 
   const image_url = document.querySelector(".description_img").getAttribute("src");
   const profile_id = JSON.parse(localStorage.getItem("profile_id"));
-  console.log(profile_id);
+   const seller_id = document.querySelector("#seller").innerHTML;
+  
   const exist =
     cart_list.length &&
     JSON.parse(localStorage.getItem("cart_list")).some(
@@ -316,6 +319,7 @@ document.querySelector(".btn_cart").addEventListener("click", function () {
       product_name,
       image_url,
       product_price,
+      seller_id : seller_id,
       userId: profile_id,
       product_quantity: 1,
     });
@@ -331,6 +335,7 @@ function wish(e) {
   const wish_list = JSON.parse(localStorage.getItem("wish_list")) || [];
   const profile_id = JSON.parse(localStorage.getItem("profile_id"));
   const condition = JSON.parse(localStorage.getItem("profile_id"));
+    const seller_id = document.querySelector("#seller").innerHTML;
   if (!condition) {
     alert("Log In");
     window.location.href = path +"/user/login";
@@ -349,6 +354,7 @@ function wish(e) {
     const prod = {
       product_id: product_uuid,
       user_id: profile_id,
+      seller_id : seller_id
     };
     wish_list.push(prod);
     localStorage.setItem("wish_list", JSON.stringify(wish_list));

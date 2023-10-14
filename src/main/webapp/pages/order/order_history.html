@@ -165,53 +165,65 @@
 		const unique_id = order_user.find((e) => e.order_uuid == order_id);
 		console.log(unique_id);
 
-		const dateStr = unique_id.ordered_time;
+		const updated_order = JSON.parse(localStorage.getItem("updated_order")) || [];
+		let updated_user_order = [];
+		if (updated_order.length !== 0) {
+			updated_user_order = updated_order.find(e => e.order_uuid === unique_id.order_uuid);
+		}
+
+		let dateStr;
+		if (updated_user_order) {
+			dateStr = updated_user_order.updated_time;
+		} else {
+			dateStr = unique_id.ordered_time;
+		}
 
 		const date = new Date(dateStr);
-		date.setDate(date.getDate() + 7); // Add 7 days to the current date
 
-		// Array of month names
+		if (!updated_user_order) {
+			date.setDate(date.getDate() + 7);
+		}
+
 		const months = [
 			"January", "February", "March", "April", "May", "June", "July",
 			"August", "September", "October", "November", "December"
 		];
 
-		// Array of weekday names
 		const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-		// Get the day, month, and year
 		const day = date.getDate();
 		const month = months[date.getMonth()];
 		const year = date.getFullYear();
-
-		// Get the weekday
 		const weekday = weekdays[date.getDay()];
 
-		// Format the date string
 		const formattedDate = `${day} ${month}, ${year}`;
 		const formattedWeekday = weekday;
 
 		const currentDate = new Date();
 		const orderDate = new Date(dateStr);
-		orderDate.setDate(orderDate.getDate() + 7); // Add 7 days to the order date
+
+		if (updated_user_order) {
+			orderDate.setDate(orderDate.getDate() + 7);
+		}
 
 		const millisecondsInOneDay = 24 * 60 * 60 * 1000;
 		const daysDifference = Math.floor((orderDate - currentDate) / millisecondsInOneDay);
 
-		let statusText;
-
-		if (daysDifference === 0) {
-			statusText = "Arriving today";
-		} else if (daysDifference < 0) {
-			statusText = "Delivered";
-		} else {
-			statusText = `${daysDifference} days until arrival`;
-		}
-
-		document.getElementById("orderStatus").innerText = statusText;
-
 		document.getElementById("orderDate").innerText = formattedDate;
 		document.getElementById("orderDay").innerText = formattedWeekday;
+
+
+		let statusText;
+		if (updated_user_order && updated_user_order.updated_status === "Delivered") {
+			statusText = "Delivered";
+		} else if (updated_user_order && updated_user_order.updated_status === "Rejected") {
+			statusText = "Rejected";
+		} else {
+			statusText = "On the way";
+		}
+		console.log(statusText);
+
+		document.getElementById("orderStatus").innerText = statusText;
 
 		document.getElementById("productImage").src = unique_id.ordered_items.image_url;
 		document.getElementById("reference_image").src = unique_id.ordered_items.image_url;
@@ -225,12 +237,12 @@
 		document.getElementById("buyer_town").innerText = unique_id.selectedArray.user_city;
 		document.getElementById("buyer_city").innerText = unique_id.selectedArray.user_state + " - " + unique_id.selectedArray.user_code;
 		document.getElementById("total_price").innerText = "₹" + unique_id.ordered_items.product_price * unique_id.ordered_items.product_quantity;
-		
+
 		const reviewButton = document.getElementById("reviewBtn");
 		if (orderStatus === "Delivered") {
-			reviewButton.style.display = "block"; 
+			reviewButton.style.display = "block";
 		} else {
-			reviewButton.style.display = "none"; 
+			reviewButton.style.display = "none";
 		}
 		document.getElementById("reviewBtn").addEventListener('click', function () {
 			function showMessageDiv() {

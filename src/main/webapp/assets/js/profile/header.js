@@ -37,7 +37,7 @@ const beforeLogin = `
 const AfterLogin = ` 
 <div class="head">
         <div class="main_header">
-            <span class="header" id="header_shop"><a href="${rootPath}/pages/profile/home_page.html"><img class="main_logo" id="main_logo"
+            <span class="header" id="header_shop"><a href="${rootPath}/homepage"><img class="main_logo" id="main_logo"
                         src="https://iili.io/Hy0p6kx.jpg" alt="logo of minimalistic" /></a></span>
             <div class="nav_header">
                 <span class="header"><a href="${rootPath}/pages/product/shop.html">
@@ -72,7 +72,7 @@ const loginUser = localStorage.getItem("profile_id");
 
 function handleLogout() {
 	localStorage.removeItem("profile_id");
-	// Redirect the user to the logout servlet
+	localStorage.removeItem("user");
 	window.location.href = `${rootPath}/user/logout`;
 }
 

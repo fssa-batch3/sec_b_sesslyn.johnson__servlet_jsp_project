@@ -1,135 +1,133 @@
 const order_list = JSON.parse(localStorage.getItem("order_list")) || [];
-        const profile_id = JSON.parse(localStorage.getItem("profile_id"));
-        const order_user = order_list.filter((e) => e.order_email == profile_id);
-        console.log(order_user);
+const profile_id = JSON.parse(localStorage.getItem("profile_id"));
+const order_user = order_list.filter((e) => e.order_email == profile_id);
 
-        const emptyCart = document.getElementById('cart_empty');
-        const cartFull = document.getElementById('small_container');
+const updated_order = JSON.parse(localStorage.getItem("updated_order")) || [];
 
-        function showMessageDiv() {
-            emptyCart.style.display = 'block';
-            cartFull.style.display = 'none';
-        }
+const emptyCart = document.getElementById('cart_empty');
+const cartFull = document.getElementById('small_container');
 
-        if (order_user.length === 0) {
-            showMessageDiv();
-        }
+function showMessageDiv() {
+	emptyCart.style.display = 'block';
+	cartFull.style.display = 'none';
+}
 
-        for (const order of order_user) {
-            const table = document.createElement("table");
-            table.setAttribute("id", "table_product");
-            console.log(table);
+if (order_user.length === 0) {
+	showMessageDiv();
+}
 
-            const caption = document.createElement("caption");
-            table.append(caption);
+for (const order of order_user) {
 
-            const row = document.createElement("tr");
-            table.append(row);
+	const table = document.createElement("table");
+	table.setAttribute("id", "table_product");
+	console.log(table);
 
-            const header = document.createElement("th");
-            row.append(header);
+	const caption = document.createElement("caption");
+	table.append(caption);
 
-            const productData = document.createElement("td");
-            row.append(productData);
+	const row = document.createElement("tr");
+	table.append(row);
 
-            const cartInfo = document.createElement("div");
-            cartInfo.setAttribute("class", "cart_info");
-            productData.append(cartInfo);
+	const header = document.createElement("th");
+	row.append(header);
 
-            const productImg = document.createElement("img");
-            productImg.setAttribute("src", order.ordered_items.image_url);
-            productImg.setAttribute("data-id", order.order_uuid);
-            productImg.setAttribute("class", "product_1");
-            productImg.setAttribute("alt", "Compat camal brown sofa");
-            cartInfo.appendChild(productImg);
+	const productData = document.createElement("td");
+	row.append(productData);
 
-            const productName = document.createElement("h3");
-            productName.textContent = order.ordered_items.product_name;
-            cartInfo.appendChild(productName);
+	const cartInfo = document.createElement("div");
+	cartInfo.setAttribute("class", "cart_info");
+	productData.append(cartInfo);
 
-            const orderDate = document.createElement("td");
-            const inputDate = order.ordered_time.substr(0, 10);
-            const date = new Date(inputDate);
+	const productImg = document.createElement("img");
+	productImg.setAttribute("src", order.ordered_items.image_url);
+	productImg.setAttribute("data-id", order.order_uuid);
+	productImg.setAttribute("class", "product_1");
+	productImg.setAttribute("alt", "Compat camal brown sofa");
+	cartInfo.appendChild(productImg);
 
-            const months = [
-                "January",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-                "August",
-                "September",
-                "October",
-                "November",
-                "December",
-            ];
+	const productName = document.createElement("h3");
+	productName.textContent = order.ordered_items.product_name;
+	cartInfo.appendChild(productName);
 
-            const month = months[date.getMonth()];
-            const day = date.getDate();
-            const year = date.getFullYear();
+	const orderDate = document.createElement("td");
+	const inputDate = order.ordered_time.substr(0, 10);
+	const date = new Date(inputDate);
 
-            orderDate.textContent = `Order on ${day} ${month}, ${year}`;
-            row.appendChild(orderDate);
+	const months = [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December",
+	];
 
-            const quantity = document.createElement("td");
-            row.appendChild(quantity);
+	const month = months[date.getMonth()];
+	const day = date.getDate();
+	const year = date.getFullYear();
 
-            const quantityInput = document.createElement("input");
-            quantityInput.setAttribute("type", "number");
-            quantityInput.setAttribute("value", order.ordered_items.product_quantity);
-            quantityInput.setAttribute("disabled", "");
-            quantity.appendChild(quantityInput);
+	orderDate.textContent = `Order on ${day} ${month}, ${year}`;
+	row.appendChild(orderDate);
 
-            const price = document.createElement("td");
-            price.textContent = "₹" + order.ordered_items.product_price;
-            row.appendChild(price);
+	const quantity = document.createElement("td");
+	row.appendChild(quantity);
 
+	const quantityInput = document.createElement("input");
+	quantityInput.setAttribute("type", "number");
+	quantityInput.setAttribute("value", order.ordered_items.product_quantity);
+	quantityInput.setAttribute("disabled", "");
+	quantity.appendChild(quantityInput);
 
-            const deliveryStatus = document.createElement("td");
-            row.appendChild(deliveryStatus);
-
-            const startTime = new Date(order.ordered_time);
-            console.log(startTime);
-
-            //date
-            const endTime = new Date(
-                startTime.getFullYear(),
-                startTime.getMonth(),
-                startTime.getDate() + 7, 0, 0, 0, 0);
-            console.log(endTime);
-            const now = new Date();
-
-            if (endTime > now) {
-                const order_list = JSON.parse(localStorage.getItem("order_list"));
-                order.order_status = "On the Way";
-                localStorage.setItem("order_list", JSON.stringify(order_list));
+	const price = document.createElement("td");
+	price.textContent = "₹" + order.ordered_items.product_price;
+	row.appendChild(price);
 
 
-                const deliveryButton = document.createElement("button");
-                deliveryButton.setAttribute("class", "btn btn_tertiary");
-                deliveryButton.textContent = "On the Way";
-                deliveryStatus.appendChild(deliveryButton);
-            } else {
-				 const deliveryButton = document.createElement("button");
-                deliveryButton.setAttribute("class", "btn btn_primary");
-                deliveryButton.textContent = "Delivered";
-                deliveryStatus.appendChild(deliveryButton);
-                
-                const order_list = JSON.parse(localStorage.getItem("order_list"));
-                order.order_status = "Delivered";
-                localStorage.setItem("order_list", JSON.stringify(order_list));
-            }
-            document.querySelector("div.bottom_contain").append(table);
-        }
+	const deliveryStatus = document.createElement("td");
+	row.appendChild(deliveryStatus);
 
-        //URL Params
-        const bookCovers = document.querySelectorAll(".product_1");
-        bookCovers.forEach((bookCover) => {
-            bookCover.addEventListener("click", (event) => {
-                const person_data = bookCover.dataset.id;
-                window.location.href = `./order_history.html?order_id=${person_data}`;
-            });
-        });
+	let updated_user_order = [];
+	if (updated_order.length !== 0) {
+		updated_user_order = updated_order.find(e => e.order_uuid === order.order_uuid);
+	}
+	console.log(updated_user_order);
+	
+	const deliveryButton = document.createElement("button");
+	
+	if (updated_user_order && updated_user_order.updated_status === "Delivered") {
+		deliveryButton.setAttribute("class", "btnButton btn_primary");
+		deliveryButton.textContent = updated_user_order.updated_status;
+		order.order_status = "Delivered";
+		localStorage.setItem("order_list", JSON.stringify(order_list));
+	} else if (updated_user_order && updated_user_order.updated_status === "Rejected") {
+		deliveryButton.setAttribute("class", "btnButton btn_secondary");
+		deliveryButton.textContent = updated_user_order.updated_status;
+		order.order_status = "Rejected";
+		localStorage.setItem("order_list", JSON.stringify(order_list));
+	} else {
+		deliveryButton.setAttribute("class", "btnButton btn_tertiary");
+		deliveryButton.textContent = "On the way";
+		order.order_status = "On the way";
+		localStorage.setItem("order_list", JSON.stringify(order_list));
+	}
+
+	deliveryStatus.appendChild(deliveryButton);
+
+	document.querySelector("div.bottom_contain").append(table);
+}
+
+//URL Params
+const bookCovers = document.querySelectorAll(".product_1");
+bookCovers.forEach((bookCover) => {
+	bookCover.addEventListener("click", (event) => {
+		const person_data = bookCover.dataset.id;
+		window.location.href = `./order_history.html?order_id=${person_data}`;
+	});
+});
 

@@ -23,7 +23,9 @@
     margin: -15rem 0rem 9rem 10rem;
     box-shadow: 15px 10px 33px 0px rgba(110, 109, 110, 1);
 }
-
+#seller{
+	display:hidden;
+}
 .middle_container {
     margin-top: 2rem;
 }

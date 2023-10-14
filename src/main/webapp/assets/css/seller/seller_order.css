@@ -80,7 +80,9 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
-
+#logOut{
+	cursor:pointer;
+}
 hr {
   margin: 1rem 0;
   color: inherit;
@@ -281,7 +283,9 @@ button {
 
 button:focus:not(:focus-visible) {
   outline: 0; }
-
+#addressId{
+	margin-left:0rem;
+}
 input,
 button,
 select,
@@ -3966,46 +3970,25 @@ span{
   .badge.badge-pill {
     border-radius: 10rem; }
 
-/*Badge variations*/
-.badge-primary {
-  border: 1px solid #b66dff;
-  background: #b66dff;
-  color: #ffffff; }
-
-.badge-secondary {
-  border: 1px solid #c3bdbd;
-  background: #c3bdbd;
-  color: #ffffff; }
-
-.badge-success, .preview-list .preview-item .preview-thumbnail .badge.badge-online {
-  border: 1px solid #1bcfb4;
-  background: #1bcfb4;
-  color: #ffffff; }
-
-.badge-info, .preview-list .preview-item .preview-thumbnail .badge.badge-offline {
-  border: 1px solid #198ae3;
+/*Badge variations*/  
+.custom-select{
+ border: none;
   background: #198ae3;
-  color: #ffffff; }
-
-.badge-warning, .preview-list .preview-item .preview-thumbnail .badge.badge-busy {
-  border: 1px solid #fed713;
-  background: #fed713;
-  color: #ffffff; }
-
+  color: #ffffff; 
+}
 .badge-danger {
-  border: 1px solid #fe7c96;
+  border: none;
   background: #fe7c96;
   color: #ffffff; }
 
-.badge-light {
-  border: 1px solid #f8f9fa;
-  background: #f8f9fa;
+.badge-success {
+  border: none;
+  background: #1bcfb4;
   color: #ffffff; }
-
-.badge-dark {
-  border: 1px solid #3e4b5b;
-  background: #3e4b5b;
-  color: #ffffff; }
+option{
+	background-color:white;
+	color:black;
+}
 
 /*Badge gradient variations*/
 .badge-gradient-primary {
@@ -5842,14 +5825,13 @@ dl {
       .navbar .navbar-brand-wrapper .navbar-brand:active, .navbar .navbar-brand-wrapper .navbar-brand:focus, .navbar .navbar-brand-wrapper .navbar-brand:hover {
         color: #1b2658; }
       .navbar .navbar-brand-wrapper .navbar-brand img {
-          color: #27367f;
-          font-size: 1.5rem;
-          line-height: 48px;
-          padding: 0.25rem 0;
-          width: 50px;
-          margin-right:2rem;
-          height:60px;
-          color: black;}
+           font-size: 1.5rem;
+           line-height: 48px;
+           padding: 0.25rem 0;
+           width: 40px;
+           margin-right: 1.5rem;
+           height: 50px;
+           color: black;}
       .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini {
         display: none; }
         .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini img {
