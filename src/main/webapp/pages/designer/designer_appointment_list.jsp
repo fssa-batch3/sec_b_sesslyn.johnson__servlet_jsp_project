@@ -304,7 +304,8 @@
 													value="<%=appointment.getId()%>">
 
 												<%
-												String appointmentStatus = appointment.getStatus();
+												String appointmentStatus = appointment.getStatus().toLowerCase();
+												System.out.println(appointmentStatus);
 												String statusClass = "status pending";
 
 												if ("approved".equals(appointmentStatus)) {

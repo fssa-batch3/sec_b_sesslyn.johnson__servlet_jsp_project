@@ -43,6 +43,7 @@ public class FindDesignerByIdServlet extends HttpServlet {
 				Set<DesignAssetRespondDTO> designAsset = designAssetService.getAllActiveDesignAssetByDesignerId(designerId);
 				ReviewService reviewService = new ReviewService();
             	Set<Review> reviewList = reviewService.getAllReviewByDesignerId(designerId);
+            	System.out.println(reviewList);
             	request.setAttribute("reviewList", reviewList);	
 				request.setAttribute("designAssetList", designAsset);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/designer/get_designer_by_id.jsp");
@@ -60,6 +61,7 @@ public class FindDesignerByIdServlet extends HttpServlet {
 				Set<DesignAssetRespondDTO> designAsset = designAssetService.getAllActiveDesignAssetByDesignerId(designerId);
 				ReviewService reviewService = new ReviewService();
             	Set<Review> reviewList = reviewService.getAllReviewByDesignerId(designerId);
+            	System.out.println(reviewList);
             	request.setAttribute("reviewList", reviewList);
 				request.setAttribute("designAssetList", designAsset);
 				request.setAttribute("userDetails", user);

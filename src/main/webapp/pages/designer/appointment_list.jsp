@@ -322,16 +322,16 @@ if (appointmentList == null || appointmentList.isEmpty()) {
 
                         String statusToShow = "";
 
-                        if ("approved".equals(appointment.getStatus())) {
+                        if ("approved".equals(appointment.getStatus().toLowerCase())) {
                             statusToShow = currentDate.isAfter(parsedDate)
                                     || (currentDate.isEqual(parsedDate) && currentTime.isAfter(parsedTime)) ? "completed" : "approved";
-                        } else if ("waiting_list".equals(appointment.getStatus())) {
+                        } else if ("waiting_list".equals(appointment.getStatus().toLowerCase())) {
                             statusToShow = currentDate.isAfter(parsedDate)
                                     || (currentDate.isEqual(parsedDate) && currentTime.isAfter(parsedTime))
                                             ? "rejected"
                                             : "waiting_list";
                         } else {
-                            statusToShow = appointment.getStatus();
+                            statusToShow = appointment.getStatus().toLowerCase();
                         }
                 %>
                 <tr>
@@ -426,14 +426,23 @@ if (appointmentList == null || appointmentList.isEmpty()) {
 </div>
 
 <script>
-    function review(appointmentId, fromUserId, toUserId) {
+    
+
+document.querySelectorAll("button.review-button").forEach(function (button) {
+    button.addEventListener("click", function () {
+        const appointmentId = '<%= appointmentId %>';
+        const userId = '<%= userId %>';
+        const designerId = '<%= designerId %>';
+
         const messageDiv = document.getElementById("review");
         messageDiv.style.display = "block";
 
         // Set the hidden input values
         document.getElementById("appointmentId").value = appointmentId;
-        document.getElementById("fromUserId").value = fromUserId;
-        document.getElementById("toUserId").value = toUserId;
+        document.getElementById("fromUserId").value = userId;
+        console.log(userId);
+        document.getElementById("toUserId").value = designerId;
+        console.log(designerId);
 
         // Assuming you have an element with the id "table" to blur
         const table = document.getElementById("table");
@@ -457,14 +466,8 @@ if (appointmentList == null || appointmentList.isEmpty()) {
                 table.classList.remove("blur-background");
             }
         });
-    }
-
-    document.querySelectorAll("button.review-button").forEach(function(button) {
-        button.addEventListener("click", ()=>{
-        	console.log(<%=appointmentId%>+<%=userId%>+<%=designerId%>);
-            review(<%=appointmentId%>, <%=userId%>, <%=designerId%>);
-        });
     });
+});
 </script>
 </body>
 </html>

@@ -90,13 +90,10 @@ div.cardsNew {
 		String role = user.getRole();
 		designerId = "designer".equals(role);
 	}
-	System.out.println(user);
 	%>
 
 	<%
 	User designer = (User) request.getAttribute("designerDetails");
-	System.out.println(designer);
-
 	if (designer != null) {
 	%>
 	<div class="card details-card p-0">
@@ -127,6 +124,7 @@ div.cardsNew {
 								<h3><%=designer.getName()%></h3>
 							</div>
 							<%Set<Review> reviewList = (Set<Review>) request.getAttribute("reviewList");%>
+							<%System.out.println(reviewList);%>
                               <div class="starIcon">
                                   <span class="star_icon">
                                   <%
