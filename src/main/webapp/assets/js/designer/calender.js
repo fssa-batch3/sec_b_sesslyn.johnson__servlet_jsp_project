@@ -99,9 +99,9 @@ const months = [
   "December",
 ];
 
-// Function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
-function initCalendar() {
-	let appointmentDetails = jsonData.appointmentDetails; 
+
+function initCalendar() {	
+  let appointmentDetails = jsonData.appointmentDetails; 
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
   const prevLastDay = new Date(year, month, 0);

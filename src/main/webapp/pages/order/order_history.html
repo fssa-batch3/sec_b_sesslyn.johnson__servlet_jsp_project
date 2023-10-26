@@ -16,8 +16,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300&display=swap" rel="stylesheet">
-	<link
-		href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
 		rel="stylesheet">
 
 </head>
@@ -172,12 +171,12 @@
 		}
 
 		let dateStr;
-		if (updated_user_order) {
+		if (updated_user_order.length != 0) {
 			dateStr = updated_user_order.updated_time;
 		} else {
 			dateStr = unique_id.ordered_time;
 		}
-
+		
 		const date = new Date(dateStr);
 
 		if (!updated_user_order) {
@@ -239,11 +238,12 @@
 		document.getElementById("total_price").innerText = "₹" + unique_id.ordered_items.product_price * unique_id.ordered_items.product_quantity;
 
 		const reviewButton = document.getElementById("reviewBtn");
-		if (orderStatus === "Delivered") {
+		if (statusText === "Delivered") {
 			reviewButton.style.display = "block";
 		} else {
 			reviewButton.style.display = "none";
 		}
+		
 		document.getElementById("reviewBtn").addEventListener('click', function () {
 			function showMessageDiv() {
 				const messageDiv = document.getElementById("review");

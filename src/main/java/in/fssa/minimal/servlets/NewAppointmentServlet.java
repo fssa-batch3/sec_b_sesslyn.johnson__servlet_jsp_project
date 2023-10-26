@@ -46,10 +46,13 @@ public class NewAppointmentServlet extends HttpServlet {
 		try {
 
 			UserService userService = new UserService();
+			
 			User user = userService.findByUserId(userId);
 			User designer = userService.findByDesignerId(designerId);
+			
 			AppointmentService appointmentService = new AppointmentService();
 			Set<AppointmentRespondDTO> appointments = appointmentService.getAllAppointmentByToUserId(designerId);
+			
 			System.out.println(appointments);
 			Map<String, Object> responseData = new HashMap<>();
 

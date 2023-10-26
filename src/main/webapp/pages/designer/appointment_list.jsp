@@ -353,7 +353,7 @@ if (appointmentList == null || appointmentList.isEmpty()) {
                         </small>
                     </td>
                     <td><%=appointment.getDate()%></td>
-                    <td><strong><%=appointment.getTime()%></strong></td>
+                    <td class="timeTd"><strong><%=appointment.getTime()%></strong></td>
                     <td id="statusInfo">
                                 <p class="status <%=statusToShow.toLowerCase()%>">
                                     <%=statusToShow%>
