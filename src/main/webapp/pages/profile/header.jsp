@@ -115,7 +115,7 @@
 					} else if ("seller".equals(role)) {
 					%>
 					</span> <span class="header"> <a
-						href="<%=request.getContextPath()%>/pages/seller/product_form.html">
+						href="<%=request.getContextPath()%>/seller/product/create">
 							<p class="header_para">ADD PRODUCT</p>
 					</a>
 					</span>

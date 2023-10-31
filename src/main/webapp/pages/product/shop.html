@@ -83,9 +83,348 @@
 			</div>
 		</div>
 	</div>
-	<script src="../../assets/js/profile/header.js"></script>	
+	<script>
+		one();
+		async function one() {
+			await fetchDataAndUpdatePage();
+		};
+
+		let productDetails = null;
+		let product_crud = null;
+		async function fetchDataAndUpdatePage() {
+			try {
+				const response = await fetch("/minimalweb/user/product");
+
+				if (!response.ok) {
+					console.log(`HTTP Error! Status: ${response.status}`);
+					return;
+				}
+
+				const data = await response.json();
+				productDetails = data.data.productDetails; 
+
+				if (productDetails && productDetails.length === 0) {
+				} else if (productDetails) {
+					product_crud = productDetails.filter(product => product.isActive === true);
+					console.log(product_crud);
+					renderProducts(product_crud);
+				}
+			} catch (error) {
+				console.error(error);
+			}
+		}
+
+		function renderProducts(product_crud) {
+			// Sofa
+			let sofa = product_crud.filter(function (e) {
+				return e.categoryId.name === 'Sofa'; 
+			});
+
+			for (const product_details of sofa) {
+				const template1 = product_upload(product_details);
+				document.querySelector("#shop_sofa").insertAdjacentHTML("beforeend", template1);
+			}
+
+			function product_upload(sofa) {
+				const template1 =
+					`
+        <div class="container">
+            <a href="#"><img class="crockery" src="${sofa.imageUrl}"
+                alt="sofa image" /></a>
+            <div class="overlay">
+                <a href="#"><img class="bag_overlay" data-cart="${sofa.id}" src="https://iili.io/J9edQUv.jpg"
+                    alt="shopping-bag" /></a>
+                <button class="overlay_button"><a href="./description.html?product_id=${sofa.id}">View More</a></button>
+            </div>
+        </div>
+        `
+				return template1;
+			}
+
+			// Assuming 'add_crud' is defined and contains data
+			// Reusable
+			const space_saving = product_crud.filter(function (e) {
+				return e.categoryId.name === "Space Saving Furniture";
+			});
+			for (const product_reuse of space_saving) {
+				const template3 = product_space(product_reuse);
+				document.querySelector("#reusable_shop").insertAdjacentHTML("beforeend", template3);
+			}
+
+			function product_space(space_saving) {
+				const template3 = `
+        <div class="container">
+            <a href="#"><img class="crockery" src="${space_saving.imageUrl}"
+                alt="Space saving furniture image" /></a>
+            <div class="overlay">
+                <a href="#"><img class="bag_overlay" data-cart="${space_saving.id}" src="https://iili.io/J9edQUv.jpg"
+                    alt="shopping-bag" /></a>
+                <button class="overlay_button"><a href="./description.html?product_id=${space_saving.id}">View More</a></button>
+            </div>
+        </div>
+    `;
+				return template3;
+			}
+
+			//Wallpaper
+			const Wallpaper_units = product_crud.filter(function (e) {
+				return e.categoryId.name === "Wallpaper";
+			});
+
+			for (const product_wallpaper of Wallpaper_units) {
+				const template4 = product_wall(product_wallpaper);
+				document.querySelector("#wallpaper_shop").insertAdjacentHTML("beforeend", template4);
+			}
+
+
+			function product_wall(Wallpaper_units) {
+				const template4 = ` 
+                     <div class="container">
+                        <a href="#"><img class="crockery" src="${Wallpaper_units.imageUrl}"
+                            alt="chandleir image" /></a>
+                        <div class="overlay">
+                           <a href="#"><img class="bag_overlay"  data-cart="${Wallpaper_units.id}" src="https://iili.io/J9edQUv.jpg"
+                                    alt="shopping-bag" /></a>
+                            <button class="overlay_button" ><a href="./description.html?product_id=${Wallpaper_units.id}">View More</a></button>
+                         </div>
+                   </div>
+                     `;
+				return template4;
+			}
+
+			// Chandelier
+			const chandelier_units = product_crud.filter(function (e) {
+				return e.categoryId.name === "Chandelier";
+			});
+			for (const product_chandelier of chandelier_units) {
+				const template2 = product_chand(product_chandelier);
+				document.querySelector("#chandelier_shop").insertAdjacentHTML("beforeend", template2);
+			}
+			function product_chand(a) {
+				const template2 = ` 
+            <div class="container">
+                <a href="#"><img class="crockery" src="${a.imageUrl}"
+                    alt="chandelier image" /></a>
+                <div class="overlay">
+                    <a href="#"><img class="bag_overlay" data-cart="${a.id}" 
+                            src="https://iili.io/J9edQUv.jpg"
+                            alt="shopping-bag" /></a>
+                    <button class="overlay_button"><a href="./description.html?product_id=${a.id}">View More</a></button>
+                </div>
+            </div>
+        `;
+				return template2;
+			}
+
+			//wadrobe
+			const Wadrobe_units = product_crud.filter(function (e) {
+				return e.categoryId.name === "Wadrobe";
+			});
+
+			for (const product_wadrobe of Wadrobe_units) {
+				const template5 = product_wad(product_wadrobe);
+				document
+					.querySelector("#wadrobe_shop")
+					.insertAdjacentHTML("beforeend", template5);
+			}
+
+			function product_wad(Wadrobe_units) {
+				const template5 = ` 
+                <div class="container">
+                        <a href="#"><img class="crockery" src="${Wadrobe_units.imageUrl}"
+                            alt="chandleir image" /></a>
+                        <div class="overlay">
+                            <a href="#"><img class="bag_overlay" data-cart="${Wadrobe_units.id}" src="https://iili.io/J9edQUv.jpg"
+                                    alt="shopping-bag" /></a>
+                            <button class="overlay_button"><a href="./description.html?product_id=${Wadrobe_units.id}">View More</a></button>
+                        </div>
+                    </div>
+              `;
+				return template5;
+			}
+
+			//Crockery units
+			const crockery_units = product_crud.filter(function (e) {
+				return e.categoryId.name === "Crockery Units";
+			});
+			for (const product_crock of crockery_units) {
+				const template6 = product_crockery(product_crock);
+				document
+					.querySelector("#crockery_shop")
+					.insertAdjacentHTML("beforeend", template6);
+			}
+			function product_crockery(crockery_units) {
+				const template6 = ` 
+                <div class="container">
+                        <a href="#"><img class="crockery" src="${crockery_units.imageUrl}"
+                           alt="chandleir image" /></a>
+                        <div class="overlay">
+                            <a href="#"><img class="bag_overlay" data-cart="${crockery_units.id}" src="https://iili.io/J9edQUv.jpg"
+                                    alt="shopping-bag" /></a>
+                            <button class="overlay_button"><a href="./description.html?product_id=${crockery_units.id}">View More</a></button>
+                        </div>
+                    </div>
+              `;
+				return template6;
+			}
+
+			//Wishlist
+			const add = document.querySelectorAll(".bag_overlay");
+			add.forEach(function (findId) {
+				findId.addEventListener("click", function () {
+					const id_wish = this.dataset.cart;
+					const wish_list = JSON.parse(localStorage.getItem("wish_list")) || [];
+					const profile_id = JSON.parse(localStorage.getItem("profile_id"));
+					const condition = JSON.parse(localStorage.getItem("profile_id"));
+					if (!condition) {
+						alert("Log In");
+						window.location.href = queryString + "/user/login";
+						return;
+					}
+					const prod_data = wish_list.find(
+						(prod) => prod.product_id === id_wish && prod.user_id === profile_id
+					);
+					if (prod_data) {
+						alert("Sorry, the product is already added to the wishlist");
+					} else {
+						const prod = {
+							product_id: id_wish,
+							user_id: profile_id,
+						};
+						wish_list.push(prod);
+						localStorage.setItem("wish_list", JSON.stringify(wish_list));
+						alert("Your product has been added to the wishlist");
+					}
+				});
+			});
+
+		}
+
+		const queryString = window.location.origin + '/minimalweb';
+		//Room Create Element
+		const room_details = JSON.parse(localStorage.getItem("room_details"));
+		for (const roomDetail of room_details) {
+			// create a new div element
+			const tooltipDiv1 = document.createElement("div");
+			tooltipDiv1.className = "interiors";
+			tooltipDiv1.id = roomDetail.id_div;
+
+			// create a new div element for the tooltip
+			const tooltip1 = document.createElement("div");
+			tooltip1.className = "tooltip";
+			tooltipDiv1.append(tooltip1);
+
+			const a_link = document.createElement("a");
+			a_link.setAttribute("href", `./page.html?chamber_name=${roomDetail.page_id}`);
+			tooltip1.append(a_link);
+
+			// create a new image element for the icon
+			const image = document.createElement("img");
+			image.setAttribute("id", roomDetail.id_img);
+			image.setAttribute("class", "chamber_data");
+			image.setAttribute("src", roomDetail.image);
+			image.setAttribute("alt", "every chamber");
+			a_link.append(image);
+
+			// create a new p element for the tooltip text and set its content
+			const tooltipText1 = document.createElement("p");
+			tooltipText1.setAttribute("class", "tooltiptext");
+			tooltipText1.innerHTML = roomDetail.text;
+			tooltip1.append(tooltipText1);
+
+			document.querySelector("div#row1").append(tooltipDiv1);
+		}
+
+
+		//Product Create Element
+		const shoppingProduct = JSON.parse(localStorage.getItem("shoppingProduct"));
+		console.log(shoppingProduct);
+
+		for (const product of shoppingProduct) {
+			// get the index of the current product in the array
+			const index = shoppingProduct.indexOf(product);
+
+			// create a new div element
+			const tooltipDiv1 = document.createElement("div");
+			tooltipDiv1.className = "interiors";
+			tooltipDiv1.id = product.id_div;
+
+			// create a new div element for the tooltip
+			const tooltip1 = document.createElement("div");
+			tooltip1.className = "tooltip";
+			tooltipDiv1.append(tooltip1);
+
+			const a_link = document.createElement("a");
+			a_link.setAttribute("href", `#${index}`);
+			a_link.setAttribute("id", `link-${index}`);
+			tooltip1.append(a_link);
+
+			// create a new image element for the icon
+			const image = document.createElement("img");
+			image.setAttribute("class", "chamber_data");
+			image.setAttribute("id", product.id_img);
+			image.setAttribute("src", product.image);
+			image.setAttribute("alt", "icon of every chamber");
+			a_link.append(image);
+
+			// create a new p element for the tooltip text and set its content
+			const tooltipText1 = document.createElement("p");
+			tooltipText1.setAttribute("class", "tooltiptext");
+			tooltipText1.innerHTML = product.text;
+			tooltip1.append(tooltipText1);
+			document.querySelector("div#row2").append(tooltipDiv1);
+		}
+
+		//URL Params
+		const bookCovers = document.querySelectorAll(".overlay_button");
+		bookCovers.forEach((bookCover) => {
+			bookCover.addEventListener("click", (event) => {
+				const person_data = bookCover.dataset.id;
+				window.location.href = `./description.html?product_id=${person_data}`;
+			});
+		});
+
+		const interiorRow1 = `
+
+<div class="container">
+<img class="crockery" src="https://iili.io/JJuN3Zl.jpg" alt="chandleir image">
+<div class="overlay">
+    <a href="./page.html?chamber_name=living_room">
+        <p>Living Room</p>
+    </a>
+</div>
+</div>
+<div class="container">
+<img class="crockery" src="https://iili.io/JJuwDGI.jpg" alt="chandleir image">
+<div class="overlay">
+    <a href="./page.html?chamber_name=bedroom">
+        <p>Bedroom</p>
+    </a>
+</div>
+</div>
+<div class="container">
+<img class="crockery" src="https://iili.io/JJuw8CB.jpg"
+    alt="chandleir image"></img></a>
+<div class="overlay">
+    <a href="./page.html?chamber_name=kids_area">
+        <p>Kids Area</p>
+    </a>
+</div>
+</div>
+<div class="container">
+<img class="crockery" src="https://iili.io/JJuNXMN.jpg" alt="chandleir image">
+<div class="overlay">
+    <a href="./page.html?chamber_name=mobile_house">
+        <p>Turck House</p>
+    </a>
+</div>
+</div>
+ `
+		document.querySelector("#row1Interior").insertAdjacentHTML("afterbegin", interiorRow1);
+
+	</script>
+	<script src="../../assets/js/profile/header.js"></script>
 	<script src="../../assets/js/profile/chatBot.js"></script>
-	<script src="../../assets/js/product/shop.js"></script>
 </body>
 
 </html>

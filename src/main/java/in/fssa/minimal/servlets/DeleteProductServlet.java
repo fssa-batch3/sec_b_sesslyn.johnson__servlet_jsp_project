@@ -12,27 +12,28 @@ import com.google.gson.Gson;
 import in.fssa.minimal.exception.ServiceException;
 import in.fssa.minimal.exception.ValidationException;
 import in.fssa.minimal.service.DesignAssetService;
+import in.fssa.minimal.service.ProductService;
 import in.fssa.minimal.util.Logger;
 import model.ResponseEntity;
 
 /**
- * Servlet implementation class ActivateDesignServlet
+ * Servlet implementation class DeleteProductServlet
  */
-@WebServlet("/designer/design/details/activate")  
-public class ActivateDesignServlet extends HttpServlet {
+@WebServlet("/seller/product/delete")
+public class DeleteProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String designIdStr = (String) request.getSession().getAttribute("designId");
-		int designId = Integer.parseInt(designIdStr);
+		
+		int productId = (Integer) request.getSession().getAttribute("productId");
 		try {
-			DesignAssetService  designAssetService = new DesignAssetService();			
-			designAssetService.activateDesignAsset(designId);
+			ProductService productService = new ProductService();			
+			productService.deleteProduct(productId);
 			ResponseEntity res = new ResponseEntity();
 			res.setStatus(200);
 			res.setData("");
-			res.setMessage("design successfully activated");
+			res.setMessage("design successfully deleted");
 			
 			Gson gson = new Gson();
 			String responseJson = gson.toJson(res);

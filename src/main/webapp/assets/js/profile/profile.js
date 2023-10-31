@@ -1,145 +1,152 @@
-let addressList = JSON.parse(localStorage.getItem("addressList"));
-        let addressArray = addressList.filter((e) => e.user_email == profile_id);
-        console.log(addressArray);
+	    one();
+	    async function one() {
+	    		await fetchDataAndUpdatePage();
+	    }
 
-        for (const address of addressArray) {
-            const newDiv = document.createElement('div');
-            newDiv.classList.add('addressInfo');
+	    let addressDetails = null;
+	    let addressArray = null;
 
-            const span = document.createElement('span');
-            span.classList.add('tooltip');
-            newDiv.appendChild(span);
+	    async function fetchDataAndUpdatePage() {
+	    	try {
+	    		const response = await fetch(`/minimalweb/order/address`);
+	    		if (!response.ok) {
+	    			console.log(`HTTP Error! Status: ${response.status}`);
+	    			return;
+	    		}
 
-            const img = document.createElement('img');
-            img.src = '../../assets/images/home_page/edit_icon.png';
-            img.alt = 'edit icon';
-            img.setAttribute('class', 'edit_icon');
-            img.setAttribute('data-id', address['address_id']);
-            span.appendChild(img);
+	    		const data = await response.json();
+	    		addressDetails = data.data.addressDetails;
 
-            const table = document.createElement('table');
-            table.classList.add('table_product');
-            newDiv.appendChild(table);
+	    		if (addressDetails.length === 0) {
+	    		} else if (addressDetails) {
+	    			addressArray = addressDetails;
+	    			console.log(addressArray);
+	    			renderProducts(addressArray);
+	    		}
+	    	} catch (error) {
+	    		console.error(error);
+	    	}
+	    }
+	    
+function renderProducts(addressArray){
+	
+    for (const address of addressArray) {
+        const newDiv = document.createElement('div');
+        newDiv.classList.add('addressInfo');
 
-            const tbody = document.createElement('tbody');
-            table.appendChild(tbody);
+        const table = document.createElement('table');
+        table.classList.add('table_product');
+        newDiv.appendChild(table);
 
-            const tr = document.createElement('tr');
-            tr.classList.add('tr_address');
-            tbody.appendChild(tr);
+        const tbody = document.createElement('tbody');
+        table.appendChild(tbody);
 
-            const td1 = document.createElement('td');
-            td1.classList.add('idh4');
-            tr.appendChild(td1);
+        const tr = document.createElement('tr');
+        tr.classList.add('tr_address');
+        tbody.appendChild(tr);
 
-            const h4 = document.createElement('h4');
-            if (address['user_notes']) {
-                h4.innerText = address['user_notes'];
-                if (address['default_status']) {
-                    h4.innerText += ' (default)';
-                }
-            } else {
-                h4.innerText = 'Address';
-                if (address['default_status']) {
-                    h4.innerText += ' (default)';
-                }
+        const td1 = document.createElement('td');
+        td1.classList.add('idh4');
+        tr.appendChild(td1);
+
+        const h4 = document.createElement('h4');
+            h4.innerText = address.title;
+            if (address.isDefault) {
+                h4.innerText += ' (default)';
             }
-            td1.appendChild(h4);
+        td1.appendChild(h4);
 
-            const td2 = document.createElement('td');
-            tr.appendChild(td2);
+        const td2 = document.createElement('td');
+        tr.appendChild(td2);
 
-            const p1 = document.createElement('p');
-            p1.setAttribute('class', 'address_td');
-            p1.innerText = address['user_address'] + ' ' + address['user_city'] + ' ,  ' + address['user_state'] + ' ,  ' + address['user_country'] + ' - ' + address['user_code'];
-            td2.appendChild(p1);
+        const p1 = document.createElement('p');
+        p1.setAttribute('class', 'address_td');
+        p1.innerText = address.address + ' ' + address.city + ' ,  ' + address.state + ' ,  ' + address.country+ ' - ' + address.pincode;
+        td2.appendChild(p1);
 
-            const td3 = document.createElement('td');
-            tr.appendChild(td3);
+        const td3 = document.createElement('td');
+        tr.appendChild(td3);
 
-            const p2 = document.createElement('p');
-            p2.setAttribute('id', 'address_td');
-            p2.innerText = 'No' + ' : ' + address['user_no'];
-            td3.appendChild(p2);
+        const p2 = document.createElement('p');
+        p2.setAttribute('id', 'address_td');
+        p2.innerText = 'No' + ' : ' + address.phoneNumber;
+        td3.appendChild(p2);
 
-            const td4 = document.createElement('td');
-            tr.appendChild(td4);
+        const td4 = document.createElement('td');
+        tr.appendChild(td4);
 
-            const button1 = document.createElement('button');
-            button1.setAttribute('class', 'btnDefault');
-            button1.setAttribute('data-id', address['address_id']);
-            button1.innerText = 'DELETE';
-            if (address['default_status'] === true) {
-                button1.style.display = 'none';
-            }
-            td4.appendChild(button1);
+        const button1 = document.createElement('button');
+        button1.setAttribute('class', 'btnDefault');
+        button1.setAttribute('data-id', address.id);
+        button1.innerText = 'DELETE';
+        if (address.isDefault === true) {
+            button1.style.display = 'none';
+        }
+        td4.appendChild(button1);
 
-            if (address['default_status'] === false) {
-                const button = document.createElement('button');
-                button.setAttribute('class', 'setDefault');
-                button.setAttribute('data-id', address['address_id']);
-                button.innerText = 'SET AS DEFAULT';
-                td4.appendChild(button);
-            }
-
-            document.querySelector('div.addressDiv').append(newDiv);
+        if (address.isDefault === false) {
+            const button = document.createElement('button');
+            button.setAttribute('class', 'setDefault');
+            button.setAttribute('data-id', address.id);
+            button.innerText = 'SET AS DEFAULT';
+            td4.appendChild(button);
         }
 
-        const bookCovers = document.querySelectorAll(".edit_icon");
-        bookCovers.forEach((bookCover) => {
-            bookCover.addEventListener("click", (event) => {
-                const person_data = bookCover.dataset.id;
-                window.location.href = `../order/edit_address.html?edit_address=${person_data}`;
-            });
-        });
+        document.querySelector('div.addressDiv').append(newDiv);
+    }
+    const path = window.location.origin + '/minimalweb';
+    console.log(path);
 
-        const default_add = document.querySelectorAll("button.setDefault");
-        default_add.forEach(function (getID) {
-            getID.addEventListener("click", function () {
-                const { id } = this.dataset;
-                localStorage.setItem("address_id", JSON.stringify(id));
-                const add_uuid = JSON.parse(localStorage.getItem("address_id"));
-                if (window.confirm("Are you sure you want to change this as your default address?")) {
-                    let def_add = addressArray.find(e => e.default_status === true);
-                    console.log(def_add);
-                    def_add.default_status = false;
-                    function find_data(e) {
-                        return e.address_id === add_uuid;
-                    }
-                    const set_default = addressList.find(find_data);
-                    console.log(set_default);
-                    set_default.default_status = true;
-                    localStorage.setItem("addressList", JSON.stringify(addressList));
-                    window.location.reload();
-                }
-            })
-        });
 
-        const del_add = document.querySelectorAll("button.btnDefault");
-        del_add.forEach(function (getID) {
-            getID.addEventListener("click", function () {
-                const { id } = this.dataset;
-                localStorage.setItem("address_id", JSON.stringify(id));
-                const add_uuid = JSON.parse(localStorage.getItem("address_id"));
-                function find_data(e) {
-                    return e.address_id === add_uuid;
-                }
-                const address_del = addressList.find(find_data);
-                if (address_del.default_status === true) {
-                    window.alert("This is your default address. Please change your default address to another address before deleting it.")
-                }
-                else {
-                    if (window.confirm("Are you sure?")) {
-                        const indexOfAddress = addressList.indexOf(address_del);
-                        addressList.splice(indexOfAddress, 1);
-                        localStorage.setItem("addressList", JSON.stringify(addressList));
-                        window.location.reload();
+    const default_add = document.querySelectorAll("button.setDefault");
+    default_add.forEach(function (getID) {
+        getID.addEventListener("click", async function () {
+        	let addressId = this.getAttribute("data-id");
+        	console.log(addressId);
+            if (window.confirm("Are you sure you want to set this as your default address?")) {
+                try {
+                	const response = await fetch(`/minimalweb/order/address/default?addressId=${addressId}`);
+                        if (response.ok) {
+                        const data = await response.json();
+                        if (data.status === 200) {
+                            window.location.reload();
+                        } else {
+
+                            alert(data.message);
+                        }
                     }
+                } catch (error) {
+                    console.error(error);
                 }
-            })
+            }
         });
-        let defaultUserAddress = addressArray.find((e) => e.default_status === true);
-        console.log(defaultUserAddress);
-        document.getElementById("user_address").innerHTML = defaultUserAddress.user_address;
-        document.getElementById("user_state").innerHTML = defaultUserAddress.user_state;
-        document.getElementById("user_country").innerHTML = defaultUserAddress.user_country;
+    });
+
+    const del_add = document.querySelectorAll("button.btnDefault");
+    del_add.forEach(function (button) {
+        button.addEventListener("click", async function () {
+            if (window.confirm("Are you sure you want to delete this address?")) {
+                let addressId = this.getAttribute("data-id"); 
+                console.log(addressId);
+                try{
+                   const response = await fetch(`/minimalweb/order/address/delete?addressId=${addressId}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.status === 200) {
+                            window.location.reload();
+                        } else {
+                            alert(data.message);
+                        }
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        });
+    });
+
+    let defaultUserAddress = addressArray.find((e) => e.isDefault === true);
+    document.getElementById("user_address").innerHTML = defaultUserAddress.address;
+    document.getElementById("user_state").innerHTML = defaultUserAddress.state;
+    document.getElementById("user_country").innerHTML = defaultUserAddress.country;
+	    }

@@ -55,9 +55,6 @@
 	}
 	%>
 
-
-
-
 	<div>
 		<div class="container">
 			<div class="left">
@@ -91,8 +88,6 @@
 					<div class="event-day">Wed</div>
 					<div class="event-date">12th December 2022</div>
 				</div>
-
-
 
 				<form id="formDiv"
 					action="<%=request.getContextPath()%>/designer/appointment/create"

@@ -66,55 +66,47 @@
 				<p><%=designId.getDescription().replaceAll("\n", "<br>")%></p>
 				</p>
 				<div class="flex">
-    <h4>Click here to access your design in your portfolio</h4>
-    <div class="checkbox-apple" style="margin-top: 0rem;">
-        <input class="yep" style="display: none" id="check-apple-2" type="checkbox">
-        <label for="check-apple-2"></label>
-    </div>
-    <div id="alertBox" style="display: none;">
-        <p>Are you sure ?</p>
-    </div>
-</div>
-<a href="<%=request.getContextPath()%>/designer/design/edit"><button>Edit</button></a>
-</div>
-</section>
-<script>
+					<h4>Click here to access your design in your portfolio</h4>
+					<div class="checkbox-apple" style="margin-top: 0rem;">
+						<input class="yep" style="display: none" id="check-apple-2"
+							type="checkbox"> <label for="check-apple-2"></label>
+					</div>
+					<div id="alertBox" style="display: none;">
+						<p>Are you sure ?</p>
+					</div>
+				</div>
+				<a href="<%=request.getContextPath()%>/designer/design/edit"><button>Edit</button></a>
+			</div>
+	</section>
+	<script>
 function showAlert(message) {
     const alertBox = document.getElementById("alertBox");
     alertBox.style.display = "block";
-    alertBox.textContent = message; // Set the message
+    alertBox.textContent = message; 
 }
 
-// Get references to the elements
 const checkbox = document.getElementById("check-apple-2");
 
-// Check the condition and set the initial state
 <%if (designAssetDetails.isActive()) {%>
 const isActive = true;
-checkbox.checked = true; // Check the checkbox
+checkbox.checked = true;
 <%} else {%>
 const isActive = false;
 <%}%>
 
-// Event listener for the checkbox
 checkbox.addEventListener("change", () => {
     if (checkbox.checked) {
-        // If checkbox is checked, show alert and activate
         showAlert("Item activated.");
-        // Make an AJAX request to the "activate" servlet
         sendAjaxRequest("activate");
     } else {
-        // If checkbox is unchecked, show alert and deactivate
         showAlert("Item deactivated.");
-        // Make an AJAX request to the "delete" servlet
         sendAjaxRequest("delete");
     }
 });
 
-// Function to send an AJAX request to the servlet using fetch
 function sendAjaxRequest(action) {
     const root = window.location.origin+"/minimalweb";
-    const designAssetId = <%= designAssetDetails.getId() %>; // Get the ID
+    const designAssetId = <%=designAssetDetails.getId()%>; 
     let servletUrl = '';
     if (action === "activate") {
     	servletUrl = root+'/designer/design/details/activate';
@@ -129,14 +121,12 @@ function sendAjaxRequest(action) {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.json(); // or response.text() if the response is not JSON
+        return response.json();
     })
     .then((data) => {
-        // Handle the data received from the servlet
         console.log(data);
     })
     .catch((error) => {
-        // Handle errors or display error messages here
         console.error("Fetch error: ", error);
     });
 }

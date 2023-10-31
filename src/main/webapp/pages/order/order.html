@@ -1,58 +1,209 @@
-
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order page</title>
-    <link rel="stylesheet" href="../../assets/css/order/order.css">
-    <link rel="stylesheet" href="../../assets/css/profile/normalize.css">
-     <link rel="stylesheet" href="../../assets/css/profile/header.css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Order page</title>
+	<link rel="stylesheet" href="../../assets/css/order/order.css">
+	<link rel="stylesheet" href="../../assets/css/profile/normalize.css">
+	<link rel="stylesheet" href="../../assets/css/profile/header.css">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700," rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300&display=swap" rel="stylesheet">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Prompt:wght@200&family=Source+Sans+Pro:wght@300&display=swap"
+		rel="stylesheet">
 </head>
 
 <body>
 
-<div id="small_container">
-    <div class="top-container">
-        <div class="top_contain">
-            <div>
-                <img src="https://iili.io/HgdJlDJ.png" class="delivery_girl" alt="Delivery receiving image">
-            </div>
-            <div>
-                <h1>
-                    Best Furniture For Your Home <br> From Minimalistic
-                </h1>
-                <a href="../product/shop.html">
-                    <p class="start_shop">
-                        Start Shopping <img src="https://iili.io/JHBj5X9.png" alt="arrow image"
-                            class="arrow_icon">
-                    </p>
-                </a>
-            </div>
-        </div>
-        <div class="bottom_contain">
-          
-        </div>
-    </div>
-</div>
+	<div id="small_container">
+		<div class="top-container">
+			<div class="top_contain">
+				<div>
+					<img src="https://iili.io/HgdJlDJ.png" class="delivery_girl" alt="Delivery receiving image">
+				</div>
+				<div>
+					<h1>
+						Best Furniture For Your Home <br> From Minimalistic
+					</h1>
+					<a href="../product/shop.html">
+						<p class="start_shop">
+							Start Shopping <img src="https://iili.io/JHBj5X9.png" alt="arrow image" class="arrow_icon">
+						</p>
+					</a>
+				</div>
+			</div>
+			<div class="bottom_contain">
 
-<div id="cart_empty">
-    <img src="https://iili.io/HgJi5I1.jpg" class="emptyCart" alt="Empty Cart image" />
-    <p class="cartEmpty">You haven't placed an order yet.</p>
-</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="cart_empty">
+		<img src="https://iili.io/HgJi5I1.jpg" class="emptyCart" alt="Empty Cart image" />
+		<p class="cartEmpty">You haven't placed an order yet.</p>
+	</div>
+
+	<script>
+		one();
+
+		async function one() {
+			await fetchDataAndUpdatePage();
+		}
+
+		let orderDetails = null;
+
+		async function fetchDataAndUpdatePage() {
+			try {
+				const response = await fetch("/minimalweb/user/order/list");
+
+				if (!response.ok) {
+					console.log(`HTTP Error! Status: ${response.status}`);
+					return;
+				}
+
+				const data = await response.json();
+				orderDetails = data.data.orderDetails;
+				console.log(orderDetails);
+
+				renderProducts(orderDetails);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+
+		function renderProducts(updatedOrders) {
+			const emptyCart = document.getElementById('cart_empty');
+			const cartFull = document.getElementById('small_container');
+
+			function showMessageDiv() {
+				emptyCart.style.display = 'block';
+				cartFull.style.display = 'none'; // Fix: Use '=' instead of '-='
+			}
+
+			if (updatedOrders.length === 0) {
+				showMessageDiv();
+			}
+
+			for (const updatedOrder of updatedOrders) { // Use 'updatedOrder' instead of 'updated_order'
+
+				const table = document.createElement("table");
+				table.setAttribute("id", "table_product");
+
+				const caption = document.createElement("caption");
+				table.append(caption);
+
+				const row = document.createElement("tr");
+				table.append(row);
+
+				const header = document.createElement("th");
+				row.append(header);
+
+				const productData = document.createElement("td");
+				row.append(productData);
+
+				const cartInfo = document.createElement("div");
+				cartInfo.setAttribute("class", "cart_info");
+				productData.append(cartInfo);
+
+				const productImg = document.createElement("img");
+				productImg.setAttribute("src", updatedOrder.productId.imageUrl);
+				productImg.setAttribute("data-id", updatedOrder.id);
+				productImg.setAttribute("class", "product_1");
+				productImg.setAttribute("alt", "Compat camal brown sofa");
+				cartInfo.appendChild(productImg);
+
+				const productName = document.createElement("h3");
+				productName.textContent = updatedOrder.productId.name;
+				cartInfo.appendChild(productName);
+
+				const orderDate = document.createElement("td");
+				const inputDate = updatedOrder.createdDate;
+				console.log(inputDate);
+				const date = new Date(inputDate);
+
+				const months = [
+					"January",
+					"February",
+					"March",
+					"April",
+					"May",
+					"June",
+					"July",
+					"August",
+					"September",
+					"October",
+					"November",
+					"December",
+				];
+
+				const month = months[date.getMonth()];
+				const day = date.getDate();
+				const year = date.getFullYear();
+
+				const formattedDate = `${month} ${day}, ${year}`;
+				orderDate.textContent = `Order on ${formattedDate}`; 
+				row.appendChild(orderDate);
+
+				const quantity = document.createElement("td");
+				row.appendChild(quantity);
+
+				const quantityInput = document.createElement("input");
+				quantityInput.setAttribute("type", "number");
+				quantityInput.setAttribute("value", updatedOrder.quantity);
+				quantityInput.setAttribute("disabled", "");
+				quantity.appendChild(quantityInput);
+
+				const price = document.createElement("td");
+				price.textContent = "₹" + updatedOrder.price;
+				row.appendChild(price);
+
+				const deliveryStatus = document.createElement("td");
+				row.appendChild(deliveryStatus);
 
 
-<script src="../../assets/js/order/order.js"></script>
-<script src="../../assets/js/profile/chatBot.js"></script>
- <script src="../../assets/js/profile/header.js"></script>
+				const deliveryButton = document.createElement("button");
+
+				if (updatedOrder.status === "Delivered") {
+					deliveryButton.setAttribute("class", "btnButton btn_primary");
+					deliveryButton.textContent = updatedOrder.status;
+				} else if (updatedOrder.status === "Rejected") {
+					deliveryButton.setAttribute("class", "btnButton btn_secondary");
+					deliveryButton.textContent = updatedOrder.status;
+				} else if (updatedOrder.status === "Cancelled") {
+					deliveryButton.setAttribute("class", "btnButton btn_secondary");
+					deliveryButton.textContent = updatedOrder.status;
+				} else {
+					deliveryButton.setAttribute("class", "btnButton btn_tertiary");
+					deliveryButton.textContent = "On the way";
+				}
+
+				deliveryStatus.appendChild(deliveryButton);
+
+				document.querySelector("div.bottom_contain").append(table);
+			}
+
+			// URL Params
+			const bookCovers = document.querySelectorAll(".product_1");
+			bookCovers.forEach((bookCover) => {
+				bookCover.addEventListener("click", (event) => {
+					const personData = bookCover.getAttribute("data-id");
+					window.location.href = `./order_history.html?order_id=${personData}`;
+				});
+			});
+		}
+
+
+
+	</script>
+	<script src="../../assets/js/profile/chatBot.js"></script>
+	<script src="../../assets/js/profile/header.js"></script>
 
 </body>
+
 </html>

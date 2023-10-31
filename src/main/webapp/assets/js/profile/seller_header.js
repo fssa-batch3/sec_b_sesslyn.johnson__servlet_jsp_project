@@ -55,7 +55,7 @@ const AfterLogin = `
             <span class="header"><a href="${rootPath}/pages/seller/seller_order.html">
                 <p class="header_para">ORDERS</p>
             </a></span>
-            <span class="header"><a href="${rootPath}/pages/seller/product_form.html">
+            <span class="header"><a href="${rootPath}/seller/product/create">
                 <p class="header_para">ADD PRODUCT</p>
             </a></span>
         </div>

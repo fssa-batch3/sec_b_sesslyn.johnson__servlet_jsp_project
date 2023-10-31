@@ -60,7 +60,6 @@ public class NewAppointmentServlet extends HttpServlet {
 			responseData.put("appointmentDetails", appointments);
 			responseData.put("designerDetails", designer);
 
-			// Create a ResponseEntity for success
 			ResponseEntity res = new ResponseEntity();
 			res.setStatus(200);
 			res.setData(responseData);
@@ -69,16 +68,13 @@ public class NewAppointmentServlet extends HttpServlet {
 			Gson gson = new Gson();
 			String responseJson = gson.toJson(res);
 
-			// Set response content type and encoding for JSON
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(responseJson);
 		} catch (ValidationException e) {
 			Logger.error(e);
-			// Handle exceptions here and send an appropriate error response if needed
 		} catch (ServiceException e) {
 			Logger.error(e);
-			// Handle exceptions here and send an appropriate error response if needed
 		}
 	}
 }

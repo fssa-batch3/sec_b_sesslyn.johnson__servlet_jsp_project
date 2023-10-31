@@ -210,6 +210,14 @@ p {
     position: absolute;
     top:6rem;
 }
+#cancelBtn{
+    display:none;
+    padding: 0.8rem 2.5rem;
+    margin:2rem 0rem 0rem 15rem;
+    border:none;
+    background-color: black;
+    color:white;
+}
 .blur-background {
     filter: blur(8px);
     -webkit-filter: blur(8px);
