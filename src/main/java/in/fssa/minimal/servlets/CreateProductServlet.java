@@ -1,6 +1,7 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -31,7 +32,7 @@ public class CreateProductServlet extends HttpServlet {
 			try {
 				user = UserService.findBySellerId(userId);
 				CategoryService categoryService = new CategoryService();
-				Set<Category> categoryList = categoryService.getAllCategory();
+				List<Category> categoryList = categoryService.getAllCategory();
 				request.setAttribute("userDetails", user);
 				request.setAttribute("categoryDetails", categoryList);
 				RequestDispatcher rd = request.getRequestDispatcher("/pages/seller/product_form.jsp");
@@ -48,7 +49,7 @@ public class CreateProductServlet extends HttpServlet {
 		Product product = new Product();
 		int categoryId = 0;
 		User user = new User();
-		Set<Category> categoryList = null;
+		List<Category> categoryList = null;
 		try {
 			user = UserService.findByUserId(userId);
 			CategoryService categoryService = new CategoryService();

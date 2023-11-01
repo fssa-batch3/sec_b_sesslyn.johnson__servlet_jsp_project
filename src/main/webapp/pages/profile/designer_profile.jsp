@@ -1,7 +1,7 @@
-<%@page import="java.util.HashSet"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="in.fssa.minimal.model.Design"%>
 <%@page import="in.fssa.minimal.dto.DesignAssetRespondDTO"%>
-<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <%@page import="in.fssa.minimal.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -262,7 +262,6 @@ header__wrapper .cols__container .right__col .photos img {
 	height: 200px;
 	width: 250px;
 }
-/* helpers/alignment.css */
 .flex {
 	display: flex;
 	flex-direction: row;
@@ -282,7 +281,7 @@ header__wrapper .cols__container .right__col .photos img {
 .input-container {
 	display: flex;
 	align-items: center;
-	width: var(--size-button); /* Set a fixed width for the container */
+	width: var(--size-button); /* List a fixed width for the container */
 }
 
 .input {
@@ -458,10 +457,10 @@ button {
 				</div>
 				<div class="gallery" id="photosSection">
 					<%
-					Set<DesignAssetRespondDTO> totalDesign = (Set<DesignAssetRespondDTO>) request.getAttribute("totalDesign");
+					List<DesignAssetRespondDTO> totalDesign = (List<DesignAssetRespondDTO>) request.getAttribute("totalDesign");
 					System.out.println(totalDesign);
 					if (totalDesign == null || totalDesign.isEmpty()) {
-						totalDesign = new HashSet<>(); // Initialize it to an empty set.
+						totalDesign = new ArrayList<>(); // Initialize it to an empty set.
 					}
 
 					int imagesToDisplay = Math.min(totalDesign.size(), 6);

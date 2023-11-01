@@ -1,4 +1,4 @@
-<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <%@page import="in.fssa.minimal.model.Style"%>
 <%@page import="in.fssa.minimal.model.Design"%>
 <%@page import="in.fssa.minimal.model.Asset"%>
@@ -81,7 +81,7 @@
 	%>
 	<%
 	int styleId = (request.getAttribute("styleId") != null) ? (int) request.getAttribute("styleId") : -1;
-	Set<Style> styleDetails = (Set<Style>) request.getAttribute("styleDetails");
+	List<Style> styleDetails = (List<Style>) request.getAttribute("styleDetails");
 	%>
 	<div class="wrapper">
 		<form action="<%=request.getContextPath()%>/designer/design/create"

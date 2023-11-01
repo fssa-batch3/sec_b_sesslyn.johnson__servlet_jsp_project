@@ -163,7 +163,7 @@ hr.new3 {
 					%>
 					<div class="form_input">
 						<label for="gstNumber">GST Number :</label> <input type="text"
-							id="gstNumber" name="gstNumber"
+							id="gstNumber" name="gstNumber" autofocus
 							pattern="\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}"
 							title="Must contains 15 characters and alphanumeric is allowed."
 							required placeholder="GST Number">
@@ -194,7 +194,7 @@ hr.new3 {
 					%>
 					<div class="form_input">
 						<label for="experience">Experience</label> <input type="number"
-							name="experience" required 
+							name="experience" required autofocus
 							title="It should be in months or years" id="designer_exper"
 							class="inputField" />
 					</div>

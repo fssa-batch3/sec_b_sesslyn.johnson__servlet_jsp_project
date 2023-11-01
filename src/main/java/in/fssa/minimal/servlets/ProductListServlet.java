@@ -2,8 +2,8 @@ package in.fssa.minimal.servlets;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,7 +37,7 @@ public class ProductListServlet extends HttpServlet {
 			try {
 				int userId = userIdObject.intValue();
 				ProductService productService = new ProductService();
-				Set<ProductRespondDTO> product = productService.findProductBySellerId(userId);
+				List<ProductRespondDTO> product = productService.findProductBySellerId(userId);
 				UserService userService = new UserService();
 				User user = userService.findBySellerId(userId);
 				Map<String, Object> responseData = new HashMap<>();

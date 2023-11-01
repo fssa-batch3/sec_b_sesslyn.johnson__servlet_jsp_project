@@ -1,7 +1,7 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
-import java.util.Set;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,8 +35,7 @@ public class FindByUserIdServlet extends HttpServlet {
 					dispatcher.forward(request, response);
 				} else if ("designer".equals(user.getRole())) {
 					DesignAssetService designAssetService = new DesignAssetService();
-					Set<DesignAssetRespondDTO> totalDesign = (Set<DesignAssetRespondDTO>) designAssetService
-							.getAllDesignAssetByDesignerId(userId);
+					List<DesignAssetRespondDTO> totalDesign = (List) designAssetService.getAllDesignAssetByDesignerId(userId);
 					request.setAttribute("totalDesign", totalDesign);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/profile/designer_profile.jsp");
 					dispatcher.forward(request, response);

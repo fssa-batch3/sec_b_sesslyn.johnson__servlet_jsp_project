@@ -1,6 +1,8 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,6 +40,8 @@ public class ReviewAppointmentServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/user/appointment_list");
 		} catch (ServiceException | ValidationException e) {
 			Logger.error(e);
+			request.setAttribute("error", e.getMessage());
+			response.sendRedirect(request.getContextPath() + "/user/appointment_list");
 		}
 	}
 

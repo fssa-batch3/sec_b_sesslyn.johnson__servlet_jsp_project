@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <%@page import="in.fssa.minimal.dto.ProductRespondDTO"%>
 <%@page import="in.fssa.minimal.model.Category"%>
-<%@page import="java.util.Set"%>
-<%@page import="in.fssa.minimal.model.Product"%>
+<%@page import="java.util.List"%>
 <%@page import="in.fssa.minimal.model.User"%>
 <html lang="en">
 
@@ -118,7 +117,7 @@
 						required>
 						<option value="" disabled selected>Product Category</option>
 						<%
-						Set<Category> categoryList = (Set<Category>) request.getAttribute("categoryDetails");
+						List<Category> categoryList = (List<Category>) request.getAttribute("categoryDetails");
 						System.out.println(categoryList);
 						if (categoryList != null) {
 							for (Category category : categoryList) {

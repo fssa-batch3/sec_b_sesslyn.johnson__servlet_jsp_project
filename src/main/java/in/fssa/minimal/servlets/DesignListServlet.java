@@ -1,6 +1,7 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -33,7 +34,7 @@ public class DesignListServlet extends HttpServlet {
 			try {
 				int userId = userIdObject.intValue();
 				DesignAssetService designAssetService = new DesignAssetService();
-				Set<DesignAssetRespondDTO> totalDesign = (Set<DesignAssetRespondDTO>) designAssetService.getAllDesignAssetByDesignerId(userId);
+				List<DesignAssetRespondDTO> totalDesign = (List<DesignAssetRespondDTO>) designAssetService.getAllDesignAssetByDesignerId(userId);
 				User user = UserService.findByUserId(userId);
 				request.setAttribute("userDetails", user);
 				request.setAttribute("totalDesign", totalDesign);

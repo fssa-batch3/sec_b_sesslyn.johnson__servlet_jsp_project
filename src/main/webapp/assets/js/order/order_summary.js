@@ -77,6 +77,7 @@ for (const item of user_cart) {
 
 	amount += item.product_price * item.product_quantity;
 }
+
 document.querySelector("#place_order").addEventListener("click", function() {
 	const user_delivery = localStorage.getItem('user_delivery');
 	const selectedArray = JSON.parse(localStorage.getItem('selectedArray'));
@@ -89,9 +90,15 @@ document.querySelector("#place_order").addEventListener("click", function() {
 	if (!confirm("Confirm your orders")) {
 		return;
 	}
-
-	const orderPromises = user_cart.map((cart_item) => {
-		const orderData = {
+	
+	
+		 
+	
+	 const orderPromises = user_cart.map( async (cart_item) => {
+			 console.log(user_cart);
+			 console.log(user_cart.size);
+			 
+		 const orderData = {
 			product_id: cart_item.product_uuid,
 			product_price: '' + cart_item.product_price,
 			product_quantity: '' + cart_item.product_quantity,
@@ -100,21 +107,18 @@ document.querySelector("#place_order").addEventListener("click", function() {
 			status: "Waiting_list",
 			address_id: localStorage.getItem("selectedAddress")
 		};
-		const url = `/minimalweb/user/order/create?${new URLSearchParams(orderData).toString()}`;
-
 		console.log(orderData);
-
-		return fetch(url, {
+		
+		return await fetch(`/minimalweb/user/order/create?${new URLSearchParams(orderData).toString()}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(orderData)
+			
 		});
 	});
 
-	Promise.all(orderPromises)
-		.then(() => {
+	Promise.all(orderPromises).then(() => {
 			const updatedCart = cart_list.filter((item) => !user_cart.includes(item));
 			localStorage.setItem('cart_list', JSON.stringify(updatedCart));
 			localStorage.removeItem('user_delivery');

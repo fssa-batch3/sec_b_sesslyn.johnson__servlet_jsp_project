@@ -1,7 +1,7 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
-import java.util.Set;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,7 +32,7 @@ public class UserAppointmentListServlet extends HttpServlet {
 			try {
 				int userId = userIdObject.intValue();
 				AppointmentService appointmentService = new AppointmentService();
-				Set<AppointmentRespondDTO> appointment = appointmentService.getAllAppointmentByFromUserId(userId);
+				List<AppointmentRespondDTO> appointment = appointmentService.getAllAppointmentByFromUserId(userId);
 				UserService userService = new UserService();
 				User user = userService.findByUserId(userId);
 				request.setAttribute("userDetails", user);

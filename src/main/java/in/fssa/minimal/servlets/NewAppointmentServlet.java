@@ -3,7 +3,7 @@ package in.fssa.minimal.servlets;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,7 +51,7 @@ public class NewAppointmentServlet extends HttpServlet {
 			User designer = userService.findByDesignerId(designerId);
 			
 			AppointmentService appointmentService = new AppointmentService();
-			Set<AppointmentRespondDTO> appointments = appointmentService.getAllAppointmentByToUserId(designerId);
+			List<AppointmentRespondDTO> appointments = appointmentService.getAllAppointmentByToUserId(designerId);
 			
 			System.out.println(appointments);
 			Map<String, Object> responseData = new HashMap<>();

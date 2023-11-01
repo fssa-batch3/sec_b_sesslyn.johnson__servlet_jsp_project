@@ -3,7 +3,7 @@
 <%@page import="java.sql.Date"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="in.fssa.minimal.model.User"%>
-<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <%@page import="in.fssa.minimal.dto.AppointmentRespondDTO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -27,7 +27,7 @@
 	System.out.println(totalAppointments);
 	%>
 	<%
-	Set<AppointmentRespondDTO> appointmentList = (Set<AppointmentRespondDTO>) request.getAttribute("appointmentDetails");
+	List<AppointmentRespondDTO> appointmentList = (List<AppointmentRespondDTO>) request.getAttribute("appointmentDetails");
 	System.out.println(appointmentList);
 	int totalDesignerAppointment = appointmentList.size();
 	LocalDate currentDate = LocalDate.now();

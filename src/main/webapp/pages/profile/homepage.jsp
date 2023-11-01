@@ -59,7 +59,7 @@
 	String exploreLink = "";
 
 	if ("user".equals(role)) {
-		exploreLink = request.getContextPath() + "/product/shop.html";
+		exploreLink = request.getContextPath() + "/pages/product/shop.html";
 	} else if ("seller".equals(role) || "designer".equals(role)) {
 		exploreLink = request.getContextPath() + "/about";
 	}

@@ -206,6 +206,10 @@
 			});
 			checkboxDiv.appendChild(checkboxInput);
 			
+			const para = document.createElement('p');
+			para.innerText = "Select this checkbox to sell this product.";
+			mainDiv.appendChild(para);
+			
 			const checkboxDiv2 = document.createElement('div');
 			checkboxDiv2.setAttribute('id', 'alertBox');
 			checkboxDiv2.style.display = 'none';
@@ -215,7 +219,7 @@
 			pInsideAlertBox.textContent = 'Are you sure ?';
 			checkboxDiv2.appendChild(pInsideAlertBox);
 		
-			anchor.append(mainDiv);
+			div_head.append(mainDiv);
 			document.querySelector("div.contain").append(div_contain);
 		}
 

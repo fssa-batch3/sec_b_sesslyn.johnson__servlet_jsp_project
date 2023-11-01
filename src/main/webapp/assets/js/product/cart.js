@@ -186,11 +186,11 @@ function renderAddress(addressArray) {
 	const products = document.querySelectorAll("img#icon_remove");
 	products.forEach(function(check) {
 		check.addEventListener("click", function() {
-			const product_id = this.dataset.remove;
+			const product_id = this.getAttribute("data-remove");
 			if (confirm("Are you sure you want to remove this product?")) {
-				user_cart = user_cart.filter(e => e.product_uuid !== product_id);
-				localStorage.setItem("cart_list", JSON.stringify(user_cart));
-				window.location.reload();
+				let cartUser = user_cart.filter((e) => e.product_uuid !== product_id);
+				localStorage.setItem("cart_list", JSON.stringify(cartUser));
+				window.location.reload(); 
 			}
 		});
 	});

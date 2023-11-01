@@ -2,8 +2,8 @@ package in.fssa.minimal.servlets;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +32,7 @@ public class UserAddressListServlet extends HttpServlet {
 		int userId = (Integer) request.getSession().getAttribute("userId");
 		try {
 			AddressService addressService = new AddressService();
-			Set<Address> address = addressService.getAllAddressByUserId(userId);
+			List<Address> address = addressService.getAllAddressByUserId(userId);
 			Map<String, Object> responseData = new HashMap<>();
 			responseData.put("addressDetails", address);
 

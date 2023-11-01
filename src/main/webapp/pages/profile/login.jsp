@@ -142,7 +142,7 @@
 					<div class="form_input">
 						<label for="email">Email Id</label> <input type="email"
 							value="<%=(email != null) ? email : ""%>" class="no_outline"
-							id="user_email" name="email" required
+							id="user_email" name="email" required autofocus
 							pattern="^[a-zA-Z0-9]+([a-zA-Z0-9_+\-\. ]*[a-zA-Z0-9]+)?@[a-zA-Z0-9]+([a-zA-Z0-9\-\.]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}$"
 							title="Must contain @ and only lower case is allowed."
 							placeholder="sess@...">

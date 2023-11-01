@@ -3,7 +3,7 @@ package in.fssa.minimal.servlets;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +34,7 @@ public class UserOrderListServlet extends HttpServlet {
 			try {
 				int userId = userIdObject.intValue();
 				OrderService orderService = new OrderService();
-				Set<OrderRespondDTO> order = orderService.getAllOrderByUserId(userId);
+				List<OrderRespondDTO> order = orderService.getAllOrderByUserId(userId);
 				Map<String, Object> responseData = new HashMap<>();
 				responseData.put("orderDetails", order);
 			

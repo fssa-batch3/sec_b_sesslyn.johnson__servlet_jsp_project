@@ -1,6 +1,7 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -31,13 +32,13 @@ public class FindAppointmentByStatus extends HttpServlet {
 		Integer userIdObject = (Integer) request.getSession().getAttribute("userId");
 		try {
 			int userId = userIdObject.intValue();
-			Set<AppointmentRespondDTO> totalApp = appointmentService.getAllAppointment();
+			List<AppointmentRespondDTO> totalApp = appointmentService.getAllAppointment();
 			int numberOfAppointments = totalApp.size();
-			Set<AppointmentRespondDTO> appointment = appointmentService.getAllAppointmentByToUserId(userId);
+			List<AppointmentRespondDTO> appointment = appointmentService.getAllAppointmentByToUserId(userId);
 			UserService userService = new UserService();
 			User user = userService.findByUserId(userId);
 			String role = user.getRole();
-			Set<AppointmentRespondDTO> totalBasedOnStatus = appointmentService.getAllAppointmentByStatus(status);
+			List<AppointmentRespondDTO> totalBasedOnStatus = appointmentService.getAllAppointmentByStatus(status);
 			request.setAttribute("userDetails", user);
 			request.setAttribute("totalAppointments", numberOfAppointments);
 			request.setAttribute("appointmentDetails", appointment);

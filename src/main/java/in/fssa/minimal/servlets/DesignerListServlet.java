@@ -1,7 +1,7 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
-import java.util.Set;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +28,7 @@ public class DesignerListServlet extends HttpServlet {
 		if (userIdObject == null) {
 			try {
 				UserService userService = new UserService();
-				Set<User> designers = userService.getAllDesigner();
+				List<User> designers = userService.getAllDesigner();
 				request.setAttribute("designerDetails", designers);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/designer/designer.jsp");
 				dispatcher.forward(request, response);
@@ -41,7 +41,7 @@ public class DesignerListServlet extends HttpServlet {
 				int userId = userIdObject.intValue();
 				UserService userService = new UserService();
 				User user = 	UserService.findByUserId(userId);
-				Set<User> designers = userService.getAllDesigner();
+				List<User> designers = userService.getAllDesigner();
 				request.setAttribute("userDetails", user);
 				request.setAttribute("designerDetails", designers);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/designer/designer.jsp");

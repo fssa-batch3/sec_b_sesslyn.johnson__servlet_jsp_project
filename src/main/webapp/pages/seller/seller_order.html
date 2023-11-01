@@ -62,7 +62,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="./product_form.html">
+					<a class="nav-link" id="addProduct" href="">
 						<span class="menu-title">Add Product</span>
 
 					</a>
@@ -180,7 +180,7 @@
 	<script>
 		// Define the base URL
 		const baseURL = window.location.origin + '/minimalweb';
-
+		document.getElementById("addProduct").href = baseURL + '/seller/product/create'; 
 		// Set links for profile and homepage
 		document.getElementById("profileId").href = baseURL + '/homepage';
 		document.getElementById("profileHomeId").href = baseURL + '/homepage';
@@ -291,7 +291,7 @@
 								select.className = "custom-select";
 								select.disabled = false;
 							} else if (selectedValue === "Delivered" || selectedValue === "Rejected") {
-								select.className = "badge-success"; 
+								select.className = "badge-success";
 								select.disabled = true;
 
 								const confirmation = confirm("Are you sure you want to change the status?");

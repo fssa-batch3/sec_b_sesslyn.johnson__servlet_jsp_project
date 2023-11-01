@@ -1,8 +1,7 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
-import java.util.Set;
-
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +33,7 @@ public class CreateDesignServlet extends HttpServlet {
 			try {
 				user = UserService.findByUserId(userId);
 				StyleService styleService = new StyleService();
-				Set<Style> styleList = styleService.getAllStyle();
+				List<Style> styleList = styleService.getAllStyle();
 				request.setAttribute("userDetails", user);
 				request.setAttribute("styleDetails", styleList);
 				RequestDispatcher rd = request.getRequestDispatcher("/pages/designer/design_form.jsp");
@@ -44,7 +43,7 @@ public class CreateDesignServlet extends HttpServlet {
 			}
 		} else {
 			StyleService styleService = new StyleService();
-			Set<Style> styleList;
+			List<Style> styleList;
 			try {
 				styleList = styleService.getAllStyle();
 				request.setAttribute("styleDetails", styleList);
@@ -65,7 +64,7 @@ public class CreateDesignServlet extends HttpServlet {
 		DesignAsset designAsset = new DesignAsset();
 		int styleId = 0;
 		User user = new User();
-		Set<Style> styleList = null;
+		List<Style> styleList = null;
 		String customerName = request.getParameter("customer_name");
 		String projectValue = request.getParameter("project_value");
 		String apartmentSize = request.getParameter("apartment_size");

@@ -1,6 +1,6 @@
 <%@page import="in.fssa.minimal.model.User"%>
-<%@page import="java.util.HashSet"%>
-<%@page import="java.util.Set"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="in.fssa.minimal.service.UserService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -25,7 +25,7 @@
 	<jsp:include page="<%=headerJSP%>" />
 
 	<%
-	Set<User> designerList = (Set<User>) request.getAttribute("designerDetails");
+	List<User> designerList = (List<User>) request.getAttribute("designerDetails");
 	%>
   <div class="cardDesigner">
         <section class="section">

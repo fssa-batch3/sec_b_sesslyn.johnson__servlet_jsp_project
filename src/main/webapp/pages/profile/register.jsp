@@ -298,7 +298,7 @@ color:black;
 						<label for="name">Name</label> <input type="text" name="name"
 							class="no_outline" id="user_name" pattern="[a-zA-Z ]+"
 							value="<%=(user != null) ? user.getName() : ""%>"
-							title="Only contain Alphabets" required placeholder="Sesslyn">
+							title="Only contain Alphabets" required placeholder="Sesslyn" autofocus>
 					</div>
 					<hr class="new3">
 					<div class="form_input">

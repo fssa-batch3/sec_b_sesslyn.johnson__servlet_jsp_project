@@ -1,6 +1,6 @@
 <%@page import="in.fssa.minimal.model.Design"%>
 <%@page import="in.fssa.minimal.dto.DesignAssetRespondDTO"%>
-<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
     <jsp:include page="<%=headerJSP%>" />
     
     <%
-    Set<DesignAssetRespondDTO> totalDesign = (Set<DesignAssetRespondDTO>)request.getAttribute("totalDesign");
+    List<DesignAssetRespondDTO> totalDesign = (List<DesignAssetRespondDTO>)request.getAttribute("totalDesign");
     System.out.println(totalDesign);
     %>
 

@@ -1,7 +1,7 @@
 <%@page import="in.fssa.minimal.model.Review"%>
 <%@page import="in.fssa.minimal.util.StringUtil"%>
 <%@page import="in.fssa.minimal.dto.DesignAssetRespondDTO"%>
-<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <%@page import="in.fssa.minimal.model.Design"%>
 <%@page import="in.fssa.minimal.model.Asset"%>
 <%@page import="in.fssa.minimal.model.User"%>
@@ -123,7 +123,7 @@ div.cardsNew {
 								<p class="product-category mb-0">Interior Designer</p>
 								<h3><%=designer.getName()%></h3>
 							</div>
-							<%Set<Review> reviewList = (Set<Review>) request.getAttribute("reviewList");%>
+							<%List<Review> reviewList = (List<Review>) request.getAttribute("reviewList");%>
 							<%System.out.println(reviewList);%>
                               <div class="starIcon">
                                   <span class="star_icon">
@@ -204,7 +204,7 @@ div.cardsNew {
 	}
 	%>
 	<%
-	Set<DesignAssetRespondDTO> designAssets = (Set<DesignAssetRespondDTO>) request.getAttribute("designAssetList");
+	List<DesignAssetRespondDTO> designAssets = (List<DesignAssetRespondDTO>) request.getAttribute("designAssetList");
 	System.out.println(designAssets);
 	if (designAssets != null) {
 	%>

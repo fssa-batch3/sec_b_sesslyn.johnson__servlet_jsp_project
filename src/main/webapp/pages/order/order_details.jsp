@@ -72,7 +72,7 @@
 							<div class="form_details">
 								<label>Name</label> 
 								<input type="text" class="name" value="<%=(address != null) ? address.getName() : ""%>"
-									required="true" id="user_name" name="name"
+									required="true" id="user_name" name="name" autofocus
 									title="Only Alphabets are allowed." pattern="[a-zA-Z]+"
 									placeholder="Daniel">
 							</div>

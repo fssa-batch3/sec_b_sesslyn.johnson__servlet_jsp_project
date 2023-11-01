@@ -1,6 +1,8 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,10 +50,9 @@ public class BookAppointmentServlet extends HttpServlet {
 			String formattedTime = inputTime + ":00";
 			appointment.setTime(formattedTime);
 			String address = request.getParameter("address");
-			if(address != null && !address.trim().isEmpty()) {
+			if (address != null && !address.trim().isEmpty()) {
 				appointment.setAddress(address);
-			}
-			else {
+			} else {
 				appointment.setAddress(null);
 			}
 
@@ -61,7 +62,7 @@ public class BookAppointmentServlet extends HttpServlet {
 		} catch (ServiceException | ValidationException e) {
 			Logger.error(e);
 			request.setAttribute("error", e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("/pages/designer/calender.jsp?id="+designerId);
+			RequestDispatcher rd = request.getRequestDispatcher("/pages/designer/calender.jsp?id=" + designerId);
 			rd.forward(request, response);
 		}
 

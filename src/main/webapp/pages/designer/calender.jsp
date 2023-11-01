@@ -1,5 +1,5 @@
 <%@page import="in.fssa.minimal.dto.AppointmentRespondDTO"%>
-<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <%@page import="in.fssa.minimal.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -147,6 +147,7 @@
 			</button>
 		</div>
 	</div>
+	
 	<script src="<%=request.getContextPath()%>/assets/js/profile/header.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/assets/js/designer/calender.js"></script>

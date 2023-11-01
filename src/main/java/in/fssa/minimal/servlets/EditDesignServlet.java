@@ -1,6 +1,7 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -44,7 +45,7 @@ public class EditDesignServlet extends HttpServlet {
 				 designAsset = designAssetService.findDesignAssetById(designId);
 				user = UserService.findByUserId(userId);
 				StyleService styleService = new StyleService();
-				Set<Style> styleList = styleService.getAllStyle();
+				List<Style> styleList = styleService.getAllStyle();
 				 request.setAttribute("designAssetDetails", designAsset);
 				request.setAttribute("userDetails", user);
 				request.setAttribute("styleDetails", styleList);
@@ -66,7 +67,7 @@ public class EditDesignServlet extends HttpServlet {
 		DesignAsset designAsset = new DesignAsset();
 		int styleId = 0;
 		User user = new User();
-		Set<Style> styleList = null;
+		List<Style> styleList = null;
 		try {
 			user = UserService.findByUserId(userId);
 			StyleService styleService = new StyleService();

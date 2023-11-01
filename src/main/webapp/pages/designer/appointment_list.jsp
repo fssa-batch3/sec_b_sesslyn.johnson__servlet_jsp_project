@@ -2,20 +2,20 @@
 <%@page import="java.time.LocalTime"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="in.fssa.minimal.dto.AppointmentRespondDTO"%>
-<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Appointment List</title>
-    <link rel="stylesheet"
-        href="<%=request.getContextPath()%>/assets/css/designer/user_appointment_list.css">
+<meta charset="ISO-8859-1">
+<title>Appointment List</title>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/assets/css/designer/user_appointment_list.css">
 </head>
 <style>
- #statusInfo {
+#statusInfo {
 	display: flex;
 	flex-direction: row;
 }
@@ -261,213 +261,231 @@ form .btn {
 	margin-bottom: 0rem;
 	margin-left: -3rem;
 }
-
 </style>
 <body>
-<% int userId = 0;
-int appointmentId = 0;
-int designerId = 0;
-%>
-<%
-String headerJSP = "/pages/profile/header.jsp";
-%>
+	<%
+	String errorMsg = (String) request.getAttribute("error");
+	%>
+	<%
+	if (errorMsg != null && !errorMsg.isEmpty()) {
+	%>
+	<div id="popup1" class="overlay">
+		<div class="popup">
+			<h2>Alert !</h2>
+			<a onclick="closeAlert()" class="close" href="#">&times;</a>
+			<div class="content">
+				<%=errorMsg%>
+			</div>
+			<button id="alert" onclick="closeAlert()" type="button">Ok</button>
+		</div>
+	</div>
+	<%
+	}
+	%>
 
-<jsp:include page="<%=headerJSP%>" />
+	<%
+	int userId = 0;
+	int appointmentId = 0;
+	int designerId = 0;
+	%>
+	<%
+	String headerJSP = "/pages/profile/header.jsp";
+	%>
 
-<%
-Set<AppointmentRespondDTO> appointmentList = (Set<AppointmentRespondDTO>) request.getAttribute("appointmentDetails");
-System.out.println(appointmentList);
-%>
+	<jsp:include page="<%=headerJSP%>" />
 
-<%
-if (appointmentList == null || appointmentList.isEmpty()) {
-%>
-<div id="cart_empty">
-    <img loading="lazy" src="https://iili.io/HgdHinR.jpg"
-        class="emptyCart" alt="Empty Cart image" />
-    <p class="cartEmpty">You haven't booked a meeting yet!</p>
-</div>
+	<%
+	List<AppointmentRespondDTO> appointmentList = (List<AppointmentRespondDTO>) request.getAttribute("appointmentDetails");
+	System.out.println(appointmentList);
+	%>
 
-<%
-} else {
-%>
-<main class="table">
-    <section class="table__header">
-        <h1>Appointments</h1>
-    </section>
-    <section class="table__body">
-        <table>
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th id="user_email">User Details</th>
-                    <th id="designer_email">Designer Details</th>
-                    <th id="date">Date</th>
-                    <th>Time</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%
-                if (appointmentList != null && !appointmentList.isEmpty()) {
-                    int index = 0;
-                    for (AppointmentRespondDTO appointment : appointmentList) {
-                        LocalDate currentDate = LocalDate.now();
-                        LocalTime currentTime = LocalTime.now();
-                        String targetDate = appointment.getDate();
-                        String targetTime = appointment.getTime();
+	<%
+	if (appointmentList == null || appointmentList.isEmpty()) {
+	%>
+	<div id="cart_empty">
+		<img loading="lazy" src="https://iili.io/HgdHinR.jpg"
+			class="emptyCart" alt="Empty Cart image" />
+		<p class="cartEmpty">You haven't booked a meeting yet!</p>
+	</div>
 
-                        LocalDate parsedDate = LocalDate.parse(targetDate);
-                        LocalTime parsedTime = LocalTime.parse(targetTime);
+	<%
+	} else {
+	%>
+	<main class="table">
+		<section class="table__header">
+			<h1>Appointments</h1>
+		</section>
+		<section class="table__body">
+			<table>
+				<thead>
+					<tr>
+						<th>No</th>
+						<th id="user_email">User Details</th>
+						<th id="designer_email">Designer Details</th>
+						<th id="date">Date</th>
+						<th>Time</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+					if (appointmentList != null && !appointmentList.isEmpty()) {
+						int index = 0;
+						for (AppointmentRespondDTO appointment : appointmentList) {
+							LocalDate currentDate = LocalDate.now();
+							LocalTime currentTime = LocalTime.now();
+							String targetDate = appointment.getDate();
+							String targetTime = appointment.getTime();
 
-                        String statusToShow = "";
+							LocalDate parsedDate = LocalDate.parse(targetDate);
+							LocalTime parsedTime = LocalTime.parse(targetTime);
 
-                        if ("approved".equals(appointment.getStatus().toLowerCase())) {
-                            statusToShow = currentDate.isAfter(parsedDate)
-                                    || (currentDate.isEqual(parsedDate) && currentTime.isAfter(parsedTime)) ? "completed" : "approved";
-                        } else if ("waiting_list".equals(appointment.getStatus().toLowerCase())) {
-                            statusToShow = currentDate.isAfter(parsedDate)
-                                    || (currentDate.isEqual(parsedDate) && currentTime.isAfter(parsedTime))
-                                            ? "rejected"
-                                            : "waiting_list";
-                        } else {
-                            statusToShow = appointment.getStatus().toLowerCase();
-                        }
-                %>
-                <tr>
-                    <td><%=index + 1%></td>
-                    <td><%=appointment.getFromUser().getName()%><br> <small><%=appointment.getEmail()%></small></td>
-                    <td id="designer">
-                        <%
-                        out.print(appointment.getToUser().getName());
-                        if (!appointment.getToUser().isActive()) {
-                        %> - Inactive <%
-                        }
-                        %>
-                        <br> <small>
-                            <%
-                            if ("approved".equals(appointment.getStatus())) {
-                                out.print(appointment.getToUser().getEmail());
-                            }
-                            %>
-                        </small>
-                    </td>
-                    <td><%=appointment.getDate()%></td>
-                    <td class="timeTd"><strong><%=appointment.getTime()%></strong></td>
-                    <td id="statusInfo">
-                                <p class="status <%=statusToShow.toLowerCase()%>">
-                                    <%=statusToShow%>
-                        </p>
-                        <%
-                        if (statusToShow.equals("completed")) {
-                            appointmentId = appointment.getId();
-                           userId = appointment.getFromUser().getId();
-                           designerId = appointment.getToUser().getId();
-                        %>
-                       <button class="review-button" id="reviewBtn" type="button">Review</button>
-                        <%
-                        }
-                        %></td>
-                </tr>
-                <%
-                index++;
-                }
-                }
-                %>
-            </tbody>
-        </table>
-    </section>
-</main>
-<%
-}
-%>
+							String statusToShow = "";
 
-<div id="review">
-    <main id="reviewMain">
-        <div class="containerDiv">
-            <form
-                action="<%=request.getContextPath()%>/user/appointment_list/review"
-                method="post">
-                <div class="post">
-                    <div class="text">Thanks for rating us!</div>
-                    <a href="<%=request.getContextPath()%>/user/appointment_list"><button
-                            class="btnDone">Done</button></a>
-                </div>
-                <input type="hidden" name="appointmentId" id="appointmentId" value="">
-                <input type="hidden" name="fromUserId" id="fromUserId" value="">
-                <input type="hidden" name="toUserId" id="toUserId" value="">
+							if ("approved".equals(appointment.getStatus().toLowerCase())) {
+						statusToShow = currentDate.isAfter(parsedDate)
+								|| (currentDate.isEqual(parsedDate) && currentTime.isAfter(parsedTime)) ? "completed" : "approved";
+							} else if ("waiting_list".equals(appointment.getStatus().toLowerCase())) {
+						statusToShow = currentDate.isAfter(parsedDate)
+								|| (currentDate.isEqual(parsedDate) && currentTime.isAfter(parsedTime)) ? "rejected"
+										: "waiting_list";
+							} else {
+						statusToShow = appointment.getStatus().toLowerCase();
+							}
+					%>
+					<tr>
+						<td><%=index + 1%></td>
+						<td><%=appointment.getFromUser().getName()%><br> <small><%=appointment.getEmail()%></small></td>
+						<td id="designer">
+							<%
+							out.print(appointment.getToUser().getName());
+							if (!appointment.getToUser().isActive()) {
+							%> - Inactive <%
+							}
+							%> <br> <small>
+							 <%if ("approved".equals(appointment.getStatus())) {
+                            	out.print(appointment.getToUser().getEmail());
+							 }
+							 %>
+						</small>
+						</td>
+						<td><%=appointment.getDate()%></td>
+						<td class="timeTd"><strong><%=appointment.getTime()%></strong></td>
+						<td id="statusInfo">
+							<p class="status <%=statusToShow.toLowerCase()%>">
+								<%=statusToShow%>
+							</p> 
+							<%if (statusToShow.equals("completed")) {
+                               appointmentId = appointment.getId();
+                               userId = appointment.getFromUser().getId();
+                               designerId = appointment.getToUser().getId();%>
+							<button class="review-button" id="reviewBtn"
+								data-id=<%=appointment.getToUser().getId()%> type="button">Review</button>
+							<%
+							}
+							%>
+						</td>
+					</tr>
+					<%
+					index++;
+					}
+					}
+					%>
+				</tbody>
+			</table>
+		</section>
+	</main>
+	<%
+	}
+	%>
 
-                <div class="star-widget">
-                    <input type="radio" name="rate" value="5" id="rate-5"> <label
-                        for="rate-5" class="fas fa-star"></label> <input type="radio"
-                        name="rate" value="4" id="rate-4"> <label for="rate-4"
-                        class="fas fa-star"></label> <input type="radio" name="rate"
-                        value="3" id="rate-3"> <label for="rate-3"
-                        class="fas fa-star"></label> <input type="radio" name="rate"
-                        value="2" id="rate-2"> <label for="rate-2"
-                        class="fas fa-star"></label> <input type="radio" name="rate"
-                        value="1" id="rate-1"> <label for="rate-1"
-                        class="fas fa-star"></label>
-                    <div class="reviewForm">
-                        <header class="comment"> </header>
-                        <div class="textarea">
-                            <textarea cols="30" id="about" name="description"
-                                placeholder="Describe your experience.."></textarea>
-                        </div>
-                        <div class="btn" id="btn">
-                            <button class="btnPost" id="btnPost" type="submit">Post</button>
-                            <button class="btnCancel" id="btnCancel" type="button">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </main>
-</div>
+	<div id="review">
+		<main id="reviewMain">
+			<div class="containerDiv">
+				<form
+					action="<%=request.getContextPath()%>/user/appointment_list/review"
+					method="post">
+					<div class="post">
+						<div class="text">Thanks for rating us!</div>
+						<a href="<%=request.getContextPath()%>/user/appointment_list"><button
+								class="btnDone">Done</button></a>
+					</div>
+					<input type="hidden" name="appointmentId" id="appointmentId"
+						value=""> <input type="hidden" name="fromUserId"
+						id="fromUserId" value=""> <input type="hidden"
+						name="toUserId" id="toUserId" value="">
+
+					<div class="star-widget">
+						<input type="radio" name="rate" value="5" id="rate-5"> <label
+							for="rate-5" class="fas fa-star"></label> <input type="radio"
+							name="rate" value="4" id="rate-4"> <label for="rate-4"
+							class="fas fa-star"></label> <input type="radio" name="rate"
+							value="3" id="rate-3"> <label for="rate-3"
+							class="fas fa-star"></label> <input type="radio" name="rate"
+							value="2" id="rate-2"> <label for="rate-2"
+							class="fas fa-star"></label> <input type="radio" name="rate"
+							value="1" id="rate-1"> <label for="rate-1"
+							class="fas fa-star"></label>
+						<div class="reviewForm">
+							<header class="comment"> </header>
+							<div class="textarea">
+								<textarea cols="30" id="about" name="description"
+									placeholder="Describe your experience.."></textarea>
+							</div>
+							<div class="btn" id="btn">
+								<button class="btnPost" id="btnPost" type="submit">Post</button>
+								<button class="btnCancel" id="btnCancel" type="button">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</main>
+	</div>
 
 <script>
-    
+function closeAlert() {
+	var alertDiv = document.getElementById("popup1");
+	alertDiv.style.display = "none";
+}
 
 document.querySelectorAll("button.review-button").forEach(function (button) {
-    button.addEventListener("click", function () {
-        const appointmentId = '<%= appointmentId %>';
-        const userId = '<%= userId %>';
-        const designerId = '<%= designerId %>';
+	button.addEventListener("click", function () {
+		const appointmentId = '<%=appointmentId%>';
+		const userId = '<%=userId%>';
 
-        const messageDiv = document.getElementById("review");
-        messageDiv.style.display = "block";
+		let reviewBtn = document.getElementById("reviewBtn");
+		const designerId = reviewBtn.getAttribute("data-id");
+		console.log(designerId);
 
-        // Set the hidden input values
-        document.getElementById("appointmentId").value = appointmentId;
-        document.getElementById("fromUserId").value = userId;
-        console.log(userId);
-        document.getElementById("toUserId").value = designerId;
-        console.log(designerId);
+		const messageDiv = document.getElementById("review");
+		messageDiv.style.display = "block";
+		document.getElementById("appointmentId").value = appointmentId;
+		document.getElementById("fromUserId").value = userId;
+		console.log(userId);
+		document.getElementById("toUserId").value = designerId;
+		const table = document.getElementById("table");
+		if (table) {
+			table.classList.add("blur-background");
+		}
 
-        // Assuming you have an element with the id "table" to blur
-        const table = document.getElementById("table");
-        if (table) {
-            table.classList.add("blur-background");
-        }
+		const btnPost = document.querySelector(".btnPost");
+		const btnCancel = document.querySelector(".btnCancel");
+		const post = document.querySelector(".post");
+		const widget = document.querySelector(".star-widget");
 
-        const btnPost = document.querySelector(".btnPost");
-        const btnCancel = document.querySelector(".btnCancel");
-        const post = document.querySelector(".post");
-        const widget = document.querySelector(".star-widget");
+		btnPost.addEventListener('click',function () {
+			widget.style.display = "none";
+			post.style.display = "block";
+		});
 
-        btnPost.addEventListener('click', function () {
-            widget.style.display = "none";
-            post.style.display = "block";
-        });
-
-        btnCancel.addEventListener('click', function () {
-            messageDiv.style.display = "none";
-            if (table) {
-                table.classList.remove("blur-background");
-            }
-        });
-    });
+		btnCancel.addEventListener('click',function () {
+			messageDiv.style.display = "none";
+			if (table) {
+			  table.classList.remove("blur-background");
+			}
+		});
+	});
 });
-</script>
-</body>
+	</script></body>
 </html>

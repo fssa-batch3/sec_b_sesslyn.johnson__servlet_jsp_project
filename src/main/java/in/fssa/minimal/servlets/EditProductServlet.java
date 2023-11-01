@@ -1,6 +1,7 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -42,7 +43,7 @@ public class EditProductServlet extends HttpServlet {
 				ProductRespondDTO product = productService.findByProductId(productId);
 				user = UserService.findBySellerId(userId);
 				CategoryService categoryService = new CategoryService();
-				Set<Category> categoryList = categoryService.getAllCategory();
+				List<Category> categoryList = categoryService.getAllCategory();
 				request.setAttribute("productDetails", product);
 				request.setAttribute("userDetails", user);
 				request.setAttribute("categoryDetails", categoryList);
@@ -60,7 +61,7 @@ public class EditProductServlet extends HttpServlet {
 		int designId = (Integer) request.getSession().getAttribute("productId");
 		User user = new User();
 		int categoryId = 0;
-		Set<Category> categoryList = null;
+		List<Category> categoryList = null;
 		Product product = null;
 		try {
 			product = new Product();
@@ -87,6 +88,7 @@ public class EditProductServlet extends HttpServlet {
 				categoryId = Integer.parseInt(categoryName);
 			}
 			product.setCategoryId(categoryId);
+			System.out.println(product);
 			ProductService productService = new ProductService();
 			productService.updateProduct(designId, product);
 

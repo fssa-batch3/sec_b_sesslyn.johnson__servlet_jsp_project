@@ -1,6 +1,7 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -33,9 +34,9 @@ public class DesignerAppointmentServlet extends HttpServlet {
 			try {
 				int userId = userIdObject.intValue();
 				AppointmentService appointmentService = new AppointmentService();
-				Set<AppointmentRespondDTO> totalApp = appointmentService.getAllAppointment();
+				List<AppointmentRespondDTO> totalApp = appointmentService.getAllAppointment();
 				int numberOfAppointments = totalApp.size();
-				Set<AppointmentRespondDTO> appointment = appointmentService.getAllAppointmentByToUserId(userId);
+				List<AppointmentRespondDTO> appointment = appointmentService.getAllAppointmentByToUserId(userId);
 				UserService userService = new UserService();
 				User user = userService.findByUserId(userId);
 				String role = user.getRole();

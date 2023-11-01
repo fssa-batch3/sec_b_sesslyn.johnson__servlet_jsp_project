@@ -1,6 +1,7 @@
 package in.fssa.minimal.servlets;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -40,9 +41,9 @@ public class FindDesignerByIdServlet extends HttpServlet {
 				request.setAttribute("userDetails", null);
 				User designer = userService.findByDesignerId(designerId);
 				request.setAttribute("designerDetails", designer);
-				Set<DesignAssetRespondDTO> designAsset = designAssetService.getAllActiveDesignAssetByDesignerId(designerId);
+				List<DesignAssetRespondDTO> designAsset = designAssetService.getAllActiveDesignAssetByDesignerId(designerId);
 				ReviewService reviewService = new ReviewService();
-            	Set<Review> reviewList = reviewService.getAllReviewByDesignerId(designerId);
+				List<Review> reviewList = reviewService.getAllReviewByDesignerId(designerId);
             	System.out.println(reviewList);
             	request.setAttribute("reviewList", reviewList);	
 				request.setAttribute("designAssetList", designAsset);
@@ -58,9 +59,9 @@ public class FindDesignerByIdServlet extends HttpServlet {
 				UserService userService = new UserService();
 				User user = userService.findByUserId(userId);
 				User designer = userService.findByDesignerId(designerId);
-				Set<DesignAssetRespondDTO> designAsset = designAssetService.getAllActiveDesignAssetByDesignerId(designerId);
+				List<DesignAssetRespondDTO> designAsset = designAssetService.getAllActiveDesignAssetByDesignerId(designerId);
 				ReviewService reviewService = new ReviewService();
-            	Set<Review> reviewList = reviewService.getAllReviewByDesignerId(designerId);
+				List<Review> reviewList = reviewService.getAllReviewByDesignerId(designerId);
             	System.out.println(reviewList);
             	request.setAttribute("reviewList", reviewList);
 				request.setAttribute("designAssetList", designAsset);
