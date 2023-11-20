@@ -119,8 +119,9 @@
 
 							<div class="add-event-input">
 								<input type="time" name="time" id="user_time" min="08:00"
-									max="20:00" required class="formbold-form-input"
-									title="Select a time for the appointment" />
+									max="20:00" required class="formbold-form-input" style="width:60%"
+									title="Select a time for the appointment" /> 
+									<label style="color:black">( In 24 hrs format )</label>
 							</div>
 
 							<div class="add-event-input">

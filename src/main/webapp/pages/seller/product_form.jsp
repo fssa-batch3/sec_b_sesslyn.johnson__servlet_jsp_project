@@ -80,10 +80,9 @@
 				</div>
 				<div class="form-group">
 					<input type="text" placeholder="Product Description"
-						name="description" pattern="^(\S+\s{0,1})+$"
+						name="description" id="product_description" 
 						value="<%=(product != null) ? product.getDescription() : ""%>"
-						title="Only Alphabets, number and space is allowed"
-						id="product_description" required class="form-control">
+						required class="form-control">
 				</div>
 				<div class="form-group">
 					<input type="text" placeholder="Image" id="image_url"
